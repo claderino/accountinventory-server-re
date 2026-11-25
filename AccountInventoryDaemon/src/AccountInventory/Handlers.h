@@ -7,9 +7,11 @@
 namespace accountinventory {
 
 class AccountInventoryDB;
+class NpClient;
 struct AppConfig;
 // Set by the daemon once its DB/config are initialized; used by the wire handlers.
 void SetHandlerApp(AccountInventoryDB* db, const AppConfig* cfg);
+void SetHandlerNp(NpClient* np);
 
 // Command tables recovered from the original binary:
 //   manage  : 1, 4                       (table @ 0xCC1D0)

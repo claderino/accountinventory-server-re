@@ -23,8 +23,10 @@ std::wstring CertToWide(const std::string& s) {
 }
 } // namespace
 
-AccountInventoryDaemon::AccountInventoryDaemon() : config_(NULL), db_(NULL), appDb_(NULL) {}
+AccountInventoryDaemon::AccountInventoryDaemon() : config_(NULL), db_(NULL), appDb_(NULL), np_(NULL) {}
 AccountInventoryDaemon::~AccountInventoryDaemon() {
+    SetHandlerNp(NULL);
+    delete np_;
     delete appDb_;
     delete config_;
     delete db_;
@@ -152,7 +154,19 @@ bool AccountInventoryDaemon::initNetwork() {
 }
 
 bool AccountInventoryDaemon::onStart() {
-    blood::LogWrite(1, L"AccountInventoryDaemon.cpp", 0x2c0, L"[%s], start np channel ok", GetLogTag());
+    if (config_->npEnabled) {
+        np_ = new NpClient();
+        if (np_->Connect(config_->npAddress, config_->npPort,
+                         config_->npProgramId, config_->npGameCode)) {
+            SetHandlerNp(np_);
+            blood::LogWrite(3, L"AccountInventoryDaemon.cpp", 0x3fe,
+                L"[%s], start np channel ok", GetLogTag());
+        } else {
+            blood::LogWrite(0, L"AccountInventoryDaemon.cpp", 0x3f6,
+                L"[%s], start np channel fail; open np port fail", GetLogTag());
+            delete np_; np_ = NULL;
+        }
+    }
     return true;
 }
 

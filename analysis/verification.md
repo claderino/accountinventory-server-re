@@ -51,10 +51,28 @@ Commands 4/7/13/16/19/22/25/28 on the lobby port and 4/7 on the world port now c
 DB and build their replies from the live rows; their wire bytes were validated against the
 original binary as an oracle (table above).
 
-## Known limitations
-- The Next Platform gateway (`StsMsgSrv64.dll`) is shipped but not driven; commands that need
-  it reply with the same reason codes the original produces when NP is unavailable.
+## NP gateway implementation (second pass)
+
+Reversed the NP transport by running a private copy of the original with `np-enabled=yes`
+against the live gateway through a logging TCP proxy (`tests/e2e/np_proxy.py`). The gateway
+speaks HTTP-like STS/1.0 text frames (see `analysis/NP_PROTOCOL.md`). Implemented
+`src/AccountInventory/NpClient.cpp`: connect / register / GetGoodsCount / List, sequence
+numbers, XML parsing, reconnect-on-demand, wired into the daemon (`onStart`) and handlers.
+
+Differential test with the NP-enabled oracle (both daemons talking to the same live gateway):
+
+```
+cmd4 get-goods-count   oracle cmd5 [554433221100000001000000]
+                       ours   cmd5 [554433221100000001000000]   <- MATCH
+cmd13/16/19/25         MATCH (unchanged DB-backed paths)
+```
+
+## Remaining limitations
+- Lobby cmd7 (list-goods): the original replies cmd8 with a large goods-list frame
+  (`hiqCqiQQqqssissbbCiiiibb;;`) assembled by an asynchronous job from NP XML + DB. The NP
+  `List` request is implemented, but composing that nested frame is not finished; our reply is
+  the NP-unavailable ack (cmd9).
 - Instant-payment commands and the full asynchronous job/STS state machine are represented by
   the recovered dispatcher and DB facade but not exercised end-to-end.
-- `dbtest` shows ODBC `RETURN` values from RAISERROR paths are not reliably surfaced by Driver
-  17; the oracle-verified reason codes are used on those paths instead.
+- ODBC `RETURN` values from RAISERROR paths are not reliably surfaced by Driver 17; the
+  oracle-verified reason codes are used on those paths instead.

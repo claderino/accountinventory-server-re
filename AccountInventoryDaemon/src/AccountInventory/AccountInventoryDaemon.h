@@ -4,6 +4,7 @@
 #include "Config.h"
 #include "Db.h"
 #include "AccountInventoryDB.h"
+#include "NpClient.h"
 
 namespace accountinventory {
 
@@ -33,6 +34,7 @@ private:
     AppConfig* config_;
     Db* db_;
     AccountInventoryDB* appDb_;
+    NpClient* np_;
 };
 
 } // namespace accountinventory

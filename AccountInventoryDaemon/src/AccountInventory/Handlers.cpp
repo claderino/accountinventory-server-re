@@ -6,6 +6,7 @@
 //   Success ack: "h" with cmd=2.  Failure ack: "hh" with (cmd=3, failReason).
 #include "Handlers.h"
 #include "AccountInventoryDB.h"
+#include "NpClient.h"
 #include "Config.h"
 #include "../BloodLib/BloodLib.h"
 #include "../BloodLib/Daemon.h"
@@ -18,12 +19,14 @@ SOURCE_FILE("AccountInventorySessionHandler.cpp");
 namespace AccountGlobals {
 AccountInventoryDB* db = NULL;
 const AppConfig* cfg = NULL;
+NpClient* np = NULL;
 }
 
 void SetHandlerApp(AccountInventoryDB* db, const AppConfig* cfg) {
     AccountGlobals::db = db;
     AccountGlobals::cfg = cfg;
 }
+void SetHandlerNp(NpClient* np) { AccountGlobals::np = np; }
 
 namespace {
 
@@ -134,6 +137,17 @@ bool HandleGetGoodsCount(blood::Session* session, blood::Packet* packet, int cmd
     memset(&account, 0, sizeof(account));
     if (!blood::Packet_Decompose(packet, "hqo", &wireCmd, &tid, &account.bytes)) return false;
     AccountInventoryDB* db = AccountGlobals::db;
+    if (cmd == 4 && AccountGlobals::np && AccountGlobals::np->IsConnected()) {
+        // NP path (verified against the original + live gateway): cmd5 with (tid, goodsCount).
+        int count = AccountGlobals::np->GetGoodsCount(account);
+        if (count >= 0) {
+            blood::LogWrite(1, L"GamedJobGetGoodsCount.cpp", 0x40,
+                L"[tranjob], get-goods-count ok, account-id:%s, goods-count:%d",
+                account.TextW().c_str(), count);
+            SendFmt(session, "hqi", 5, (u64)tid, count);
+            return true;
+        }
+    }
     i64 goods = 0, items = 0;
     int ret = db ? db->RetrieveWarehouseItemCount(account, 1, &goods, &items) : -1;
     // With NP disabled the original replies cmd 6/9 with reason 5 (NP not available).

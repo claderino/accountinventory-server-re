@@ -35,7 +35,7 @@
 	<option name='goods-job-hash-count' value='0'/>
 	<!-- ==== network configuration ==== -->
 	<!-- [REQ] work with next-platform  -->
-	<option name='np-enabled' value='no'/>
+	<option name='np-enabled' value='yes'/>
 	<!-- [REQ] NP program id. 302:live(QA)(dev-np-01), 303:program(dev-np-02), 304:internal(dev-np-02), 305:branch(dev-np-01), 306:live(test), 308:tenc(dev-np-02) -->
 	<option name='np-program-id' value='1820'/> 
 	<!-- [REQ] NP game code. bns:live(QA)(dev-np-01), bnsprog:program(dev-np-02), bnsintr:internal(dev-np-02), bnsbr:branch(dev-np-01), bnstest:live(test), bnstenc(dev-np-02) -->
@@ -43,7 +43,7 @@
 	<!-- [OPT] next-platform	address -->
 	<option name='np-address' value='127.0.0.1'/> 
 	<!-- [OPT] next-platform access port -->
-	<option name='np-port' value='6601'/>
+	<option name='np-port' value='16602'/>
 	<!-- [OPT] management listen port -->
 	<option name='manage-listen-port' value='33700'/>
 	<!-- [OPT] world listen port -->
@@ -76,7 +76,7 @@
 	<option name='uncomoleted-goods-registration-fail-count-max' value='5'/>
 	<!-- ==== instant payment configuration ==== -->
 	<!-- [REQ] enable instant payment -->
-	<option name='enable-instant-payment' value='no'/>
+	<option name='enable-instant-payment' value='yes'/>
 	<!-- [OPT] sec. goods category update period. 0 means no update -->
 	<option name='instant-payment-goods-category-update-period' value='30'/>
 	<!-- [OPT] instant payment goods category type. default 2 -->

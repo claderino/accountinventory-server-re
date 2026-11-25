@@ -7,6 +7,7 @@ AccountInventoryDaemon/build/
 
 # Ghidra scratch project and large raw memory images
 analysis/ghidra_proj/
+analysis/ghidra_proj_dll/
 analysis/mem/image.raw
 analysis/mem/*.mem.exe
 
@@ -20,3 +21,5 @@ run/test/stderr.log
 tests/e2e/*.exe
 analysis/oracle/*.exe
 analysis/oracle/*.dll
+analysis/oracle/log/
+tests/e2e/np_capture.log
