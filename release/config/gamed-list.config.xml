@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<gamed-list>
+    <!-- <gamed wid='[world-id]' ip-address='[internal-IP]' internal-port='[internal-port]'/> -->
+	<gamed wid='7801' ip-address='127.0.0.1' internal-port='20100' />
+</gamed-list>

@@ -1,0 +1,635 @@
+[version] original=13 ours=13
+[xml] 13 files in tests\data
+    [dbg] reading C:\serverside_re\ranking\XmlReader_sv64\tests\data\bom.xml
+    [dbg] doc=000001B46BD70860
+    [dbg] IsValid
+    [dbg] GetRootElement
+    [dbg] root=000001B46BD70910
+    [dbg] Walk
+    [dbg] elem root line=2 kids=0 attrs=1
+    [dbg] nodes
+    [dbg] Walk done
+    [dbg] DestroyDoc
+    [dbg] reading C:\serverside_re\ranking\XmlReader_sv64\tests\data\bom.xml
+    [dbg] doc=000001B46B911EF0
+    [dbg] IsValid
+    [dbg] GetRootElement
+    [dbg] root=000001B46B91D040
+    [dbg] Walk
+    [dbg] elem root line=2 kids=0 attrs=1
+    [dbg] nodes
+    [dbg] Walk done
+    [dbg] DestroyDoc
+  C:\serverside_re\ranking\XmlReader_sv64\tests\data\bom.xml: orig=1 elements, mine=1 elements
+    [dbg] reading C:\serverside_re\ranking\XmlReader_sv64\tests\data\crafted1.xml
+    [dbg] doc=000001B46BC70860
+    [dbg] IsValid
+    [dbg] GetRootElement
+    [dbg] root=000001B46BC70920
+    [dbg] Walk
+    [dbg] elem root line=4 kids=3 attrs=2
+    [dbg] nodes
+    [dbg] elem empty line=5 kids=0 attrs=0
+    [dbg] nodes
+    [dbg] elem child line=6 kids=1 attrs=2
+    [dbg] nodes
+    [dbg] elem leaf line=6 kids=0 attrs=1
+    [dbg] nodes
+    [dbg] elem last line=10 kids=0 attrs=1
+    [dbg] nodes
+    [dbg] Walk done
+    [dbg] DestroyDoc
+    [dbg] reading C:\serverside_re\ranking\XmlReader_sv64\tests\data\crafted1.xml
+    [dbg] doc=000001B46B911D70
+    [dbg] IsValid
+    [dbg] GetRootElement
+    [dbg] root=000001B46B91FA60
+    [dbg] Walk
+    [dbg] elem root line=4 kids=3 attrs=2
+    [dbg] nodes
+    [dbg] elem empty line=5 kids=0 attrs=0
+    [dbg] nodes
+    [dbg] elem child line=6 kids=1 attrs=2
+    [dbg] nodes
+    [dbg] elem leaf line=6 kids=0 attrs=1
+    [dbg] nodes
+    [dbg] elem last line=10 kids=0 attrs=1
+    [dbg] nodes
+    [dbg] Walk done
+    [dbg] DestroyDoc
+  C:\serverside_re\ranking\XmlReader_sv64\tests\data\crafted1.xml: orig=5 elements, mine=5 elements
+    [dbg] reading C:\serverside_re\ranking\XmlReader_sv64\tests\data\doctype.xml
+    [dbg] doc=000001B46BB40860
+    [dbg] IsValid
+    [dbg] GetRootElement
+    [dbg] root=000001B46BB40920
+    [dbg] Walk
+    [dbg] elem root line=3 kids=2 attrs=0
+    [dbg] nodes
+    [dbg] elem child line=3 kids=0 attrs=1
+    [dbg] nodes
+    [dbg] elem child line=3 kids=0 attrs=1
+    [dbg] nodes
+    [dbg] Walk done
+    [dbg] DestroyDoc
+    [dbg] reading C:\serverside_re\ranking\XmlReader_sv64\tests\data\doctype.xml
+    [dbg] doc=000001B46B912190
+    [dbg] IsValid
+    [dbg] GetRootElement
+    [dbg] root=000001B46B91FFE0
+    [dbg] Walk
+    [dbg] elem root line=3 kids=2 attrs=0
+    [dbg] nodes
+    [dbg] elem child line=3 kids=0 attrs=1
+    [dbg] nodes
+    [dbg] elem child line=3 kids=0 attrs=1
+    [dbg] nodes
+    [dbg] Walk done
+    [dbg] DestroyDoc
+  C:\serverside_re\ranking\XmlReader_sv64\tests\data\doctype.xml: orig=3 elements, mine=3 elements
+    [dbg] reading C:\serverside_re\ranking\XmlReader_sv64\tests\data\entities.xml
+    [dbg] doc=000001B46BF70860
+    [dbg] IsValid
+    [dbg] GetRootElement
+    [dbg] root=000001B46BF70920
+    [dbg] Walk
+    [dbg] elem root line=2 kids=1 attrs=6
+    [dbg] nodes
+    [dbg] elem item line=3 kids=0 attrs=3
+    [dbg] nodes
+    [dbg] Walk done
+    [dbg] DestroyDoc
+    [dbg] reading C:\serverside_re\ranking\XmlReader_sv64\tests\data\entities.xml
+    [dbg] doc=000001B46B912190
+    [dbg] IsValid
+    [dbg] GetRootElement
+    [dbg] root=000001B46B91FFE0
+    [dbg] Walk
+    [dbg] elem root line=2 kids=1 attrs=6
+    [dbg] nodes
+    [dbg] elem item line=3 kids=0 attrs=3
+    [dbg] nodes
+    [dbg] Walk done
+    [dbg] DestroyDoc
+  C:\serverside_re\ranking\XmlReader_sv64\tests\data\entities.xml: orig=2 elements, mine=2 elements
+    [dbg] reading C:\serverside_re\ranking\XmlReader_sv64\tests\data\full.config.xml
+    [dbg] doc=000001B46BF20860
+    [dbg] IsValid
+    [dbg] GetRootElement
+    [dbg] root=000001B46BF20920
+    [dbg] Walk
+    [dbg] elem config line=2 kids=24 attrs=1
+    [dbg] nodes
+    [dbg] elem option line=5 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=7 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=9 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=11 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=13 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=16 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=19 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=21 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=23 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=25 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=27 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=30 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=32 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=34 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=37 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=39 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=41 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=43 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=45 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=47 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=49 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=52 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=54 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=56 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] Walk done
+    [dbg] DestroyDoc
+    [dbg] reading C:\serverside_re\ranking\XmlReader_sv64\tests\data\full.config.xml
+    [dbg] doc=000001B46B912250
+    [dbg] IsValid
+    [dbg] GetRootElement
+    [dbg] root=000001B46B91FDD0
+    [dbg] Walk
+    [dbg] elem config line=2 kids=24 attrs=1
+    [dbg] nodes
+    [dbg] elem option line=5 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=7 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=9 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=11 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=13 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=16 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=19 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=21 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=23 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=25 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=27 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=30 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=32 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=34 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=37 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=39 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=41 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=43 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=45 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=47 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=49 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=52 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=54 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=56 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] Walk done
+    [dbg] DestroyDoc
+  C:\serverside_re\ranking\XmlReader_sv64\tests\data\full.config.xml: orig=25 elements, mine=25 elements
+    [dbg] reading C:\serverside_re\ranking\XmlReader_sv64\tests\data\game-list.config.xml
+    [dbg] doc=000001B46BF40860
+    [dbg] IsValid
+    [dbg] GetRootElement
+    [dbg] root=000001B46BF40930
+    [dbg] Walk
+    [dbg] elem game-list line=2 kids=3 attrs=0
+    [dbg] nodes
+    [dbg] elem game line=4 kids=0 attrs=4
+    [dbg] nodes
+    [dbg] elem game line=5 kids=0 attrs=4
+    [dbg] nodes
+    [dbg] elem game line=6 kids=0 attrs=4
+    [dbg] nodes
+    [dbg] Walk done
+    [dbg] DestroyDoc
+    [dbg] reading C:\serverside_re\ranking\XmlReader_sv64\tests\data\game-list.config.xml
+    [dbg] doc=000001B46B9120D0
+    [dbg] IsValid
+    [dbg] GetRootElement
+    [dbg] root=000001B46B92ABB0
+    [dbg] Walk
+    [dbg] elem game-list line=2 kids=3 attrs=0
+    [dbg] nodes
+    [dbg] elem game line=4 kids=0 attrs=4
+    [dbg] nodes
+    [dbg] elem game line=5 kids=0 attrs=4
+    [dbg] nodes
+    [dbg] elem game line=6 kids=0 attrs=4
+    [dbg] nodes
+    [dbg] Walk done
+    [dbg] DestroyDoc
+  C:\serverside_re\ranking\XmlReader_sv64\tests\data\game-list.config.xml: orig=4 elements, mine=4 elements
+    [dbg] reading C:\serverside_re\ranking\XmlReader_sv64\tests\data\infogate-list.config.xml
+    [dbg] doc=000001B46BC50860
+    [dbg] IsValid
+    [dbg] GetRootElement
+    [dbg] root=000001B46BC50930
+    [dbg] Walk
+    [dbg] elem infogate-list line=2 kids=1 attrs=0
+    [dbg] nodes
+    [dbg] elem infogate line=4 kids=0 attrs=3
+    [dbg] nodes
+    [dbg] Walk done
+    [dbg] DestroyDoc
+    [dbg] reading C:\serverside_re\ranking\XmlReader_sv64\tests\data\infogate-list.config.xml
+    [dbg] doc=000001B46B911D70
+    [dbg] IsValid
+    [dbg] GetRootElement
+    [dbg] root=000001B46B92BB80
+    [dbg] Walk
+    [dbg] elem infogate-list line=2 kids=1 attrs=0
+    [dbg] nodes
+    [dbg] elem infogate line=4 kids=0 attrs=3
+    [dbg] nodes
+    [dbg] Walk done
+    [dbg] DestroyDoc
+  C:\serverside_re\ranking\XmlReader_sv64\tests\data\infogate-list.config.xml: orig=2 elements, mine=2 elements
+    [dbg] reading C:\serverside_re\ranking\XmlReader_sv64\tests\data\malformed.xml
+    [dbg] doc=000001B46BF40860
+    [dbg] IsValid
+    [dbg] GetRootElement
+    [dbg] root=000001B46BF40920
+    [dbg] Walk
+    [dbg] elem config line=2 kids=24 attrs=1
+    [dbg] nodes
+    [dbg] elem option line=5 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=7 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=9 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=11 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=13 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=16 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=19 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=21 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=23 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=25 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=27 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=30 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=32 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=34 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=37 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=39 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=41 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=43 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=46 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=48 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=50 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=52 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=54 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=56 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] Walk done
+    [dbg] DestroyDoc
+    [dbg] reading C:\serverside_re\ranking\XmlReader_sv64\tests\data\malformed.xml
+    [dbg] doc=000001B46B911E30
+    [dbg] IsValid
+    [dbg] GetRootElement
+    [dbg] root=000001B46B92C470
+    [dbg] Walk
+    [dbg] elem config line=2 kids=24 attrs=1
+    [dbg] nodes
+    [dbg] elem option line=5 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=7 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=9 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=11 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=13 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=16 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=19 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=21 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=23 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=25 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=27 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=30 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=32 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=34 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=37 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=39 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=41 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=43 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=46 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=48 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=50 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=52 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=54 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=56 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] Walk done
+    [dbg] DestroyDoc
+  C:\serverside_re\ranking\XmlReader_sv64\tests\data\malformed.xml: orig=25 elements, mine=25 elements
+    [dbg] reading C:\serverside_re\ranking\XmlReader_sv64\tests\data\malformed_attr.xml
+    [dbg] doc=0000000000000000
+    [dbg] reading C:\serverside_re\ranking\XmlReader_sv64\tests\data\malformed_attr.xml
+    [dbg] doc=0000000000000000
+  C:\serverside_re\ranking\XmlReader_sv64\tests\data\malformed_attr.xml: orig=0 elements, mine=0 elements
+    [dbg] reading C:\serverside_re\ranking\XmlReader_sv64\tests\data\rankingd.config.xml
+    [dbg] doc=000001B46BB20860
+    [dbg] IsValid
+    [dbg] GetRootElement
+    [dbg] root=000001B46BB20930
+    [dbg] Walk
+    [dbg] elem config line=2 kids=24 attrs=1
+    [dbg] nodes
+    [dbg] elem option line=5 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=7 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=9 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=11 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=13 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=16 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=19 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=21 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=23 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=25 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=27 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=30 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=32 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=34 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=37 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=39 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=41 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=43 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=46 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=48 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=50 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=52 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=54 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=56 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] Walk done
+    [dbg] DestroyDoc
+    [dbg] reading C:\serverside_re\ranking\XmlReader_sv64\tests\data\rankingd.config.xml
+    [dbg] doc=000001B46B912130
+    [dbg] IsValid
+    [dbg] GetRootElement
+    [dbg] root=000001B46B928F80
+    [dbg] Walk
+    [dbg] elem config line=2 kids=24 attrs=1
+    [dbg] nodes
+    [dbg] elem option line=5 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=7 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=9 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=11 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=13 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=16 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=19 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=21 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=23 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=25 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=27 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=30 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=32 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=34 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=37 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=39 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=41 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=43 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=46 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=48 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=50 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=52 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=54 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] elem option line=56 kids=0 attrs=2
+    [dbg] nodes
+    [dbg] Walk done
+    [dbg] DestroyDoc
+  C:\serverside_re\ranking\XmlReader_sv64\tests\data\rankingd.config.xml: orig=25 elements, mine=25 elements
+    [dbg] reading C:\serverside_re\ranking\XmlReader_sv64\tests\data\RankingRewardGroupData.xml
+    [dbg] doc=000001B46BB20860
+    [dbg] IsValid
+    [dbg] GetRootElement
+    [dbg] root=000001B46BB20940
+    [dbg] Walk
+    [dbg] elem table line=1 kids=5 attrs=4
+    [dbg] nodes
+    [dbg] elem record line=2 kids=0 attrs=37
+    [dbg] nodes
+    [dbg] elem record line=3 kids=0 attrs=37
+    [dbg] nodes
+    [dbg] elem record line=4 kids=0 attrs=61
+    [dbg] nodes
+    [dbg] elem record line=5 kids=0 attrs=61
+    [dbg] nodes
+    [dbg] elem record line=6 kids=0 attrs=61
+    [dbg] nodes
+    [dbg] Walk done
+    [dbg] DestroyDoc
+    [dbg] reading C:\serverside_re\ranking\XmlReader_sv64\tests\data\RankingRewardGroupData.xml
+    [dbg] doc=000001B46B911E30
+    [dbg] IsValid
+    [dbg] GetRootElement
+    [dbg] root=000001B46B925A40
+    [dbg] Walk
+    [dbg] elem table line=1 kids=5 attrs=4
+    [dbg] nodes
+    [dbg] elem record line=2 kids=0 attrs=37
+    [dbg] nodes
+    [dbg] elem record line=3 kids=0 attrs=37
+    [dbg] nodes
+    [dbg] elem record line=4 kids=0 attrs=61
+    [dbg] nodes
+    [dbg] elem record line=5 kids=0 attrs=61
+    [dbg] nodes
+    [dbg] elem record line=6 kids=0 attrs=61
+    [dbg] nodes
+    [dbg] Walk done
+    [dbg] DestroyDoc
+  C:\serverside_re\ranking\XmlReader_sv64\tests\data\RankingRewardGroupData.xml: orig=6 elements, mine=6 elements
+    [dbg] reading C:\serverside_re\ranking\XmlReader_sv64\tests\data\utf16.xml
+    [dbg] doc=000001B46BC70860
+    [dbg] IsValid
+    [dbg] GetRootElement
+    [dbg] root=000001B46BC70920
+    [dbg] Walk
+    [dbg] elem root line=2 kids=2 attrs=1
+    [dbg] nodes
+    [dbg] elem child line=2 kids=0 attrs=1
+    [dbg] nodes
+    [dbg] elem child line=2 kids=0 attrs=1
+    [dbg] nodes
+    [dbg] Walk done
+    [dbg] DestroyDoc
+    [dbg] reading C:\serverside_re\ranking\XmlReader_sv64\tests\data\utf16.xml
+    [dbg] doc=000001B46B912010
+    [dbg] IsValid
+    [dbg] GetRootElement
+    [dbg] root=000001B46B924F40
+    [dbg] Walk
+    [dbg] elem root line=2 kids=2 attrs=1
+    [dbg] nodes
+    [dbg] elem child line=2 kids=0 attrs=1
+    [dbg] nodes
+    [dbg] elem child line=2 kids=0 attrs=1
+    [dbg] nodes
+    [dbg] Walk done
+    [dbg] DestroyDoc
+  C:\serverside_re\ranking\XmlReader_sv64\tests\data\utf16.xml: orig=3 elements, mine=3 elements
+    [dbg] reading C:\serverside_re\ranking\XmlReader_sv64\tests\data\utf16nobom.xml
+    [dbg] doc=000001B46BB20860
+    [dbg] IsValid
+    [dbg] GetRootElement
+    [dbg] root=000001B46BB20920
+    [dbg] Walk
+    [dbg] elem root line=2 kids=2 attrs=1
+    [dbg] nodes
+    [dbg] elem child line=2 kids=0 attrs=1
+    [dbg] nodes
+    [dbg] elem child line=2 kids=0 attrs=1
+    [dbg] nodes
+    [dbg] Walk done
+    [dbg] DestroyDoc
+    [dbg] reading C:\serverside_re\ranking\XmlReader_sv64\tests\data\utf16nobom.xml
+    [dbg] doc=000001B46B912010
+    [dbg] IsValid
+    [dbg] GetRootElement
+    [dbg] root=000001B46B925A40
+    [dbg] Walk
+    [dbg] elem root line=2 kids=2 attrs=1
+    [dbg] nodes
+    [dbg] elem child line=2 kids=0 attrs=1
+    [dbg] nodes
+    [dbg] elem child line=2 kids=0 attrs=1
+    [dbg] nodes
+    [dbg] Walk done
+    [dbg] DestroyDoc
+  C:\serverside_re\ranking\XmlReader_sv64\tests\data\utf16nobom.xml: orig=3 elements, mine=3 elements
+[config] rankingd.config.xml: orig=0000000000000000 ours=000001B46B934D30
+FAIL: LoadConfig result [LoadConfig C:\serverside_re\ranking\XmlReader_sv64\tests\data\rankingd.config.xml]
+FAIL: LoadConfig error (orig=[option 'worker-thread, max-world, dump-type, timer-interval, timer-max-time, world-listen-port, infogate-listen-port, manage-listen-port, max-ranking-list-count-per-contents, max-ranking-count, max-search-count-one-time, skip-list-ex-max-level, skip-list-ex-prob, skip-list-ex-max-node-count, accumulate-season-interim-score-period' is REQUIRED] mine=[])
+[config] malformed.xml error: orig=[option 'worker-thread, max-world, dump-type, timer-interval, timer-max-time, world-listen-port, infogate-listen-port, manage-listen-port, max-ranking-list-count-per-contents, max-ranking-count, max-search-count-one-time, skip-list-ex-max-level, skip-list-ex-prob, skip-list-ex-max-node-count, accumulate-season-interim-score-period' is REQUIRED] ours=[]
+FAIL: malformed config rejected
+FAIL: malformed config GetError (orig=[option 'worker-thread, max-world, dump-type, timer-interval, timer-max-time, world-listen-port, infogate-listen-port, manage-listen-port, max-ranking-list-count-per-contents, max-ranking-count, max-search-count-one-time, skip-list-ex-max-level, skip-list-ex-prob, skip-list-ex-max-node-count, accumulate-season-interim-score-period' is REQUIRED] mine=[])
+
+FAIL: checks=1569 failures=4

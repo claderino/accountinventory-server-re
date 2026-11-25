@@ -1,0 +1,58 @@
+=== crafted1.xml === 
+init=1
+
+=== TREE C:\serverside_re\ranking\XmlReader_sv64\tests\data\crafted1.xml ===
+doc=000002AB09640860
+root=000002AB09640920
+E root line=4 attrs=2 kids=3 valid=1
+  A a=1 idx=0
+  A b=two idx=0
+  E empty line=5 attrs=0 kids=0 valid=1
+  E child line=6 attrs=2 kids=1 valid=1
+    A id=7 idx=0
+    A name=seven idx=0
+    A Name=seven idx=0
+    E leaf line=6 attrs=1 kids=0 valid=1
+      A flag=x idx=0
+  E last line=10 attrs=1 kids=0 valid=1
+    A v=3 idx=0
+=== entities.xml === 
+init=1
+
+=== TREE C:\serverside_re\ranking\XmlReader_sv64\tests\data\entities.xml ===
+doc=00000137C1790860
+root=00000137C1790920
+E root line=2 attrs=6 kids=1 valid=1
+  A MixedCase=A&B idx=0
+  A mixedcase=A&B idx=0
+  A apos=it's idx=0
+  A gt=> idx=0
+  A lt=< idx=0
+  A quot=" idx=0
+  A num=AB idx=0
+  E item line=3 attrs=3 kids=0 valid=1
+    A name=same idx=0
+    A Name=same idx=0
+    A empty= idx=0
+=== game-list.config.xml === 
+init=1
+
+=== TREE C:\serverside_re\ranking\XmlReader_sv64\tests\data\game-list.config.xml ===
+doc=000001B08FCF0860
+root=000001B08FCF0930
+E game-list line=2 attrs=0 kids=3 valid=1
+  E game line=4 attrs=4 kids=0 valid=1
+    A id=7801 idx=0
+    A service-type=1 idx=0
+    A ip-address=127.0.0.1 idx=0
+    A internal-port=20100 idx=0
+  E game line=5 attrs=4 kids=0 valid=1
+    A id=17801 idx=0
+    A service-type=2 idx=0
+    A ip-address=127.0.0.1 idx=0
+    A internal-port=21900 idx=0
+  E game line=6 attrs=4 kids=0 valid=1
+    A id=17802 idx=0
+    A service-type=2 idx=0
+    A ip-address=127.0.0.1 idx=0
+    A internal-port=22900 idx=0

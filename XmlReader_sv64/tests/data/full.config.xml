@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='utf-8'?>
+<config module='rankingd'>
+	<!-- ==== path ==== -->
+	<!-- [REQ] full root path -->
+	<option name='root-path' value='D:\Service\RankingDaemon\'/>
+	<!-- [REQ] full data path  -->
+	<option name='data-path' value='D:\service\RankingDaemon\data\'/>
+	<!-- [REQ] full log path -->
+	<option name='log-path' value='D:\log\RankingDaemon\'/>
+	<!-- [REQ] full config path. (game-list.xml path) -->
+	<option name='config-path' value='D:\Service\RankingDaemon\config\'/>
+	<!-- [REQ] full transaction log directory -->
+	<option name='transaction-log-path' value='D:\log\RankingDaemon\transaction\'/>
+	<!-- ==== certification ==== -->
+	<!-- [REQ] certification file path -->
+	<option name='cert-file' value='D:\service\DBConfig\RankingDaemon.cfg'/>
+	<!-- ==== system configuration ==== -->
+	<!-- [OPT] 0 is system recommend -->
+	<option name='worker-thread' value='0'/>
+	<!-- [OPT] 0 means default internal session count -->
+	<option name='max-world' value='3000'/>
+	<!-- [OPT] 0: no dump, 1: minimal dump(default), 2: full dump -->
+	<option name='dump-type' value='2'/>
+	<!-- [OPT] interval of timer(msec) -->
+	<option name='timer-interval' value='1000'/>
+	<!-- [OPT] max time of timer(sec) -->
+	<option name='timer-max-time' value='30'/>
+	<!-- ==== network configuration ==== -->
+	<!-- [OPT] world listen port -->
+	<option name='world-listen-port' value='22501'/>
+	<!-- [OPT] infogate listen port -->
+	<option name='infogate-listen-port' value='22502'/>
+	<!-- [OPT] management listen port -->
+	<option name='manage-listen-port' value='32500'/>
+	<!-- ==== ranking service configuration ==== -->
+	<!-- [REQ] service world id -->
+	<option name='service-world-id' value='10090'/>
+	<!-- [OPT] max ranking list count per contents. 10 : default -->
+	<option name='max-ranking-list-count-per-contents' value='10'/>
+	<!-- [OPT] max ranking count -->
+	<option name='max-ranking-count' value='100000'/>
+	<!-- [OPT] max search count one time(default 1000) -->
+	<option name='max-search-count-one-time' value='1000'/>
+	<!-- [REQ] pc list hash count 10(default) -->
+	<option name='pc-list-hash-count' value='10'/>
+	<!-- [REQ] ranking list update period 600000msec(default) -->
+	<option name='ranking-list-update-period' value='600000'/>
+	<!-- [OPT] accumulate season interim score period 600(sec) -->
+	<option name='accumulate-season-interim-score-period' value='600'/>
+	<!-- ==== skiplistex configuration ==== -->
+	<!-- [OPT] skip list ex max level -->
+	<option name='skip-list-ex-max-level' value='11'/>
+	<!-- [OPT] skip list ex prob -->
+	<option name='skip-list-ex-prob' value='36'/>
+	<!-- [OPT] skip list ex max node count -->
+	<option name='skip-list-ex-max-node-count' value='100000'/>
+</config>

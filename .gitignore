@@ -1,0 +1,17 @@
+# Build intermediates (release/bin holds the shipped binary)
+AccountInventoryDaemon/build/
+**/*.obj
+**/*.pdb
+**/*.ilk
+**/*.tlog
+
+# Ghidra scratch project and large raw memory images
+analysis/ghidra_proj/
+analysis/mem/image.raw
+analysis/mem/*.mem.exe
+
+# Runtime logs and transient files
+*.log
+run/test/log/
+run/test/stdout.log
+run/test/stderr.log

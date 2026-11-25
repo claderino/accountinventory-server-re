@@ -1,0 +1,6 @@
+lib=00007FF894800000
+xml=0000025BF5366820 init=1
+cfg=0000025BF5460860 layout=1
+setdefs=1
+calling LoadConfig...
+buf=0000000000000000 err=option 'worker-thread, max-world, dump-type, timer-interval, timer-max-time, world-listen-port, infogate-listen-port, manage-listen-port, max-ranking-list-count-per-contents, max-ranking-count, max-search-count-one-time, skip-list-ex-max-level, skip-list-ex-prob, skip-list-ex-max-node-count, accumulate-season-interim-score-period' is REQUIRED

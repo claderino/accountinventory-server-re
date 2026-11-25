@@ -1,0 +1,61 @@
+﻿<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<instrumentationManifest
+    xmlns="http://schemas.microsoft.com/win/2004/08/events"
+    xmlns:trace="http://schemas.microsoft.com/win/2004/08/events/trace"
+    xmlns:win="http://manifests.microsoft.com/win/2004/08/windows/events"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://schemas.microsoft.com/win/2004/08/events eventman.xsd"
+    >
+  <instrumentation>
+    <counters
+			xmlns="http://schemas.microsoft.com/win/2005/12/counters"
+			xmlns:auto-ns1="http://schemas.microsoft.com/win/2004/08/events"
+			schemaVersion="1.1"
+			>
+      <provider callback = "custom"
+                applicationIdentity = "AchievementDaemon.exe"
+                providerName = "AchievementDaemon"
+                providerType = "userMode"
+                symbol = "AchievementDaemon"
+                providerGuid = "{A1504AEA-3870-4529-B5F9-5B20B5348180}">
+        <counterSet	guid = "{EA3D7D6E-BD70-4047-AB90-4226FC249037}"
+							uri = "BnS.AchievementDaemon"
+							name = "BnS AchievementDaemon"
+							description = "BnS AchievementDaemon"
+							symbol = "Achievement"
+							instances = "multipleAggregate">
+
+          <counter id			      = "1"
+                   uri			    = "BnS.AchievementDaemon.EventCount"
+                   name			    = "Event Count"
+                   description	= "Event Count"
+                   type         = "perf_counter_large_rawcount"
+                   detailLevel  = "standard">
+          </counter>
+          <counter id			      = "2"
+                   uri			    = "BnS.AchievementDaemon.EventCreatedCountPerSec"
+                   name			    = "Event Created Count/sec"
+                   description	= "Event Created Count/sec"
+                   type         = "perf_counter_bulk_count"
+                   detailLevel  = "standard">
+          </counter>
+          <counter id			      = "3"
+                   uri			    = "BnS.AchievementDaemon.PcCount"
+                   name			    = "Pc Count"
+                   description	= "Pc Count"
+                   type         = "perf_counter_large_rawcount"
+                   detailLevel  = "standard">
+          </counter>
+          <counter id			      = "4"
+                   uri			    = "BnS.AchievementDaemon.PcCreatedCountPerSec"
+                   name			    = "Pc Created Count/sec"
+                   description	= "Pc Created Count/sec"
+                   type         = "perf_counter_bulk_count"
+                   detailLevel  = "standard">
+          </counter>
+        </counterSet>
+      </provider>
+    </counters>
+  </instrumentation>
+</instrumentationManifest>

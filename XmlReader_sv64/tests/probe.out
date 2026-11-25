@@ -1,0 +1,121 @@
+loaded 00007FF891A80000
+version=13
+xml=00000229F8B08DD0 init=1
+
+=== TREE C:\serverside_re\ranking\RankingDaemon\config\game-list.config.xml ===
+doc=00000229F8A50810
+root=00000229F8A55750
+E game-list line=2 attrs=0 valid=1
+  E game line=4 attrs=4 valid=1
+    A id=7801 idx=0
+    A service-type=1 idx=0
+    A ip-address=127.0.0.1 idx=0
+    A internal-port=20100 idx=0
+  E game line=5 attrs=4 valid=1
+    A id=17801 idx=0
+    A service-type=2 idx=0
+    A ip-address=127.0.0.1 idx=0
+    A internal-port=21900 idx=0
+  E game line=6 attrs=4 valid=1
+    A id=17802 idx=0
+    A service-type=2 idx=0
+    A ip-address=127.0.0.1 idx=0
+    A internal-port=22900 idx=0
+
+=== TREE C:\serverside_re\ranking\RankingDaemon\config\rankingd.config.xml ===
+doc=00000229F8A51580
+root=00000229F8A515B0
+E config line=2 attrs=1 valid=1
+  A module=rankingd idx=0
+  E option line=5 attrs=2 valid=1
+    A name=root-path idx=0
+    A Name=root-path idx=0
+    A value=0 idx=0
+  E option line=7 attrs=2 valid=1
+    A name=data-path idx=0
+    A Name=data-path idx=0
+    A value=0 idx=0
+  E option line=9 attrs=2 valid=1
+    A name=log-path idx=0
+    A Name=log-path idx=0
+    A value=0 idx=0
+  E option line=11 attrs=2 valid=1
+    A name=config-path idx=0
+    A Name=config-path idx=0
+    A value=0 idx=0
+  E option line=13 attrs=2 valid=1
+    A name=transaction-log-path idx=0
+    A Name=transaction-log-path idx=0
+    A value=0 idx=0
+  E option line=16 attrs=2 valid=1
+    A name=cert-file idx=0
+    A Name=cert-file idx=0
+    A value=0 idx=0
+  E option line=29 attrs=2 valid=1
+    A name=service-world-id idx=0
+    A Name=service-world-id idx=0
+    A value=10090 idx=0
+  E option line=38 attrs=2 valid=1
+    A name=pc-list-hash-count idx=0
+    A Name=pc-list-hash-count idx=0
+    A value=10 idx=0
+  E option line=40 attrs=2 valid=1
+    A name=ranking-list-update-period idx=0
+    A Name=ranking-list-update-period idx=0
+    A value=600000 idx=0
+
+=== TREE C:\serverside_re\ranking\RankingDaemon\data\RankingRewardGroupData.xml ===
+doc=00000229F8A514F0
+root=00000229F8A54B30
+E table line=1 attrs=4 valid=1
+  A type=RankingRewardGroup idx=0
+  A version=0.6 idx=0
+  A release-module=ItemData idx=0
+  E record line=2 attrs=37 valid=1
+  E record line=3 attrs=37 valid=1
+  E record line=4 attrs=61 valid=1
+  E record line=5 attrs=61 valid=1
+  E record line=6 attrs=61 valid=1
+
+=== TREE C:\serverside_re\ranking\XmlReader_sv64\tests\data\crafted1.xml ===
+doc=00000229F8B133E0
+root=00000229F8B12CF0
+E root line=4 attrs=2 valid=1
+  A a=1 idx=0
+  A b=two idx=0
+  E empty line=5 attrs=0 valid=1
+  E child line=6 attrs=2 valid=1
+    A id=7 idx=0
+    A name=seven idx=0
+    A Name=seven idx=0
+    E leaf line=6 attrs=1 valid=1
+      A flag=x idx=0
+  E last line=10 attrs=1 valid=1
+    A v=3 idx=0
+
+=== TREE C:\serverside_re\ranking\XmlReader_sv64\tests\data\entities.xml ===
+doc=00000229F8B13470
+root=00000229F8B12CF0
+E root line=2 attrs=6 valid=1
+  A MixedCase=A&B idx=0
+  A mixedcase=A&B idx=0
+  A apos=it's idx=0
+  A gt=> idx=0
+  A lt=< idx=0
+  A quot=" idx=0
+  A num=AB idx=0
+  E item line=3 attrs=3 valid=1
+    A name=same idx=0
+    A Name=same idx=0
+    A empty= idx=0
+
+=== TREE C:\serverside_re\ranking\XmlReader_sv64\tests\data\doctype.xml ===
+doc=00000229F8B12E70
+root=00000229F8B12CF0
+E root line=3 attrs=0 valid=1
+  E child line=3 attrs=1 valid=1
+    A val=x idx=0
+  E child line=3 attrs=1 valid=1
+    A val=y idx=0
+
+=== TREE C:\serverside_re\ranking\XmlReader_sv64\tests\data\malformed.xml ===

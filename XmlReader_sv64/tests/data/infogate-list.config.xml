@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<infogate-list>
+    <!-- <infogate wid='[infogate-id]' ip-address='[internal-IP]' internal-port='[internal-port]'/> -->
+    <infogate wid='10080' ip-address='127.0.0.1' internal-port='22100'/>
+</infogate-list>

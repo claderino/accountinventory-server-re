@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<game-list>
+    <!-- <game service-type='[1:game or 2:arena]' id='[cluster-id or arena-id + 10000]' ip-address='[internal-IP]' internal-port='[internal-port]'/> -->
+    <game service-type='1' id='7801' ip-address='127.0.0.1' internal-port='20100'/>
+    <game service-type='2' id='17801' ip-address='127.0.0.1' internal-port='21900'/>
+	<game service-type='2' id='17802' ip-address='127.0.0.1' internal-port='22900'/>
+</game-list>

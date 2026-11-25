@@ -1,0 +1,14 @@
+reader=000001C5E7D2C2F0
+init=1
+doc=000001C5E7D28D00 valid=1
+root=000001C5E7D29CB0
+name=root
+line=2
+kids=0
+attrs=1
+attr(a)=ok
+node=000001C5E7D29CB8
+type=1
+valid=1
+doc destroyed
+reader destroyed

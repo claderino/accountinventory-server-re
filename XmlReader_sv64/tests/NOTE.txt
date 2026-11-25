@@ -1,0 +1,13 @@
+Differential-test findings (do not call these original-DLL slots):
+* IXmlElement slot +0x30 is NOT "attribute name by index". Called with one
+  integer it returns NULL (the real signature is (type,name) -> value).
+* IXmlElement slot +0x50 is NOT "attribute value by index". It returns an
+  unusable pointer (observed 0xFFFFFFFF) and crashes when dereferenced.
+* Use GetAttribute(name) (+0x40) with a known-name list to compare attributes.
+* IXmlConfigReader definition layout (verified against the original):
+  +0x00 offset, +0x08 name, +0x10 TYPE id (1=int32, 6/7=wide string,
+  8=UTF-8 string), +0x14 FLAGS (bit 1 = required), +0x18 default, +0x20 desc.
+  The report's "Flags"/"Type" table columns are swapped relative to the raw
+  slots; the test defs must use the columns in that swapped way.
+* Create a fresh IXmlReader per ReadFile/LoadConfig when driving the original;
+  reusing one reader across many documents makes the original crash.

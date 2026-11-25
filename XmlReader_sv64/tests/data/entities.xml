@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root MixedCase='A&amp;B' apos="it&apos;s" gt="&gt;" lt="&lt;" quot="&quot;" num="&#x41;&#66;">
+  <item name="same" Name="other" empty=""/>
+</root>

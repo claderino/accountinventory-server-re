@@ -1,0 +1,3 @@
+<?xml version='1.0'?>
+<!DOCTYPE root [<!ENTITY copy "ignored">]>
+<root><child val="x"/><!-- comment --><child val="y"/></root>

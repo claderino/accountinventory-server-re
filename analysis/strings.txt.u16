@@ -1,0 +1,21 @@
+0	VS_VERSION_INFO
+1	StringFileInfo
+2	041204b0
+3	CompanyName
+4	NCSoft
+5	FileDescription
+6	Blade & Soul AccountInventory Daemo
+7	FileVersion
+8	0, 0, 210, 314
+9	InternalName
+10	AccountInventoryDaemon
+11	LegalCopyright
+12	Copyright (C) 2007-2011, Team Bloodlust, NCSoft Corporation. All Rights Reserved
+13	OriginalFilename
+14	AccountInventoryDaemon.exe
+15	ProductName
+16	Blade & Soul AccountInventory Daemon
+17	ProductVersion
+18	0, 0, 210, 314
+19	VarFileInfo
+20	Translation

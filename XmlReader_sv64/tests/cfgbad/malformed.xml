@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='utf-8'?>
+<config module='rankingd'>
+
+	<!-- [REQ]  -->
+	<option name='root-path' value=''/>
+	<!-- [REQ]  -->
+	<option name='data-path' value=''/>
+	<!-- [REQ]  -->
+	<option name='log-path' value=''/>
+	<!-- [REQ]  -->
+	<option name='config-path' value=''/>
+	<!-- [REQ]  -->
+	<option name='transaction-log-path' value=''/>
+
+	<!-- [REQ]  -->
+	<option name='cert-file' value=''/>
+
+	<!-- [OPT]  -->
+	<option name='worker-thread' value='0'/>
+	<!-- [OPT]  -->
+	<option name='max-world' value='0'/>
+	<!-- [OPT]  -->
+	<option name='dump-type' value='0'/>
+	<!-- [OPT]  -->
+	<option name='timer-interval' value='0'/>
+	<!-- [OPT]  -->
+	<option name='timer-max-time' value='0'/>
+
+	<!-- [OPT]  -->
+	<option name='world-listen-port' value='0'/>
+	<!-- [OPT]  -->
+	<option name='infogate-listen-port' value='0'/>
+	<!-- [OPT]  -->
+	<option name='manage-listen-port' value='0'/>
+
+	<!-- [REQ]  -->
+	<option name='service-world-id' value='0'/>
+	<!-- [OPT]  -->
+	<option name='max-ranking-list-count-per-contents' value='0'/>
+	<!-- [OPT]  -->
+	<option name='max-ranking-count' value='0'/>
+	<!-- [OPT]  -->
+	<option name='max-search-count-one-time' value='0'/>
+
+	<!-- [OPT]  -->
+	<option name='skip-list-ex-max-level' value='0'/>
+	<!-- [OPT]  -->
+	<option name='skip-list-ex-prob' value='0'/>
+	<!-- [OPT]  -->
+	<option name='skip-list-ex-max-node-count' value='0'/>
+	<!-- [REQ]  -->
+	<option name='pc-list-hash-count' value='0'/>
+	<!-- [REQ]  -->
+	<option name='ranking-list-update-period' value='0'/>
+	<!-- [OPT]  -->
+	<option name='accumulate-season-interim-score-period' value='0'/>
+
+</config>

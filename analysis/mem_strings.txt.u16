@@ -1,0 +1,1563 @@
+0	== CRASH == [ref obj], destructring with not zero reference count, this:0x%p, ref:%d, tag:0x%08x
+1	E:\DailyBuild01\AccountInventoryDaemon-GARENA-0.0.210\depot\Branch\210GRN\Program\Server\BloodLib\include\RefCntObject.h
+2	[objpool], initialize fail; already initialized
+3	..\Economy\Shared\ObjectPool.cpp
+4	[objpool], initialized, obj-size:%d, initial-capacity:%d
+5	[objpool], finalized, obj-size:%d, total-count:%d, object-count:%d
+6	[objpool], checkin failed; null memory
+7	== CRASH == object memory overrun occurs, node:%p, checkout-file:%s, checkout-line:%d, checkout-time:%I64d, checkin-file:%s, checkin-line:%d
+8	[objpool], objpool timer stopped, uptime:%I64d
+9	== CRASH == [objpool], objpool timer already started
+10	[objpool], objpool timer start, resolution:%d
+11	[objpool], objpool added to timer, id:%I64d
+12	e:\dailybuild01\accountinventorydaemon-garena-0.0.210\depot\branch\210grn\program\server\bloodlib\include\StlMemory.h
+13	e:\dailybuild01\accountinventorydaemon-garena-0.0.210\depot\branch\210grn\program\server\bloodlib\include\Memory.h
+14	== CRASH == [memory], DO NOT USE THIS DEL OPERATOR
+15	e:\dailybuild01\accountinventorydaemon-garena-0.0.210\depot\branch\210grn\program\server\bloodlib\include\RefCntObject.h
+16	== CRASH == [ref obj], DO NOT USE DELETE on RefCntObject, file:%s, line:%d
+17	== CRASH == [ref obj], cannot add reference count, this:0x%p, ref:%d, tag:0x%08x, file:%s, line:%d
+18	== CRASH == [ref obj], cannot remove reference count, this:0x%p, ref:%d, tag:0x%08x, file:%s, line:%d
+19	..\Economy\Shared\ThreadFreePacketPump.cpp
+20	== CRASH == [packet-pump], 0x%016I64X, invalid parameter, session:0x%p, handler:0x%p
+21	== CRASH == [packet-pump], 0x%016I64X, invalid parameter, session:0x%p, packet:0x%p, handler:0x%p
+22	[packet-pump], handle start, %I64u, session:0x%016I64X, command:%d
+23	[packet-pump], handle end, %I64u, session:0x%016I64X, command:%d
+24	== CRASH == [packet-pump], 0x%016I64X, invalid parameter, session:0x%p, fpc:0x%p, handler:0x%p
+25	[packet-pump], pump packet fail; init pump fail, event-id:%u, iocp:%I64u, session:0x%016I64X, cmd:%d
+26	[packet-pump], post, %I64u
+27	[packet-pump], post packet pump fail; switch to dedicated thread handing, event-id:%u, iocp:%I64u, session:0x%016I64X, cmd:%d
+28	[packet-pump], concatenate fragment packet fail, event-id:%u, iocp:%I64u, session:0x%016I64X, cmd:%d
+29	[packet-pump], fragment packet concatenater copy fail, event-id:%u, iocp:%I64u, session:0x%016I64X, cmd:%d
+30	[packet-pump], pump fragment packet fail; init pump fail, event-id:%u, iocp:%I64u, session:0x%016I64X, cmd:%d
+31	[packet-pump], post fragment packet pump fail; switch to dedicated thread handing, event-id:%u, iocp:%I64u, session:0x%016I64X, cmd:%d
+32	== CRASH == [packet-pump], invalid parameter, event-id:%u, iocp:%I64u, session:0x%p, packet:0x%p, cmd:%d, offset:%d, PH:0x%p, fragmentPH:0x%p
+33	[time-based-id-generator], generate id fail, not initialized
+34	..\Economy\Shared\TimeBaseIDGenerator.cpp
+35	[time-based-id-generator], id overflow, sleep:%d(msec), id:0x%016I64X, time:0x%016I64X
+36	[tranjob],0x%016I64X, %d(%s), %d,try to transit invalid state, to:%d
+37	..\Economy\Shared\TransactionJob.cpp
+38	[tranjob],0x%016I64X, %d(%s), %d,try to transit unknown state, to:%d
+39	[tranjob],0x%016I64X, %d(%s), %d,try to roll back state, from:%d(%s), to:%d(%s)
+40	[tranjob],0x%016I64X, %d(%s), %d,transit, from:%d(%s), to:%d(%s)
+41	== CRASH == [tranjob], invalid parameter, job:%p, event:%p
+42	== CRASH == [tranjob],cannot setup transaction log,already initialized
+43	[tranjob],cannot setup transaction log,invalid parameter
+44	%s(%04d%02d%02d-%02d%02d%02d,%05d)
+45	[tranjob],cannot setup transaction log,make file name fail
+46	[tranjob],cannot setup transaction log,make directory fail
+47	[tranjob],setup transaction log
+48	%04d/%02d/%02d-%02d:%02d:%02d,
+49	== CRASH == [tranjob],write transaction log fail,fail to translate unicode to mbcs after buffer growing,error-code:%d
+50	== CRASH == [tranjob],write transaction log fail,fail to translate unicode to mbcs,error-code:%d
+51	[tranjob],write transaction log fail
+52	[tranjob],write transaction log exception,incomplete write,req:%d,written:%d
+53	%s\%s.%04d%02d%02d-%02d%02d%02d.%s
+54	%s\%s.%04d%02d%02d-%02d.%s
+55	%s\%s.%04d%02d%02d.%s
+56	== CRASH == [tranjob],undefined split-period,split-period:%d
+57	[tranjob],retrieve current file fail,make directory fail,error:%d
+58	[tranjob],retrieve current file fail,create file fail,error:%d
+59	== CRASH == ASSERT CRASH
+60	e:\dailybuild01\accountinventorydaemon-garena-0.0.210\depot\branch\210grn\program\server\bloodlib\include\PacketUtil.h
+61	..\Packet\FragmentPacket.cpp
+62	== CRASH == [fragment-packet-splitter], add buffer; command is null
+63	== CRASH == [fragment-packet-splitter], add buffer; newHeader is null
+64	== CRASH == [fragment-packet-splitter], add buffer; prev header is null
+65	== CRASH == [fragment-packet-splitter], finalize; command or total size is 0
+66	FragmentPacketConcatenater::Add() failed, END_DATA
+67	FragmentPacketConcatenater::Add() failed, Size != total
+68	FragmentPacketConcatenater::Add() failed, Size = 0
+69	FragmentPacketConcatenater::Add() failed, MORE_DATA
+70	FragmentPacketConcatenater::Add() failed, add failed
+71	FragmentPacketConcatenater::Add() failed, FIRST
+72	FragmentPacketConcatenater::Add() failed, total < 0
+73	== CRASH == [network], FragmentPacketConcatenater Clone() failed
+74	e:\dailybuild01\accountinventorydaemon-garena-0.0.210\depot\branch\210grn\program\server\shared\SharedChannel.h
+75	..\Shared\NPChannel2.cpp
+76	[np], register txn-id fail; duplicated, txn-id:%u
+77	[np], txn-id overflow
+78	== CRASH == [np-session-handler], accept not allowed, session-id:0x%016I64X
+79	[np-session-handler], connected, session-id:0x%016I64X
+80	[np-session-handler], closed, session-id:0x%016I64X
+81	[np], setup np channel fail; invalid program id, program-id:%d
+82	[np], setup np channel failed; load dll failed
+83	[np], setup np channel failed; check dll version failed, required:%d.%d.%d.0
+84	[np], setup np channel failed; initialize sts message function failed
+85	[np], setup np channel success
+86	== CRASH == [np], intialize fail; invalid parameter, message-handler:%p, command-dispatcher:%p
+87	== CRASH == [np], initialize fail; already initialized
+88	[np], connect fail; sts interface not ready
+89	[np], initialize ok
+90	[np], try connect success
+91	[np], try connect fail
+92	== CRASH == [np], try to send null message
+93	[np], send fail; not connected session
+94	== CRASH == [np], register transaction failed
+95	[np], sts msg sent, np-tid:%d, cmd:%d, type:%d
+96	[np], build sts msg failed, error-code:%d
+97	== CRASH == [np], critical sts msg lib error occurs, error-code:%d
+98	0123456789ABCDEF
+99	[np], recvd, size:%d, body:%s
+100	[np], parse failed, error:%d
+101	[np], sts msg received, np-tid:%u, cmd:%d, type:%d
+102	== CRASH == [np], handle sts msg failed; not registered response msg; txn id not found, np-tid:%u, cmd:%d, type:%d
+103	[np], handle sts msg failed, np-tid:%u, cmd:%d, type:%d
+104	[np], connected to np game gateway
+105	[np], onConnect failed; initialize sts interface failed
+106	[np], send initial connect message fail
+107	[np], handle on connect fail
+108	[np], np channel connected
+109	[np], disconnected to np game gateway
+110	[np], send initial connect message, local-ip:%s
+111	[np], STS_MSG_ERROR_FAIL
+112	[np], STS_MSG_ERROR_WRONG_GAME_CODE
+113	[np], STS_MSG_ERROR_WRONG_PARAMETERS
+114	[np], STS_MSG_ERROR_BUFFER_SIZE_IS_NOT_ENOUGH
+115	[np], STS_MSG_ERROR_WRONG_MESSAGE_BODY
+116	[np], STS_MSG_ERROR_ALLOC_FAILED
+117	[np], STS_MSG_ERROR_WRONG_KEY_DATA
+118	[np], STS_MSG_ERROR_WRONG_COMMAND
+119	E:\DailyBuild01\AccountInventoryDaemon-GARENA-0.0.210\depot\Branch\210GRN\Program\Server\BloodLib\include\Channel.h
+120	== CRASH == [shared-channel], connect fail; channel already exists
+121	..\Shared\SharedChannel.cpp
+122	[shared-channel], connect fail; make session fail
+123	[shared-channel], try connect ok
+124	== CRASH == [shared-channel], accept fail; invalid parameter
+125	== CRASH == [shared-channel], accept fail; channel already exists, id:0xI64d, new:0xI64d
+126	path
+127	instant-payment-restore-count-per-timer-interval
+128	instant-payment-second-password-action-index
+129	instant-payment-second-password-type
+130	enable-instant-payment-second-password
+131	instant-payment-purchase-request-from-code
+132	instant-payment-purchase-currency-group-id
+133	instant-payment-goods-category-language-code
+134	instant-payment-goods-category-type
+135	instant-payment-goods-category-update-period
+136	enable-instant-payment
+137	uncomoleted-goods-registration-fail-count-max
+138	uncompleted-goods-registration-load-count
+139	lobby-service-item-search-count
+140	warehouse-goods-search-count
+141	goods-list-max-count
+142	character-inventory-item-noti-count
+143	automated-take-goods-type
+144	goods-info-list-page-size
+145	overseas-np
+146	service-world-id
+147	manage-listen-port
+148	world-listen-port
+149	lobby-listen-port
+150	np-warehouse-changeover-enable
+151	np-game-code
+152	np-program-id
+153	np-port
+154	np-address
+155	np-enabled
+156	goods-job-hash-count
+157	goods-list-hash-count
+158	init-job-count
+159	wait-time-for-reuse-pool-object
+160	dump-type
+161	transaction-timeout
+162	timer-max-time
+163	timer-interval
+164	max-world
+165	worker-thread
+166	transaction-log-path
+167	config-path
+168	log-path
+169	cert-file
+170	root-path
+171	accountinventoryd.config.xml
+172	127.0.0.1
+173	0 means no restoration.
+174	second password action index for instant payment. tencent(0)
+175	second password type. tencent(3)
+176	enable checking second password in instant payment
+177	purchase request from code. game-server(9)
+178	purchase currency group id for instant payment. tencent(17)
+179	language code for goods category. korean(1), chinese-simplified(2), chinese-traditional(3), russian(4), english(5)
+180	instant payment goods category type. default 2
+181	sec. goods category update period. 0 means no update
+182	enable instant payment
+183	instant payment configuration
+184	uncompleted goods registration fail count max. default 5.
+185	uncompleted goods registration load count. default 100. 0 means skipping.
+186	lobby service item search count. default 100.
+187	warehouse goods search count. default 20.
+188	goods list max count. max 100.
+189	character inventory item
+190	automated take goods type. 
+191	. 0:no, 1:all, 2:non-refundable(by notification). default 0.
+192	goods info list page size. default 0. max 50.
+193	is overseas np. default no.
+194	np warehouse changeover enable. nshop np
+195	. default no.
+196	goods configuration
+197	service world id
+198	account inventory service configuration
+199	world listen port
+200	management listen port
+201	next-platform access port
+202	next-platform
+203	address
+204	NP game code. bns:live(QA)(dev-np-01), bnsprog:program(dev-np-02), bnsintr:internal(dev-np-02), bnsbr:branch(dev-np-01), bnstest:live(test), bnstenc(dev-np-02)
+205	NP program id. 302:live(QA)(dev-np-01), 303:program(dev-np-02), 304:internal(dev-np-02), 305:branch(dev-np-01), 306:live(test), 308:tenc(dev-np-02)
+206	work with next-platform 
+207	network configuration
+208	goods job hash count. 0 means system default.
+209	account goods list hash count. 0 means system default.
+210	job initial object pool size. 0 means no preparance
+211	msec. for debugging. 0 means pool object be reused immediately. caution, in service mode, pool object do not wait for reuse
+212	0: no dump, 1: minimal dump(default), 2: full dump
+213	transaction timeout(msec). 0 means no timeout on transactoin
+214	max time of timer(sec)
+215	interval of timer(msec)
+216	0 means default internal session count
+217	0 is system recommend
+218	system configuration
+219	certification file path
+220	certification
+221	full transaction log directory
+222	full config path. (gamed-list.xml path)
+223	full log path
+224	full root path
+225	config
+226	gamed-list.config.xml
+227	accountinventoryd
+228	AccountInventoryDaemon
+229	BnS accountinventoryd
+230	Blade&Soul AccountInventory Daemon
+231	== CRASH == [poolobj], do not call 'delete' on PoolObj instance!!!
+232	e:\dailybuild01\accountinventorydaemon-garena-0.0.210\depot\branch\210grn\program\server\accountinventorydaemon\../Economy/Shared/ObjectPool.h
+233	== CRASH == [%s], generate id fail
+234	AccountInventoryDaemon.cpp
+235	[cooldown], not started
+236	[cooldown], job manager not found
+237	[cooldown], report status, remain-job-count:%d, remain-time:%d(sec)
+238	[cooldown], success. u can SHUTDOWN SAFELY
+239	[cooldown], job not finished, jobid:0x%I64X, state:%d
+240	[cooldown], fail; some jobs remains; u may try SHUTDOWN UNSAFELY or retry COOLDOWN, remain-cli-session-count:%d
+241	[cooldown], fail; add timer fail; u may try SHUTDOWN UNSAFELY or retry COOLDOWN, remain-cli-session-count:%d
+242	[cooldown], start fail; invalid parameter
+243	[cooldown], start fail; already running
+244	[cooldown], start fail; add timer fail
+245	[cooldown], start, period:%d(msec), duration:%d(msec)
+246	packet accountinventory-game %d.0
+247	packet accountinventory-lobby %d.0
+248	packet accountinventory-manage %d.0
+249	lib xmlreader %s.0
+250	lib stsmsglib %s.0
+251	security cert %d.0
+252	== CRASH == [%s], invalid parameter, eventObject:0x%p
+253	[%s], unknown event object id, id: %d, object: %p
+254	[%s], failed to load config, config:0x%p
+255	[%s], failed to initialize console media
+256	[%s], failed to initialize log file media
+257	goods
+258	[%s], invalid configuration
+259	[%s], cannot execute, error:%d
+260	[%s], initialize job-id generator fail
+261	[%s], initial job-id seed value: 0x%016I64X
+262	[%s], initialize job manager fail
+263	[%s], failed to initialize db, dbId:%d
+264	[%s], invalid config world id, configWorldId:%d
+265	[%s], world id configuration error, configWorldId:%d, dbRetValue:%d
+266	StsMsgSrv64.dll
+267	[%s], init np channel failed
+268	[%s], failed to initialize network
+269	[%s], setup np port fail
+270	[%s], failed to initialize lobby channel manager
+271	[%s], failed to open lobby listen port, portId:%u, portNumber:%u
+272	[%s], open world lobby ok, port:%d
+273	[%s], failed to make world config file path, configPath:%s, configFileName:%s
+274	[%s], setup world list fail, worldConfigFileName:%s
+275	[%s], failed to open world listen port, portId:%u, portNumber:%u
+276	[%s], open world port ok, port:%d
+277	[%s], failed to open manage listen port, portId:%u, portNumber:%u
+278	[%s], open manage port ok, port:%d
+279	[%s], start np fail
+280	[%s], open lobby port fail
+281	[%s], open gamed port fail
+282	[%s], open maange port fail
+283	[%s], reload fail; invalid argument, argv:%p, argc:%d
+284	[%s], reload start
+285	[%s], setup gamed list fail, gamedConfigFileName:%s
+286	[%s], reload(%s) success
+287	[%s], cooldown start
+288	[%s], start cooldown fail
+289	add goods job timer failed, job-id:0x%016I64X, event-id:%d
+290	[%s], start np channel fail; open np port fail
+291	[%s], start np channel fail; initialize np service channel manager fail
+292	[%s], start np channel fail; wait initiali connect fail
+293	[%s], start np channel fail; wait register service fail
+294	[%s], start np channel fail; np channel null
+295	[%s], start np channel fail; wait list goods def fail
+296	[%s], start np channel fail; handle uncompleted goods registration list fail
+297	[%s], start np channel fail; register update goods category job fail
+298	[%s], start np channel fail; wait update goods category fail
+299	[%s], start goods for purchase update timer failed
+300	[%s], goods for purchase update timer started
+301	[%s], start instant payment restore manager failed
+302	[%s], start np channel ok
+303	{?=CALL dbo.usp_LoadUnknownInstantPaymentStateList}
+304	{?=CALL dbo.usp_RetrieveUncompletedInstantPaymentServiceList(?)}
+305	{?=CALL dbo.usp_FinishInstantPaymentService(?,?,?,?,?)}
+306	{?=CALL dbo.usp_UpdateInstantPaymentServiceStateToPaymentSuccessState(?,?,?,?,?)}
+307	{?=CALL dbo.usp_CancelInstantPaymentService(?,?,?,?)}
+308	{?=CALL dbo.usp_TryInstantPaymentService(?,?,?,?,?,?)}
+309	{?=CALL dbo.usp_ConsumeWarehouseItem(?,?,?)}
+310	{?=CALL dbo.usp_CancelWarehouseItemConsumption(?,?,?)}
+311	{?=CALL dbo.usp_FinishWarehouseItemConsumption(?,?,?,?)}
+312	{?=CALL dbo.usp_TryWarehouseItemConsumption(?,?,?)}
+313	{?=CALL dbo.usp_RetrieveSingleWarehouseItem(?,?,?)}
+314	{?=CALL dbo.usp_RetrieveLobbyServiceItemList(?,?,?,?)}
+315	{?=CALL dbo.usp_CancelWarehouseItemAcquisition(?,?,?,?)}
+316	{?=CALL dbo.usp_FinishWarehouseItemAcquisition(?,?,?,?,?)}
+317	{?=CALL dbo.usp_TryWarehouseItemAcquisition(?,?,?,?,?,?,?,?,?)}
+318	{?=CALL dbo.usp_RetrieveUncompletedItemAcquisitionList(?)}
+319	{?=CALL dbo.usp_RetrieveWarehouseItemList(?,?,?,?)}
+320	{?=CALL dbo.usp_RetrieveWarehouseItemCount(?,?)}
+321	{?=CALL dbo.usp_RetrieveUncompletedWarehouseRegistrationList(?)}
+322	{?=CALL dbo.usp_FinishWarehouseRegistration(?,?,?,?)}
+323	{?=CALL dbo.usp_TryWarehouseRegistration(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}
+324	{?=CALL dbo.usp_LoadUncompletedWarehouseRegistrationList(?,?)}
+325	{?=CALL dbo.usp_CheckWorldId(?)}
+326	== CRASH == [%s], invalid parameter, configWorldId:%d
+327	AccountInventoryDB.cpp
+328	[%s], failed to acquire transaction, dbId:%d
+329	[%s], failed to prepare sql, query:%s
+330	[%s], failed to check world id, dbRetValue:%d, configWorldId:%d
+331	[%s], failed to bind sql
+332	[%s], invalid parameter,  load-uncompleted-warehouse-reg, load-count:%d, load-key:%I64d
+333	[%s], failed to acquire transaction, dbId:%d, load-uncompleted-warehouse-reg, load-count:%d, load-key:%I64d
+334	[%s], failed to prepare sql, load-uncompleted-warehouse-reg, load-count:%d, load-key:%I64d, query:%s
+335	[%s], failed to execute sql, load-uncompleted-warehouse-reg, load-count:%d, load-key:%I64d, query:%s
+336	[%s], failed to fetch, load-uncompleted-warehouse-reg, load-count:%d, load-key:%I64d
+337	[%s], invalid db data, load-uncompleted-warehouse-reg, load-count:%d, load-key:%I64d, labelIdLen:0x%I64X, gameAccountIdLen:0x%I64X, goodsIdLen:0x%I64X
+338	[%s], failed to bind parameter, load-uncompleted-warehouse-reg, load-count:%d, load-key:%I64d
+339	[%s], invalid parameter, goods or def is null, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+340	[%s], invalid goods item count, try-warehouse-reg, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d, goods-number:%d, goods-item-count:%d, def-item-count:%d
+341	[%s], game-cash goods, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+342	[%s], failed to acquire transaction, dbId:%d, try-warehouse-reg, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d, goods-number:%d
+343	[%s], failed to prepare sql, query:%s, try-warehouse-reg, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d, goods-number:%d
+344	[%s], failed to find goods-item-def, try-warehouse-reg, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d, goods-number:%d, item-idx:%d, item-num:%d
+345	[%s], failed to execute sql, query:%s, try-warehouse-reg, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d, goods-number:%d
+346	[%s], failed to bind parameter, try-warehouse-reg, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d, goods-number:%d
+347	[%s], invalid parameter, fin-warehouse-reg, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, goods-id:%I64d, is-succ:%d
+348	[%s], game-cash goods, fin-warehouse-reg, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, goods-id:%I64d, is-succ:%d
+349	[%s], failed to acquire transaction, dbId:%d, fin-warehouse-reg, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, goods-id:%I64d, is-succ:%d
+350	[%s], failed to prepare sql, query:%s, fin-warehouse-reg, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, goods-id:%I64d, is-succ:%d
+351	[%s], failed to execute sql, query:%s, fin-warehouse-reg, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, goods-id:%I64d, is-succ:%d
+352	[%s], failed to fetch, fin-warehouse-reg, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, goods-id:%I64d, is-succ:%d
+353	[%s], invalid db data, fin-warehouse-reg, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, goods-id:%I64d, is-succ:%d, labelIdLen:0x%I64X, goodsNumLen:0x%I64X, purchaseTimeLen:0x%I64X, registrationTimeLen:0x%I64X, instanceIdLen:0x%I64X, goodsItemNumLen:0x%I64X, itemDataIdLen:0x%I64X, itemAmountLen:0x%I64X, usableDurLen:0x%I64X, itemStateLen:0x%I64X
+354	[%s], item added, fin-warehouse-reg, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, goods-id:%I64d, is-succ:%d, goods-num:%d, item-instance-id:%I64d, item-data-id:%d, item-amount:%d, item-state:%d
+355	[%s], failed to bind parameter, fin-warehouse-reg, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, goods-id:%I64d, is-succ:%d
+356	[%s], invalid parameter, uncompleted-reg-list, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+357	[%s], failed to acquire transaction, dbId:%d, uncompleted-reg-list, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+358	[%s], failed to prepare sql uncompleted-reg-list, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, query:%s
+359	[%s], failed to execute sql, uncompleted-reg-list, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, query:%s
+360	[%s], failed to fetch, uncompleted-reg-list, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+361	[%s], invalid db data, uncompleted-reg-list, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, labelIdLen:0x%I64X, goodsIdLen:0x%I64X
+362	[%s], failed to bind parameter, uncompleted-reg-list, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+363	[%s], invalid parameter, retrieve-warehouse-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, begin-lebel-id:%I64d
+364	[%s], failed to acquire transaction, dbId:%d, retrieve-warehouse-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, begin-lebel-id:%I64d
+365	[%s], failed to prepare sql retrieve-warehouse-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, begin-lebel-id:%I64d, query:%s
+366	[%s], failed to execute sql, retrieve-warehouse-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, begin-lebel-id:%I64d, query:%s
+367	[%s], failed to fetch, retrieve-warehouse-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, begin-lebel-id:%I64d
+368	[%s], invalid fetch result count,  retrieve-warehouse-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, begin-lebel-id:%I64d, result count:%d
+369	[%s], invalid db data, retrieve-warehouse-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, begin-lebel-id:%I64d, goodsCountLen:0x%I64X, itemCount:0x%I64X
+370	[%s], failed to bind parameter, retrieve-warehouse-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, begin-lebel-id:%I64d
+371	[%s], invalid parameter, warehouse-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+372	[%s], failed to acquire transaction, dbId:%d, warehouse-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+373	[%s], failed to prepare sql warehouse-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, query:%s
+374	[%s], failed to execute sql, warehouse-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, query:%s
+375	[%s], failed to fetch, warehouse-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+376	[%s], invalid db data, warehouse-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, labelIdLen:0x%I64X, goodsNumLen:0x%I64X, purchaseTimeLen:0x%I64X, registrationTimeLen:0x%I64X, instanceIdLen:0x%I64X, goodsItemNumLen:0x%I64X, itemDataIdLen:0x%I64X, itemAmountLen:0x%I64X, usableDurLen:0x%I64X, itemStateLen:0x%I64X
+377	[%s], item, invalid state, warehouse-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, goods-num:%d, item-instance-id:%I64d, item-data-id:%d, item-state:%d
+378	[%s], failed to bind parameter, warehouse-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+379	[%s], invalid parameter, retrieve-uncompleted-item, pcdbid:0x%I64X
+380	[%s], failed to acquire transaction, dbId:%d, retrieve-uncompleted-item, pcdbid:0x%I64X
+381	[%s], failed to prepare sql retrieve-uncompleted-item, pcdbid:0x%I64X, query:%s
+382	[%s], failed to execute sql, retrieve-uncompleted-item, pcdbid:0x%I64X, query:%s
+383	[%s], failed to fetch, retrieve-uncompleted-item, pcdbid:0x%I64X
+384	[%s], invalid db data, retrieve-uncompleted-item, pcdbid:0x%I64X, instanceIdLen:0x%I64X, labelIdLen:0x%I64X
+385	[%s], item added, retrieve-uncompleted-item, pcdbid:0x%I64X, item-instance-id:%I64d, label-id:%I64d
+386	[%s], failed to bind parameter, retrieve-uncompleted-item, pcdbid:0x%I64X
+387	[%s], invalid parameter, try-warehouse-item-acq, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, wid:%d, pcdbid:0x%I64X, label-id:%I64d, item-instance-id:%I64d, item-data-id:%d
+388	[%s], failed to acquire transaction, dbId:%d, try-warehouse-item-acq, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, wid:%d, pcdbid:0x%I64X, label-id:%I64d, item-instance-id:%I64d, item-data-id:%d
+389	[%s], failed to prepare sql, try-warehouse-item-acq, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, wid:%d, pcdbid:0x%I64X, label-id:%I64d, item-instance-id:%I64d, item-data-id:%d, query:%s
+390	[%s], failed to execute sql, try-warehouse-item-acq, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, wid:%d, pcdbid:0x%I64X, label-id:%I64d, item-instance-id:%I64d, item-data-id:%d, query:%s
+391	[%s], failed to bind parameter, try-warehouse-item-acq, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, wid:%d, pcdbid:0x%I64X, label-id:%I64d, item-instance-id:%I64d, item-data-id:%d
+392	[%s], invalid parameter, fin-warehouse-item-acq, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X, label-id:%I64d, item-instance-id:%I64d, is-succ:%d
+393	[%s], failed to acquire transaction, dbId:%d, fin-warehouse-item-acq, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X, label-id:%I64d, item-instance-id:%I64d, is-succ:%d
+394	[%s], failed to prepare sql, fin-warehouse-item-acq, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X, label-id:%I64d, item-instance-id:%I64d, is-succ:%d, query:%s
+395	[%s], failed to execute sql, fin-warehouse-item-acq, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X, label-id:%I64d, item-instance-id:%I64d, is-succ:%d, query:%s
+396	[%s], failed to bind parameter, fin-warehouse-item-acq, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X, label-id:%I64d, item-instance-id:%I64d, is-succ:%d
+397	[%s], invalid parameter, cancel-warehouse-item-acq, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X, label-id:%I64d, item-instance-id:%I64d
+398	[%s], failed to acquire transaction, dbId:%d, cancel-warehouse-item-acq, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X, label-id:%I64d, item-instance-id:%I64d
+399	[%s], failed to prepare sql, cancel-warehouse-item-acq, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X, label-id:%I64d, item-instance-id:%I64d, query:%s
+400	[%s], failed to execute sql, cancel-warehouse-item-acq, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X, label-id:%I64d, item-instance-id:%I64d, query:%s
+401	[%s], failed to bind parameter, cancel-warehouse-item-acq, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X, label-id:%I64d, item-instance-id:%I64d
+402	[%s], param, lobby-service-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, search-count:%d, search-type:%d, search-key:%I64d
+403	[%s], invalid parameter, lobby-service-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+404	[%s], failed to acquire transaction, dbId:%d, lobby-service-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+405	[%s], failed to prepare sql lobby-service-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, query:%s
+406	[%s], failed to execute sql, lobby-service-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, query:%s
+407	[%s], failed to fetch, lobby-service-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+408	[%s], invalid db data, lobby-service-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, instanceIdLen:0x%I64X, labelIdLen:0x%I64X, labelIdLen:0x%I64X, itemStateLen:0x%I64X
+409	[%s], item, invalid state, lobby-service-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, owner-pc-id:0x%I64X, item-instance-id:%I64d, label-id:%I64d, item-data-id:%d, item-state:%d
+410	[%s], failed to bind parameter, lobby-service-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+411	[%s], invalid parameter, single-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, item-ins-id:%I64d, owner-pc-id:%I64d
+412	[%s], failed to acquire transaction, dbId:%d, single-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, item-ins-id:%I64d, owner-pc-id:%I64d
+413	[%s], failed to prepare sql single-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, item-ins-id:%I64d, owner-pc-id:%I64d, query:%s
+414	[%s], failed to execute sql, single-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, item-ins-id:%I64d, owner-pc-id:%I64d, query:%s
+415	[%s], failed to fetch, single-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, item-ins-id:%I64d, owner-pc-id:%I64d
+416	[%s], no such item, single-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, item-ins-id:%I64d, owner-pc-id:%I64d
+417	[%s], invalid db data, single-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, item-ins-id:%I64d, owner-pc-id:%I64d, instanceIdLen:0x%I64X, labelIdLen:0x%I64X, labelIdLen:0x%I64X, itemStateLen:0x%I64X
+418	[%s], failed to bind parameter, single-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, item-ins-id:%I64d, owner-pc-id:%I64d
+419	[%s], invalid parameter, try-item-consume, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance-id:%I64d
+420	[%s], failed to acquire transaction, dbId:%d, try-item-consume, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance-id:%I64d
+421	[%s], failed to prepare sql, try-item-consume, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance-id:%I64d, query:%s
+422	[%s], failed to execute sql, try-item-consume, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance-id:%I64d, query:%s
+423	[%s], failed to bind parameter try-item-consume, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance-id:%I64d
+424	[%s], invalid parameter, fin-item-consume, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance-id:%I64d, is-succ:%d
+425	[%s], failed to acquire transaction, dbId:%d, fin-item-consume, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance-id:%I64d, is-succ:%d
+426	[%s], failed to prepare sql,  fin-item-consume, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance-id:%I64d, is-succ:%d,query:%s
+427	[%s], failed to execute sql,  fin-item-consume, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance-id:%I64d, is-succ:%d,query:%s
+428	[%s], failed to bind parameter, fin-item-consume, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance-id:%I64d, is-succ:%d
+429	[%s], invalid parameter, cancel-item-consume, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance-id:%I64d
+430	[%s], failed to acquire transaction, dbId:%d, cancel-item-consume, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance-id:%I64d
+431	[%s], failed to prepare sql,  cancel-item-consume, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance-id:%I64d,query:%s
+432	[%s], failed to execute sql,  cancel-item-consume, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance-id:%I64d, query:%s
+433	[%s], failed to bind parameter, cancel-item-consume, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance-id:%I64d
+434	[%s], invalid parameter, consume-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance-id:%I64d
+435	[%s], failed to acquire transaction, dbId:%d, consume-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance-id:%I64d
+436	[%s], failed to prepare sql,  consume-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance-id:%I64d,query:%s
+437	[%s], failed to execute sql,  consume-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance-id:%I64d,query:%s
+438	[%s], failed to bind parameter, consume-item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance-id:%I64d
+439	[%s], invalid parameter, try-instant-payment-service, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, world-id:%d, pc-id:0x%I64X, goods-number:%d, service-id:0x%I64X
+440	[%s], failed to acquire transaction, dbId:%d, try-instant-payment-service, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, world-id:%d, pc-id:0x%I64X, goods-number:%d, service-id:0x%I64X
+441	[%s], failed to prepare sql,  try-instant-payment-service, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, world-id:%d, pc-id:0x%I64X, goods-number:%d, service-id:0x%I64X,query:%s
+442	[%s], failed to execute sql,  try-instant-payment-service, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, world-id:%d, pc-id:0x%I64X, goods-number:%d, service-id:0x%I64X,query:%s
+443	[%s], failed to bind parameter, try-instant-payment-service, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, world-id:%d, pc-id:0x%I64X, goods-number:%d, service-id:0x%I64X
+444	[%s], invalid parameter, cancel-instant-payment-service, service-id:0x%I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pc-id:0x%I64X, service-type:%d
+445	[%s], failed to acquire transaction, dbId:%d, cancel-instant-payment-service, service-id:0x%I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pc-id:0x%I64X, service-type:%d
+446	[%s], failed to prepare sql,  cancel-instant-payment-service, service-id:0x%I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pc-id:0x%I64X, service-type:%d,query:%s
+447	[%s], failed to execute sql,  cancel-instant-payment-service, service-id:0x%I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pc-id:0x%I64X, service-type:%d,query:%s
+448	[%s], failed to bind parameter, cancel-instant-payment-service, service-id:0x%I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pc-id:0x%I64X, service-type:%d
+449	[%s], invalid parameter, update-instant-payment-service-state-to-payment-success-state, service-id:0x%I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pc-id:0x%I64X, service-type:%d, purchase-id:0x%I64X
+450	[%s], failed to acquire transaction, dbId:%d, update-instant-payment-service-state-to-payment-success-state, service-id:0x%I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pc-id:0x%I64X, service-type:%d, purchase-id:0x%I64X
+451	[%s], failed to prepare sql,  update-instant-payment-service-state-to-payment-success-state, service-id:0x%I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pc-id:0x%I64X, service-type:%d, purchase-id:0x%I64X,query:%s
+452	[%s], failed to execute sql,  update-instant-payment-service-state-to-payment-success-state, service-id:0x%I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pc-id:0x%I64X, service-type:%d, purchase-id:0x%I64X,query:%s
+453	[%s], failed to bind parameter, update-instant-payment-service-state-to-payment-success-state, service-id:0x%I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pc-id:0x%I64X, service-type:%d, purchase-id:0x%I64X
+454	success
+455	fail
+456	[%s], invalid parameter, update-instant-payment-service-state-to-payment-success-state, service-id:0x%I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pc-id:0x%I64X, service-type:%d, result:%s
+457	[%s], failed to acquire transaction, dbId:%d, update-instant-payment-service-state-to-payment-success-state, service-id:0x%I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pc-id:0x%I64X, service-type:%d, result:%s
+458	[%s], failed to prepare sql,  update-instant-payment-service-state-to-payment-success-state, service-id:0x%I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pc-id:0x%I64X, service-type:%d, result:%s,query:%s
+459	[%s], failed to execute sql,  update-instant-payment-service-state-to-payment-success-state, service-id:0x%I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pc-id:0x%I64X, service-type:%d, result:%s,query:%s
+460	[%s], failed to bind parameter, update-instant-payment-service-state-to-payment-success-state, service-id:0x%I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pc-id:0x%I64X, service-type:%d, result:%s
+461	[%s], invalid parameter, retrieve-uncompleted-instant-payment-service-list, pc-id:0x%I64X
+462	[%s], failed to acquire transaction, dbId:%d, retrieve-uncompleted-instant-payment-service-list, pc-id:0x%I64X
+463	[%s], failed to prepare sql,  retrieve-uncompleted-instant-payment-service-list, pc-id:0x%I64X,query:%s
+464	[%s], failed to execute sql,  retrieve-uncompleted-instant-payment-service-list, pc-id:0x%I64X,query:%s
+465	[%s], failed to fetch, retrieve-uncompleted-instant-payment-service-list, pc-id:0x%I64X
+466	[%s], invalid db data, retrieve-uncompleted-instant-payment-service-list, pc-id:0x%I64X, serviceIdLen:0x%I64X, serviceTypeLen:0x%I64X
+467	[%s], service added, retrieve-uncompleted-instant-payment-service-list, pc-id:0x%I64X, serviceId:0x%I64X, serviceType:%d
+468	[%s], failed to bind parameter, retrieve-uncompleted-instant-payment-service-list, pc-id:0x%I64X
+469	[%s], failed to acquire transaction, dbId:%d, load-unknown-instant-payment-state-list
+470	[%s], failed to prepare sql,  load-unknown-instant-payment-state-list,query:%s
+471	[%s], failed to execute sql,  load-unknown-instant-payment-state-list,query:%s
+472	[%s], failed to fetch, load-unknown-instant-payment-state-list
+473	[%s], invalid db data, load-unknown-instant-payment-state-list, service-id-len:0x%I64X, account-id-len:0x%I64X, pc-id-len:0x%I64X, service-type-len:0x%I64X
+474	[%s], service added, load-unknown-instant-payment-state-list, serviceId:0x%I64X
+475	[%s], failed to bind parameter, load-unknown-instant-payment-state-list
+476	E:\DailyBuild01\AccountInventoryDaemon-GARENA-0.0.210\depot\Branch\210GRN\Program\Server\BloodLib\include\StlMemory.h
+477	InstantPayment.cpp
+478	%s+%d+%I64u
+479	[%s], register update goods category timer job fail
+480	[%s], load instant payment instances for restore failed, dbRetValue:%d
+481	[%s], load instant payment instances for restore ok, count:%d
+482	[%s], add instant payment instance for restore fail; invalid parameter, service-id:0x%I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pc-id:0x%I64X, service-type:%d
+483	[%s], post restore instant payment job failed, service-id:0x%I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pc-id:0x%I64X, service-type:%d
+484	[%s], try to restore instant payment, count:%d
+485	LOBBY_TAKE_GOODS_BY_NOTI
+486	REQUEST
+487	SETUP
+488	LobbyJobTakeGoodsByNoti.cpp
+489	[tranjob],0x%016I64X, %d(%s), %d,unhandled event occurs, event:%d
+490	[tranjob],0x%016I64X, %d(%s), %d,setup param, not available, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+491	[tranjob],0x%016I64X, %d(%s), %d,setup param, stsmsg is null, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+492	[tranjob],0x%016I64X, %d(%s), %d,setup param, goods empty, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+493	[tranjob],0x%016I64X, %d(%s), %d,setup param, diabled, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+494	[tranjob],0x%016I64X, %d(%s), %d, setup param, goode def null, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d, goods-number:%d
+495	[tranjob],0x%016I64X, %d(%s), %d,setup param, not automated case, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d, goods-number:%d, refundable:%d
+496	[tranjob],0x%016I64X, %d(%s), %d, setup param, release invalid goods info, count:%d
+497	[tranjob],0x%016I64X, %d(%s), %d, setup param, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, noti-goods-count:%d, setup-goods-count:%d
+498	[tranjob],0x%016I64X, %d(%s), %d,try registration, not exist goods-def, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d, goods-number:%d
+499	[tranjob],0x%016I64X, %d(%s), %d,try registration, failed, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d, dbRetValue:%d
+500	[tranjob],0x%016I64X, %d(%s), %d,try registration, success, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d, label-id:%I64d
+501	[tranjob],0x%016I64X, %d(%s), %d,take req, np send, failed, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, take-count:%d, cur-take-count:%d
+502	[tranjob],0x%016I64X, %d(%s), %d,take req, np send, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, take-count:%d, cur-take-count:%d
+503	[tranjob],0x%016I64X, %d(%s), %d,take res, ok, stsmsg is null, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+504	[tranjob],0x%016I64X, %d(%s), %d,take res, ok, invalid take result count, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+505	[tranjob],0x%016I64X, %d(%s), %d,take res, ok, start, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, res-count:%d
+506	[tranjob],0x%016I64X, %d(%s), %d,take res, ok, np result, cannot find goods-id, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, lable-id:%I64d, goods-id:%I64d
+507	[tranjob],0x%016I64X, %d(%s), %d,take res, ok, np result, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, lable-id:%I64d, goods-id:%I64d, result:%d
+508	[tranjob],0x%016I64X, %d(%s), %d,take res, ok, character inven item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, item-ins-id:%I64d, lable-id:%I64d, item-data-id:%d, count:%d
+509	[tranjob],0x%016I64X, %d(%s), %d,take res, ok, invalid cmd, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, cmd:%d
+510	[tranjob],0x%016I64X, %d(%s), %d,take res, ok, end, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, take-goods-count:%d, character-inven-item-count:%d, item-remain:%d
+511	[tranjob],0x%016I64X, %d(%s), %d,take res, fail, np error:%d
+512	[tranjob],0x%016I64X, %d(%s), %d,take-res, fail, invalid goods-id, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, lable-id:%I64d, goods-id:%I64d, error-code:%d
+513	[tranjob],0x%016I64X, %d(%s), %d,take-res, fail, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, lable-id:%I64d, goods-id:%I64d, error-code:%d
+514	[tranjob],0x%016I64X, %d(%s), %d,take res, timeout
+515	[tranjob],0x%016I64X, %d(%s), %d,send noti, lobby channel null, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, item-count:%d
+516	[tranjob],0x%016I64X, %d(%s), %d,send noti, failed to compose, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, item-count:%d
+517	[tranjob],0x%016I64X, %d(%s), %d,send noti, failed to compose item list packet, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, item-instance-id:%I64d, label-id:%I64d, data-id:%d
+518	[tranjob],0x%016I64X, %d(%s), %d,send noti, failed to compose item list packet, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, item-remain:%d
+519	[tranjob],0x%016I64X, %d(%s), %d,send noti, fin, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, item-count:%d, remain:%d
+520	[tranjob],0x%016I64X, %d(%s), %d,send noti, without item list, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+521	UNCOMPLETED_GOODS_REG_LIST
+522	uncompleted-goods-reg, request handle event, job:0x%016I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, lebel-id:%I64d, goods-id:%I64d
+523	UncompletedGoodsRegistration.cpp
+524	uncompleted-goods-reg, request handle event, cannot find job, job:0x%016I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, lebel-id:%I64d, goods-id:%I64d
+525	uncompleted-goods-reg, request handle event, update result, fail, uncompleted-job:0x%016I64X, label-id:%I64d, goods-id:%I64d
+526	uncompleted-goods-reg, request handle event, update result, fail, cannot find job, uncompleted-job:0x%016I64X, label-id:%I64d, goods-id:%I64d
+527	uncompleted-goods-reg, take expire handle event, cannot find job, job:0x%016I64X
+528	uncompleted-goods-reg-list-mgr, constructor
+529	uncompleted-goods-reg-list-mgr, destructor
+530	uncompleted-goods-reg-list, start
+531	uncompleted-goods-reg-list, register job fail
+532	[tranjob],0x%016I64X, %d(%s), %d,spawn
+533	uncompleted-goods-reg-list, event, wait
+534	uncompleted-goods-reg-list, event, timeout
+535	uncompleted-goods-reg-list, event, wakeup
+536	uncompleted-goods-reg-list, end, total-count:%d, fail-count:%d
+537	uncompleted-goods-reg-list, load-list, skip, load-count:%d
+538	uncompleted-goods-reg-list, load-list, invalid param, outCount:%d
+539	uncompleted-goods-reg-list, load-list, failed to load, load-key:%I64d, dbRetValue:%d
+540	uncompleted-goods-reg-list, load-list, loaded, load-key:%I64d, count:%d
+541	uncompleted-goods-reg-list, add fail count, cur-fail-count:%d, add:%d
+542	uncompleted-goods-reg-list, fail count overflow, total-count:%d, fail-count:%d
+543	[tranjob],0x%016I64X, %d(%s), %d,constructor
+544	[tranjob],0x%016I64X, %d(%s), %d,destructor
+545	[tranjob],0x%016I64X, %d(%s), %d,unhandled event occurs, event:0x%.8X
+546	uncompleted-goods-reg-list, load-list, count:%d
+547	[tranjob],0x%016I64X, %d(%s), %d,spawn job fail, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, lebel-id:%I64d, goods-id:%I64d
+548	[tranjob],0x%016I64X, %d(%s), %d,spawn, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, lebel-id:%I64d, goods-id:%I64d
+549	uncompleted-goods-reg-list, load-list, added, cur-count:%d, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, lebel-id:%I64d, goods-id:%I64d
+550	uncompleted-goods-reg-list, request, post, job:0x%016I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, lebel-id:%I64d, goods-id:%I64d
+551	[tranjob],0x%016I64X, %d(%s), %d,response, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, lebel-id:%I64d, goods-id:%I64d, is-success:%d
+552	[tranjob],0x%016I64X, %d(%s), %d,response, already finished, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, lebel-id:%I64d, goods-id:%I64d, is-success:%d
+553	[tranjob],0x%016I64X, %d(%s), %d,response, connot find goods-id, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, lebel-id:%I64d, goods-id:%I64d, is-success:%d
+554	[tranjob],0x%016I64X, %d(%s), %d,response, list-count:%d, response-count:%d, fail-count:%d
+555	[tranjob],0x%016I64X, %d(%s), %d,response, all, list-count:%d, fail-count:%d
+556	[tranjob],0x%016I64X, %d(%s), %d,response, event null
+557	[tranjob],0x%016I64X, %d(%s), %d,take expire, post, job:0x%016I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, lebel-id:%I64d, goods-id:%I64d, fail-count:%d
+558	[tranjob],0x%016I64X, %d(%s), %d,timeout, list-count:%d, response-count:%d, fail-count:%d
+559	[tranjob],0x%016I64X, %d(%s), %d,finish, send
+560	manage
+561	[%s], 0x%.16I64X, session accepted
+562	ManageSessionHandler.cpp
+563	[%s], 0x%.16I64X, connect forbidden
+564	[%s], 0x%.16I64X, session closed
+565	== CRASH == [%s], 0x%.16I64X, handle packet failed; invalid parameter
+566	[%s], 0x%.16I64X, invalid packet; command is null, cmd:0x%p
+567	[%s], 0x%.16I64X, handle fail, no such cmd, cmd:%d
+568	[%s], 0x%.16I64X, handle start, cmd:%d
+569	[%s], 0x%.16I64X, handle end, cmd:%d
+570	[%s], 0x%.16I64X, decompose fail
+571	ManagePacketHandler.cpp
+572	[%s], 0x%.16I64X, packet version mismatch, mine:%d, yours:%d
+573	[%s], 0x%.16I64X, hello ok
+574	[%s], 0x%.16I64X, decompose fail, tid:0x%I64X, service-id:0x%I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pc-id:0x%I64X, service-type:%d
+575	[%s], 0x%.16I64X, register job fail, tid:0x%I64X, service-id:0x%I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pc-id:0x%I64X, service-type:%d
+576	[%s], 0x%.16I64X, handle restore unknown instant payment state req success, tid:0x%I64X, service-id:0x%I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pc-id:0x%I64X, service-type:%d
+577	[%s], 0x%.16I64X, restore unknown instant payment state finished, result:%d, tid:0x%I64X, service-id:0x%I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pc-id:0x%I64X, service-type:%d, purchase-id:0x%I64X, purchase-status:%d
+578	COMMON_RESTORE_INSTANT_PAYMENT
+579	RESTORE
+580	GET_PURCHASE
+581	RestoreInstantPayment.cpp
+582	[tranjob],0x%016I64X, %d(%s), %d,null parameter
+583	[tranjob],0x%016I64X, %d(%s), %d,np disconnected
+584	[tranjob],0x%016I64X, %d(%s), %d,invalid parameter, service-id:0x%I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pc-id:0x%I64X, service-type:%d
+585	[tranjob],0x%016I64X, %d(%s), %d,setup ok, service-id:0x%I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pc-id:0x%I64X, service-type:%d
+586	Status
+587	[tranjob],0x%016I64X, %d(%s), %d,send req fail
+588	[tranjob],0x%016I64X, %d(%s), %d,req sent
+589	[tranjob],0x%016I64X, %d(%s), %d,null message
+590	null
+591	Success
+592	[tranjob],0x%016I64X, %d(%s), %d,no such purchase
+593	[tranjob],0x%016I64X, %d(%s), %d,get purchase failed, np-tid:%u, cmd:%d, type:%d, status-code:%u, reason:%s, error-code:%d
+594	[tranjob],0x%016I64X, %d(%s), %d,get purchase ok, purchase-id:0x%I64X, purchase-status:%d
+595	[tranjob],0x%016I64X, %d(%s), %d,timeout
+596	[tranjob],0x%016I64X, %d(%s), %d,restore failed; not definite purchase status
+597	== CRASH == [tranjob],0x%016I64X, %d(%s), %d,timeout event already set
+598	[tranjob],0x%016I64X, %d(%s), %d,failed to cancel instant payment service, dbRetValue:%d
+599	[tranjob],0x%016I64X, %d(%s), %d,cancel instant payment service, success
+600	[tranjob],0x%016I64X, %d(%s), %d,failed to update instant payment service state, dbRetValue:%d
+601	[tranjob],0x%016I64X, %d(%s), %d,update instant payment service state, success
+602	COMMON_TRY_INSTANT_PAYMENT
+603	PURCHASE
+604	SECOND_PASSWORD_IS_VERIFIED
+605	SECOND_PASSWORD_GET_STATUS
+606	TryInstantPayment.cpp
+607	[tranjob],0x%016I64X, %d(%s), %d,category not exists
+608	[tranjob],0x%016I64X, %d(%s), %d,invalid parameter, tid:0x%I64X, goods-number:%d, service-type:%d, price:%f, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, world-id:%d, pc-id:0x%I64X
+609	[tranjob],0x%016I64X, %d(%s), %d,no such goods, goods-number:%d
+610	[tranjob],0x%016I64X, %d(%s), %d,service type mismatch, goods-number:%d, mine:%d, yours:%d
+611	[tranjob],0x%016I64X, %d(%s), %d,setup ok, tid:0x%I64X, goods-number:%d, serviceType:%d, price:%f, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, world-id:%d, pc-id:0x%I64X
+612	[tranjob],0x%016I64X, %d(%s), %d,not use second password
+613	[tranjob],0x%016I64X, %d(%s), %d,get status failed, np-tid:%u, cmd:%d, type:%d, status-code:%u, reason:%s, error-code:%d
+614	[tranjob],0x%016I64X, %d(%s), %d,character lock disabled
+615	[tranjob],0x%016I64X, %d(%s), %d,in block, until:%I64d
+616	[tranjob],0x%016I64X, %d(%s), %d,req failed
+617	[tranjob],0x%016I64X, %d(%s), %d,verify second password failed, np-tid:%u, cmd:%d, type:%d, status-code:%u, reason:%s, error-code:%d
+618	== CRASH == [tranjob],0x%016I64X, %d(%s), %d,goods disappears, goods-number:%d
+619	[tranjob],0x%016I64X, %d(%s), %d,failed to try instant payment in db, serviceType:%d, dbRetValue:%d
+620	%d,%s,%d;
+621	[tranjob],0x%016I64X, %d(%s), %d,try instant payment ok, service-id:0x%I64X, _serviceType:%d, request-key:%s
+622	[tranjob],0x%016I64X, %d(%s), %d,req purchase failed, service-id:0x%I64X
+623	[tranjob],0x%016I64X, %d(%s), %d,req purchase, service-id:0x%I64X
+624	[tranjob],0x%016I64X, %d(%s), %d,invalid parameter
+625	[tranjob],0x%016I64X, %d(%s), %d,failed to purchase, np-tid:%u, cmd:%d, type:%d, status-code:%u, reason:%s, error-code:%d
+626	[tranjob],0x%016I64X, %d(%s), %d,failed to cancel instant payment service in db, service-id:0x%I64X, dbRetValue:%d
+627	[tranjob],0x%016I64X, %d(%s), %d,cancel instant payment service in db, service-id:0x%I64X
+628	[tranjob],0x%016I64X, %d(%s), %d,purchase failed, purchase-id:0x%I64X, purchase-status:%d
+629	[tranjob],0x%016I64X, %d(%s), %d,cancel instant payment service failed, service-id:0x%I64X, dbRetValue:%d
+630	[tranjob],0x%016I64X, %d(%s), %d,cancel instant payment service, service-id:0x%I64X
+631	[tranjob],0x%016I64X, %d(%s), %d,invalid purchase status, purchase-id:0&x%I64X, purchase-status:%d
+632	[tranjob],0x%016I64X, %d(%s), %d,purchased, purchase-id:0x%I64X
+633	[tranjob],0x%016I64X, %d(%s), %d,update success state failed, service-id:0x%I64X, dbRetValue:%d
+634	[tranjob],0x%016I64X, %d(%s), %d,update success state, service-id:0x%I64X
+635	UPDATE_GOODS_FOR_PURCHASE
+636	GET_GAME_GOODS_BY_CATEGORY_ID
+637	LIST_CATEGORY_IDS
+638	CHECK_REVISION
+639	UpdateGoodsForPurchase.cpp
+640	[tranjob],0x%016I64X, %d(%s), %d,np channel not ready
+641	[tranjob],0x%016I64X, %d(%s), %d,category not exists; force to update
+642	[tranjob],0x%016I64X, %d(%s), %d,send fail
+643	[tranjob],0x%016I64X, %d(%s), %d,check revision req sent, category-id:%d
+644	[tranjob],0x%016I64X, %d(%s), %d,fail acked, np-tid:%u, cmd:%d, type:%d, status-code:%u, reason:%s, error-code:%d
+645	[tranjob],0x%016I64X, %d(%s), %d,category disappeared, category-id:%d
+646	[tranjob],0x%016I64X, %d(%s), %d,revision not changed
+647	[tranjob],0x%016I64X, %d(%s), %d,revision changed, category-id:%d, old:%I64u, new:%I64u
+648	[tranjob],0x%016I64X, %d(%s), %d,not sent
+649	[tranjob],0x%016I64X, %d(%s), %d,recv category list, count:%d
+650	[tranjob],0x%016I64X, %d(%s), %d,exception occurs. category count more than one, count:%d
+651	[tranjob],0x%016I64X, %d(%s), %d,req sent, category-id:%d
+652	[tranjob],0x%016I64X, %d(%s), %d,add goods failed; invalid item count, goods-number:%d, count:%d
+653	[tranjob],0x%016I64X, %d(%s), %d,add goods, goods-number:%d
+654	[tranjob],0x%016I64X, %d(%s), %d,add goods failed, goods-number:%d
+655	[tranjob],0x%016I64X, %d(%s), %d,category updated, category-id:%d, goods-count:%d
+656	GamedJobCommon.cpp
+657	[tranjob],0x%016I64X, %d(%s), %d,check param fail; request channel is null or invalid type, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+658	0x%016I64X,%d,%d,%d,
+659	[tranjob],0x%016I64X, %d(%s), %d,send fail, np is not available, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+660	GAMED_GET_GOODS_COUNT
+661	GamedJobGetGoodsCount.cpp
+662	0x%016I64X,%d,%d,%d,set up param
+663	[tranjob],0x%016I64X, %d(%s), %d,get-goods-count req, send failed
+664	[tranjob],0x%016I64X, %d(%s), %d,get-goods-count req, np send, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+665	0x%016I64X,%d,%d,%d,req
+666	[tranjob],0x%016I64X, %d(%s), %d,get-goods-count ok, stsmsg is null, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+667	[tranjob],0x%016I64X, %d(%s), %d,get-goods-count ok, stsmsg, invalid cmd, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, commnad:%d
+668	[tranjob],0x%016I64X, %d(%s), %d,get-goods-count ok, send fail, channel null, ch-tid:0x%I64X
+669	[tranjob],0x%016I64X, %d(%s), %d,get-goods-count ok, send fail
+670	[tranjob],0x%016I64X, %d(%s), %d,get-goods-count ok, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, wid:%d, ch-tid:0x%I64X, goods-count:%d
+671	0x%016I64X,%d,%d,%d,res ok,count:%d
+672	[tranjob],0x%016I64X, %d(%s), %d,get-goods-count res failed
+673	0x%016I64X,%d,%d,%d,res fail,reason=%d
+674	[tranjob],0x%016I64X, %d(%s), %d,get-goods-count timeout
+675	0x%016I64X,%d,%d,%d,timeout
+676	[tranjob],0x%016I64X, %d(%s), %d,get-goods-count, failed, send failed, channel is null, ch-tid:0x%I64X
+677	[tranjob],0x%016I64X, %d(%s), %d,get-goods-count, failed, not failed
+678	[tranjob],0x%016I64X, %d(%s), %d,get-goods-count, failed, send failed
+679	[tranjob],0x%016I64X, %d(%s), %d,get-goods-count, failed, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, wid:%d, ch-tid:0x%I64X, fail-reason:%d
+680	GAMED_LIST_GOODS
+681	[tranjob],0x%016I64X, %d(%s), %d,list-goods ok, list goods, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, total-page:%d, cur-page:%d, total-goods-count:%d, cur-goods-count:%d(%d)
+682	GamedJobListGoods.cpp
+683	[tranjob],0x%016I64X, %d(%s), %d,list-goods ok, page overflow, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, max:%d, cur:%d
+684	[tranjob],0x%016I64X, %d(%s), %d,list-goods ok, invalid cmd, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, cmd:%d
+685	[tranjob],0x%016I64X, %d(%s), %d,list-goods ok, failed to add list, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+686	[tranjob],0x%016I64X, %d(%s), %d,list-goods ok, goods-list-mgr is null, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+687	[tranjob],0x%016I64X, %d(%s), %d,list-goods ok, set game-account-goods failed, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+688	[tranjob],0x%016I64X, %d(%s), %d,invalid goods info req send fail, np is not available
+689	[tranjob],0x%016I64X, %d(%s), %d,list-goods, invalid goods info req, send fail, goods-number:%d, item-number:%d
+690	[tranjob],0x%016I64X, %d(%s), %d,list-goods, invalid goods info req, send, goods-number:%d, item-number:%d, req-count:%d
+691	[tranjob],0x%016I64X, %d(%s), %d,list-goods ok, goods info response, req remain count:%d
+692	[tranjob],0x%016I64X, %d(%s), %d,list-goods, release invalid goods info, count:%d
+693	[tranjob],0x%016I64X, %d(%s), %d,list-goods req, set request start failed
+694	[tranjob],0x%016I64X, %d(%s), %d,list-goods req, send fail
+695	[tranjob],0x%016I64X, %d(%s), %d,list-goods req, np send, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+696	[tranjob],0x%016I64X, %d(%s), %d,list-goods ok, stsmsg is null, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+697	[tranjob],0x%016I64X, %d(%s), %d,list-goods ok, finish, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, wid:%d, ch-tid:0x%I64X
+698	0x%016I64X,%d,%d,%d,res ok,finish
+699	[tranjob],0x%016I64X, %d(%s), %d,list-goods ok, finish(invalid goods info)
+700	[tranjob],0x%016I64X, %d(%s), %d,list-goods ok, invalid np cmd:%d, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+701	[tranjob],0x%016I64X, %d(%s), %d,list-goods fail, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+702	0x%016I64X,%d,%d,%d,res fail,list,reason=%d
+703	[tranjob],0x%016I64X, %d(%s), %d,list-goods fail, get goods info failed, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+704	[tranjob],0x%016I64X, %d(%s), %d,list-goods ok, finish
+705	0x%016I64X,%d,%d,%d,res fail,goods info,reason=%d
+706	[tranjob],0x%016I64X, %d(%s), %d,list-goods fail, finish, invalid cmd:%d, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+707	[tranjob],0x%016I64X, %d(%s), %d,list-goods timeout
+708	[tranjob],0x%016I64X, %d(%s), %d,list-goods fin, send failed, channel is null, ch-tid:0x%I64X
+709	[tranjob],0x%016I64X, %d(%s), %d,list-goods fin, not failed, wid:%d, ch-tid:0x%I64X
+710	[tranjob],0x%016I64X, %d(%s), %d,list-goods fin, send failed
+711	[tranjob],0x%016I64X, %d(%s), %d,list-goods, failed, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, wid:%d, ch-tid:0x%I64X, fail-reason:%d
+712	[tranjob],0x%016I64X, %d(%s), %d,list-goods ok, send failed, channel is null, ch-tid:0x%I64X
+713	[tranjob],0x%016I64X, %d(%s), %d,list-goods ok, send failed, cannot find game-account-goods, wid:%d, ch-tid:0x%I64X
+714	[tranjob],0x%016I64X, %d(%s), %d,list-goods ok, packet compose fail, cmd:%d
+715	GAMED_TAKE_GOODS
+716	GamedJobTakeGoods.cpp
+717	[tranjob],0x%016I64X, %d(%s), %d,take-goods req, insert fail,
+718	[tranjob],0x%016I64X, %d(%s), %d,take-goods req, send fail
+719	[tranjob],0x%016I64X, %d(%s), %d,take-goods req, np send, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d, goods-num:%d
+720	[tranjob],0x%016I64X, %d(%s), %d,cannot find goods, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d
+721	[tranjob],0x%016I64X, %d(%s), %d,not exist goods-def, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d, goods-number:%d
+722	[tranjob],0x%016I64X, %d(%s), %d,failed to register goods, ch-tid:0x%I64X, dbRetValue:%d
+723	[tranjob],0x%016I64X, %d(%s), %d,take-goods req, try warehouse reg, success, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d, label-id:%I64d
+724	[tranjob],0x%016I64X, %d(%s), %d,take-goods ok, stsmsg is null, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+725	[tranjob],0x%016I64X, %d(%s), %d,take-goods ok, invalid take result, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+726	[tranjob],0x%016I64X, %d(%s), %d,take-goods ok, invalid cmd, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, command:%d
+727	[tranjob],0x%016I64X, %d(%s), %d,take-goods ok, result, ch-tid:0x%I64X, goods-id:%I64d, result:%d
+728	[tranjob],0x%016I64X, %d(%s), %d,take-goods, np failed, ch-tid:0x%I64X, goods-id:%I64d, np-reason:%d
+729	0x%016I64X,%d,%d,%d,res np-timeout
+730	[tranjob],0x%016I64X, %d(%s), %d,failed to update goods status in db [finish status], label-id:%I64d, goods-id:%I64d, goods-number:%d, is-succ:%d, dbRetValue:%d
+731	[tranjob],0x%016I64X, %d(%s), %d,update goods status, finish status, label-id:%I64d, goods-id:%I64d, goods-number:%d, is-succ:%d, dbRetValue:%d
+732	[tranjob],0x%016I64X, %d(%s), %d,take-goods ok, send fail, channel null, ch-tid:0x%I64X
+733	;[tranjob],0x%016I64X, %d(%s), %d,take-goods ok, failed to compose item list packet, wid:%d, ch-tid:0x%I64X, label-id:%I64d, goods-id:%d
+734	[tranjob],0x%016I64X, %d(%s), %d,take-goods ok, send, wid:%d, ch-tid:0x%I64X, label-id:%I64d, goods-id:%d
+735	[tranjob],0x%016I64X, %d(%s), %d,take-goods ok, send fail, wid:%d, ch-tid:0x%I64X, label-id:%I64d, goods-id:%d
+736	[tranjob],0x%016I64X, %d(%s), %d,take-goods ok, result failed, invalid goods-id, ch-tid:0x%I64X, req-goods-id:%I64d, res-goods-id:%I64d, label-id:%I64d, result:%d
+737	0x%016I64X,%d,%d,%d,res ok
+738	[tranjob],0x%016I64X, %d(%s), %d,take-goods failed
+739	[tranjob],0x%016I64X, %d(%s), %d,take-goods failed, np error:%d
+740	[tranjob],0x%016I64X, %d(%s), %d,take-goods timeout
+741	[tranjob],0x%016I64X, %d(%s), %d,take-goods fin, send failed, channel is null, ch-tid:0x%I64X
+742	[tranjob],0x%016I64X, %d(%s), %d,take-goods fin, not failed, wid:%d, ch-tid:0x%I64X
+743	[tranjob],0x%016I64X, %d(%s), %d,take-goods fin, send failed, wid:%d, ch-tid:0x%I64X
+744	[tranjob],0x%016I64X, %d(%s), %d,take-goods, failed, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d, wid:%d, ch-tid:0x%I64X, fail-reason:%d
+745	GoodsJob.cpp
+746	[job-mgr], initialize fail; zero hash count
+747	[job-mgr], initialize ok, hash-count:%d
+748	== CRASH == [job-mgr], register transaction job fail; null parameter
+749	[job-mgr], job deregistered, id:0x%016I64X
+750	LOBBY_AUTOMATED_TAKE_GOODS
+751	TAKE_GOODS
+752	LIST_GOODS
+753	LobbyJobAutomatedTakeGoods.cpp
+754	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods, set automated start failed
+755	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods req, send fail
+756	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods, list-goods, np send, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+757	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods list, ok, stsmsg is null, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+758	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods list ok, set game-account-goods failed, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+759	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods list, finish, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+760	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods list, finish(invalid goods info)
+761	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods list, ok, invalid np cmd:%d, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+762	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods list, np fail, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+763	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods list, np fail, get goods info failed, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+764	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods list, finish
+765	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods list, np fail, finish, invalid cmd:%d, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+766	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods list, timeout
+767	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods take, insert fail,
+768	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods take, send fail
+769	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods take, np send, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-count:%d
+770	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods take, msg is null, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, index:%d
+771	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods take, item count overflow, skip, goods-id:%I64d, goods-number:%d, item-count:%d
+772	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods take, stsmsg, invalid cmd, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, index:%d, cmd:%d
+773	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods take, try warehouse reg, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, count:%d
+774	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods take, cannot find goods, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d
+775	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods take, not exist goods-def, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d, goods-number:%d
+776	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods take, failed to try warehouse reg, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d, dbRetValue:%d
+777	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods take, try warehouse reg, success, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d, label-id:%I64d
+778	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods take, ok, stsmsg is null, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+779	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods take, ok, invalid take result count, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+780	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods take ok, np result, res-count:%d
+781	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods take, np result, cannot find goods-id, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, lable-id:%I64d, goods-id:%I64d
+782	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods take, ok, np result, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, lable-id:%I64d, goods-id:%I64d, result:%d
+783	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods take, ok, invalid cmd, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, cmd:%d
+784	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods take, fin, send noti, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, take-count:%d
+785	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods take, np failed, np error:%d
+786	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods take, response fail, invalid goods-id, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, lable-id:%I64d, goods-id:%I64d, error-code:%d
+787	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods take, response fail, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, lable-id:%I64d, goods-id:%I64d, error-code:%d
+788	[tranjob],0x%016I64X, %d(%s), %d,automated-take-goods take, timeout
+789	LOBBY_GET_GOODS_COUNT
+790	LobbyJobGetGoodsCount.cpp
+791	goods-def
+792	[%s], update item def, goods info null
+793	GoodsDef.cpp
+794	[%s], update item def, invlaid item number, this-item-number:%d, req-item-number:%d
+795	[%s], goods-def finalize
+796	[%s], register goodsItemDef fail; itemDef is null
+797	[%s], AddGoodsItemDef, goods-number:%d, lobby-item-count:%d, game-cash-item-count:%d, character-inven-item-count:%d
+798	[%s], goodsItemDef registered, goods-number:%d, item-number:%d, game-item-key:%d
+799	[%s], register goodsItemDef fail; already exists, goods-number:%d, item-number:%d, game-item-key:%d
+800	[%s], UpdateSpecificItemCount, goods-number:%d, lobby-item-count:%d, game-cash-item-count:%d, character-inven-item-count:%d
+801	[%s], goods display info invalid data, goods-number:%d, language-code:%d, display-name:%s
+802	[%s], goods display info duplicate language code, goods-number:%d, language-code:%d, display-name:%s
+803	[%s], goods display list registered, goods-number:%d, np-count:%d, registered-count:%d
+804	[%s], failed to compose list goods display packet; goods-number:%d, language-code:%d goods-display-name:%s, goods-display-desc
+805	[%s], goods-def-mgr finalize
+806	[%s], register goodsDef fail; null goodsDef parameter
+807	[%s], goodsDef registered, goods-number:%d
+808	[%s], register goodsDef fail; already exists, goods-number:%d
+809	[goods-def] goods-info is null
+810	%d/%s/%s|
+811	GoodsNumber:%d, ItemNumber:%d, GameItemKey:%I64d, GoodsRestrictionCondition:%s(%d), CustomizedGoodsAttribute:%s(%d), GoodsIconId:%d, CustomizedItemAttribute1:%s(%d), CustomizedItemAttribute2:%s(%d), GoodsName:%s, GoodsDescription:%s, GoodsDisplayList:%d, [%s]
+812	[goods-def] invalid data, goods-number:%d, item-number:%d, game-item-key:%I64d
+813	[%s], [goods-def] goods-item-def already exist, update item info, old item, goods-number:%d, item-number:%d, game-item-key:%d
+814	[%s], set goods def, item count overflow, cur-count:%d, goods-number:%d, item-number:%d, game-item-key:%I64d
+815	[goods-def] goods-number:%d, item-number:%d, game-item-key:%I64d, item-expiration-duration:%d, inctance-location:%d
+816	LobbyJobCommon.cpp
+817	== CRASH == [tranjob],0x%016I64X, %d(%s), %d,check param fail; request channel is null or invalid type, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+818	[np], goods inventory changed, spawn job fail, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+819	[tranjob],0x%016I64X, %d(%s), %d,spawn, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+820	goods-list
+821	[%s], game-account-goods finalize, account:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+822	GoodsList.cpp
+823	[%s], register fail; goods is null
+824	[%s], register goods fail; already exists, goods-id:%I64d, goods-count:%d
+825	[%s], game-account-goods, remove all goods, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+826	[%s], invalid isRefundable value, game-account:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d, isRefundable:%d
+827	[%s], invalid useRefundExpirationDate value, game-account:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d, useRefundExpirationDate:%d
+828	[%s], failed to compose list goods packet; game-account:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d
+829	[%s], failed to compose list goods-item packet; game-account:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d
+830	[%s], send invalid goods inventory info fail, np is not available, goods-id:%I64d, err-code:%d
+831	[%s], invalid goods inventory info, goods-id:%I64d, err-code:%d
+832	[%s], set request start, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, enable:%d
+833	[%s], set request start failed, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, old-enable:%d, enable:%d
+834	[%s], set automated take start, invalid jobid, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, jobid:0x%016I64X
+835	[%s], set automated take start, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, set jobid:0x%016I64X
+836	[%s], set automated take start, already start, set noti, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, canceled jobid:0x%016I64X
+837	[%s], set automated take start, same jobid, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, this jobid:0x%016I64X, jobid:0x%016I64X
+838	[%s], set automated take start, finish, invalid call, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, this jobid:0x%016I64X, jobid:0x%016I64X
+839	[%s], set automated take start, finish, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, remain-noti:%d
+840	[%s], initialize ok, hash-count:%d
+841	[%s], mgr desctructor
+842	[%s], mgr, idx:%d, count:%d
+843	[%s], not exist game-account-goods data, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+844	[%s], register fail; account goods is not null
+845	[%s], registered, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-count:%d
+846	[%s], register fail; already exists, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-count:%d
+847	[%s], deregistered, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-count:%d
+848	[%s], set failed, stsmsg is null, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+849	[list-goods] set game-account-goods, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, total-page:%d, cur-page:%d, cur-goods-count:%d(%d)
+850	[%s], set game-account-goods, add game-account-goods failed, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+851	[list-goods] game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, index:%d, goods-id:%I64d, goods-number:%d, is-refundable:%d, use-refund-expiration-date:%d, refund-expiration-date:%I64u, delivery-date:%I64u, sender-desc:%s, sender-msg:%s, receiver-world-code:%s, receiver-character-id:%s, item-count:%d
+852	[%s], [list-goods] item count overflow, skip set goods list, goods-id:%I64d, goods-number:%d, item-count:%d
+853	goods-id:%I64d, refund-expiration-time:%I64d, delivery-time:%I64d
+854	[list-goods][item] goods-id:%I64d, index:%d, item-number:%d, item-amount:%d
+855	[%s], cannot find goods-item def, goods-id:%I64d, goods-number:%d, item-number:%d
+856	[%s], cannot find goods def, goods-id:%I64d, goods-number:%d, item-number:%d
+857	[list-goods] set game-account-goods, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-count:%d
+858	[%s], set failed, stsmsg, invalid cmd, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, cmd:%d
+859	[list-goods] game-account:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d, goods-number:%d, refundable:%d, is-refund-expiration-date:%d, refund-expiration-date:%s, delivery-date:%s, item-count:%d
+860	[%s], [list-goods] item count overflow, skip set goods instance, goods-id:%I64d, goods-number:%d, item-count:%d
+861	[%s], [list-goods] item count element is not equal to item list count, goods-id:%I64d, goods-number:%d, item-count:%d, item-list-count:%d
+862	LOBBY_LIST_GOODS
+863	LobbyJobListGoods.cpp
+864	lobbyd
+865	[%s], lobby session is null, wid:%d
+866	LobbyChannel.cpp
+867	failed to compose character inventory item list packet, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+868	ConvertStsNotifyActionTypeToLobbyNotifyType, invalid action-type:%d
+869	== CRASH == [%s], lobby channel manager is already initialized, lobbyChannel:0x%p
+870	== CRASH == [%s], invalid parameter, lobbyChannel:0x%p
+871	[%s], lobby channel is already set, lobbyChannel:0x%p
+872	== CRASH == [%s], invalid parameter, session:0x%p
+873	[%s], accepted lobby session, sessionId:0x%I64X, portId:%u, sessionIndex:%u
+874	[%s], cannot use LobbySessionHandler::OnConnect handler, sessionId:0x%I64X, portId:%u, sessionIndex:%u
+875	[%s], closed connection with lobby session, lobbyWid:%d, sessionId:0x%I64X, portId:%u, sessionIndex:%u
+876	[%s], closed connection with unknown lobby session, sessionId:0x%I64X, portId:%u, sessionIndex:%u
+877	== CRASH == [%s], handle packet failed; invalid parameter
+878	[%s], invalid packet; command is null, cmd:0x%p, sessionId:0x%I64X, portId:%u, sessionIndex:%u
+879	[lobbyd], 0x%.16I64X, %I64d, handle fail, no such cmd, cmd:%d
+880	[lobbyd], 0x%.16I64X, %I64d, handle start, cmd:%d
+881	[lobbyd], 0x%.16I64X, %I64d, handle end, cmd:%d
+882	[lobbyd], 0x%.16I64X, %I64d, invalid packet command of not authorized session, command:%d, portId:%u, sessionIndex:%u
+883	db context
+884	DBContext.cpp
+885	[%s], failed to realloc warehouse item list, maxItemCount:%d, itemListCount:%d
+886	[%s], failed to compose lobby service item list packet, item-instance-id:%i64d, label-id:%d
+887	[%s], item-state convert err, invalid item state, state:%d
+888	[%s], failed to compose uncompleted item acquisition list packet, pcdbid:%I64X, item-instance-id:%i64d, label-id:%I64d
+889	[%s], failed to realloc warehouse goods list, maxCount:%d, listCount:%d
+890	[%s], invalid goods index, goods-idx:%d, goods-list-count:%d
+891	[%s], goods' item count is full, goods-idx:%d, label-id:%I64d, item-count:%d
+892	[%s], label id invalid, goods-idx:%d, goods-label-id:%I64d, label-id:%I64d
+893	[%s], failed to compose warehouse goods packet; game-account:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d
+894	[%s], failed to compose list warehouse-item packet; game-account:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance-id:%I64d
+895	LOBBY_RETRY_TAKE_GOODS
+896	LobbyJobRetryTakeGoods.cpp
+897	[tranjob],0x%016I64X, %d(%s), %d,set up param, lobbyd job, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, goods-id:%I64d
+898	[tranjob],0x%016I64X, %d(%s), %d,retry-take-goods req, send fail
+899	[tranjob],0x%016I64X, %d(%s), %d,retry-take-goods req, np send, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, goods-id:%I64d
+900	[tranjob],0x%016I64X, %d(%s), %d,retry-take-goods ok, stsmsg is null, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+901	[tranjob],0x%016I64X, %d(%s), %d,retry-take-goods ok, invalid take result, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+902	[tranjob],0x%016I64X, %d(%s), %d,retry-take-goods ok, invalid take result, invalid cmd, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, command:%d
+903	[tranjob],0x%016I64X, %d(%s), %d,retry-take-goods ok, result, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, goods-id:%I64d, result:%d
+904	[tranjob],0x%016I64X, %d(%s), %d,retry-take-goods ok, result failed, invalid goods-id, req-goods-id:%I64d, res-goods-id:%I64d, result:%d
+905	[tranjob],0x%016I64X, %d(%s), %d,retry-take-goods np res failed, np error:%d
+906	[tranjob],0x%016I64X, %d(%s), %d,retry-take-goods timeout
+907	LOBBY_RETRY_TAKE_MULTIPLE_GOODS
+908	LobbyJobRetryTakeMultipleGoods.cpp
+909	[tranjob],0x%016I64X, %d(%s), %d,set up param, lobby job, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, total-goods-count:%d
+910	[tranjob],0x%016I64X, %d(%s), %d,set up param, lobby job, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-count:%d, label-id:%I64d, goods-id:%I64d
+911	[tranjob],0x%016I64X, %d(%s), %d, req, fin, total-goods-count:%d, remained-count:%d
+912	[tranjob],0x%016I64X, %d(%s), %d, req, send fail
+913	[tranjob],0x%016I64X, %d(%s), %d, req, np send, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, total-goods-count:%d, remained-count:%d, req-index:%d, req-count:%d
+914	[tranjob],0x%016I64X, %d(%s), %d, ok, stsmsg is null, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+915	[tranjob],0x%016I64X, %d(%s), %d, ok, invalid take result, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+916	[tranjob],0x%016I64X, %d(%s), %d, ok, np result, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, res-count:%d
+917	[tranjob],0x%016I64X, %d(%s), %d, ok, invalid cmd, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, cmd:%d
+918	[tranjob],0x%016I64X, %d(%s), %d, ok, np result, cannot find goods-id, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, lable-id:%I64d, goods-id:%I64d
+919	[tranjob],0x%016I64X, %d(%s), %d, ok, np result, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, lable-id:%I64d, goods-id:%I64d, result:%d
+920	[tranjob],0x%016I64X, %d(%s), %d, fin, send noti, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, try-count:%d, res-count:%d
+921	[tranjob],0x%016I64X, %d(%s), %d, np res failed, np error:%d
+922	[tranjob],0x%016I64X, %d(%s), %d, response fail, invalid goods-id, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, lable-id:%I64d, goods-id:%I64d, error-code:%d
+923	[tranjob],0x%016I64X, %d(%s), %d, response fail, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, lable-id:%I64d, goods-id:%I64d, error-code:%d
+924	[tranjob],0x%016I64X, %d(%s), %d, timeout
+925	[tranjob],0x%016I64X, %d(%s), %d, expire
+926	[tranjob],0x%016I64X, %d(%s), %d,uncompleted-goods-reg, update result, start, uncompleted-job:0x%016I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, goods-id:%I64d
+927	[tranjob],0x%016I64X, %d(%s), %d,uncompleted-goods-reg, update result, cannot find job, uncompleted-job:0x%016I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+928	[%s], failed to decompose packet
+929	LobbyPacketHandler.cpp
+930	[%s], sent hello failure ack, failReason:%d
+931	[%s], invalid packet version, accountinventory-lobby-packet-version:%d, client version:%d
+932	[%s], sent hello failure ack, lobbyWid:%d, failReason:%d
+933	[%s], service not available, lobby-packet-version:%d, lobbyWid:%d
+934	[%s], decomposed packet, lobby-packet-version:%d, lobbyWid:%d
+935	[%s], failed to set lobby channel
+936	[%s], sent hello success ack, lobbyWid:%d
+937	[channel], 0x%.16I64X, %I64d, not authed session, session:0x%.16I64X
+938	o[channel], 0x%.16I64X, %I64d, decompose packet fail, cmd:%d, channel-tid:0x%.16I64X, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, wid:%d
+939	[channel], 0x%.16I64X, %I64d, get-goods-count not use, cmd:%d, channel-tid:0x%.16I64X, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, wid:%d
+940	[channel], 0x%.16I64X, %I64d, service not available, cmd:%d, channel-tid:0x%.16I64X, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, wid:%d
+941	[channel], 0x%.16I64X, %I64d, invalid parameter, cmd:%d, channel-tid:0x%.16I64X, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, wid:%d
+942	[%s], decomposed packet, ch-tid:0x%I64X, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+943	[channel], 0x%.16I64X, %I64d, np is not available, cmd:%d, channel-tid:0x%.16I64X, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, wid:%d
+944	[channel], 0x%.16I64X, %I64d, spawn job fail,cmd:%d, channel-tid:0x%.16I64X, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, wid:%d
+945	0x%016I64X,%d,%d,%d,get goods count,wid=%d,lobby-tid=0x%016I64X,acc:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+946	[tranjob],0x%016I64X, %d(%s), %d,spawn, cmd:%d, channel-tid:0x%.16I64X, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, wid:%d
+947	[channel], 0x%.16I64X, %I64d, list-goods not use, cmd:%d, channel-tid:0x%.16I64X, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, wid:%d
+948	[channel], 0x%.16I64X, %I64d, invalid language-code, cmd:%d, channel-tid:0x%.16I64X, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, wid:%d
+949	[%s], decomposed packet, cmd:%d, channel-tid:0x%.16I64X, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, wid:%d
+950	0x%016I64X,%d,%d,%d,list goods,wid=%d,lobby-tid=0x%016I64X,acc:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+951	[channel], 0x%.16I64X, %I64d, decompose packet fail, cmd:%d, wid:%d, channel-tid:0x%.16I64X, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d
+952	[channel], 0x%.16I64X, %I64d, take-goods not use, cmd:%d, wid:%d, channel-tid:0x%.16I64X, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d
+953	[channel], 0x%.16I64X, %I64d, service not available, cmd:%d, wid:%d, channel-tid:0x%.16I64X, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d
+954	[channel], 0x%.16I64X, %I64d, invalid game-account, cmd:%d, wid:%d, channel-tid:0x%.16I64X, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d
+955	[channel], 0x%.16I64X, %I64d, np is not available, cmd:%d, wid:%d, channel-tid:0x%.16I64X, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d
+956	[channel], 0x%.16I64X, %I64d, spawn job fail,cmd:%d, wid:%d, channel-tid:0x%.16I64X, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d
+957	0x%016I64X,%d,%d,%d,take goods,wid=%d,lobby-tid=0x%016I64X,acc:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+958	[tranjob],0x%016I64X, %d(%s), %d,spawn, cmd:%d, wid:%d, channel-tid:0x%.16I64X, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d
+959	[%s], service not available, cmd:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, search-type:%d, search-key:%I64d
+960	[%s], invalid parameter, cmd:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, search-type:%d, search-key:%I64d
+961	[%s], failed to retrieve lobby service item list in db, tid:0x%I64X, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, dbRetValue:%d
+962	[%s], lobby service item, tid:0x%I64X, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, count:%d
+963	[%s], failed to compose lobby service item list packet, cmd:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, search-type:%d, search-key:%I64d
+964	[%s], failed to compose inventory item list packet, cmd:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, search-type:%d, search-key:%I64d
+965	[%s], lobby service item, sent success ack, cmd:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, search-type:%d, search-key:%I64d
+966	[%s], sent inventory item list failure ack, cmd:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, search-type:%d, search-key:%I64d, failReason:%d
+967	[%s], service not available, cmd:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, item-instance-id:%I64d, owner-pc-id:0x%I64X
+968	[%s], invalid parameter, tid:0x%I64X, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, item-instance-id:%I64d
+969	[%s], decomposed packet, cmd:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, item-instance-id:%I64d, owner-pc-id:0x%I64X
+970	[%s], failed to get item info in db, cmd:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, item-instance-id:%I64d, owner-pc-id:0x%I64X, dbRetValue:%d
+971	[%s], lobby service item info, sent success ack, cmd:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, item-instance-id:%I64d, owner-pc-id:0x%I64X, label-id:%I64d, item-data-id:%d, item-state:%d
+972	[%s], lobby service item info, sent failure ack, cmd:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, item-instance-id:%I64d, owner-pc-id:0x%I64X, reason:%d
+973	[%s], failed to decompose packet, cmd:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance:%I64d
+974	[%s], service not available, cmd:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance:%I64d
+975	[%s], invalid parameter, cmd:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance:%I64d
+976	[%s], decomposed packet, cmd:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance:%I64d
+977	[%s], try consume item, failed in db, cmd:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance:%I64d, dbRetValue:%d
+978	[%s], try consume item, sent ok ack, cmd:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance:%I64d
+979	[%s], try consume item, sent failure ack, cmd:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance:%I64d, failReason:%d
+980	[%s], service not available, but ongoing cmd:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance:%I64d, result:%d
+981	[%s], invalid parameter, cmd:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance:%I64d, result:%d
+982	[%s], finish consume item, consume result fail, cmd:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance:%I64d, result:%d
+983	[%s], finish consume item, failed in db, cmd:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance:%I64d, result:%d, dbRetValue:%d
+984	[%s], finish consume item, sent success ack, cmd:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance:%I64d, result:%d
+985	[%s], finish consume item, sent failure ack, cmd:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance:%I64d, result:%d
+986	[%s], cancel consume, failed to decompose packet
+987	[%s], cancel consume, service not available, but ongoing cmd:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance:%I64d
+988	[%s], cancel consume, invalid parameter, cmd:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance:%I64d
+989	[%s], cancel consume, failed in db, cmd:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance:%I64d, dbRetValue:%d
+990	[%s], cancel consume, sent success ack, cmd:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance:%I64d
+991	[%s], cancel consume, sent failure ack, cmd:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance:%I64d
+992	[%s], service not available, but ongoing cmd:%d, channel-tid:0x%.16I64X, consume item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance:%I64d
+993	[%s], invalid parameter, cmd:%d, channel-tid:0x%.16I64X, consume item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance:%I64d
+994	[%s], consume item, failed in db, cmd:%d, channel-tid:0x%.16I64X, consume item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance:%I64d, dbRetValue:%d
+995	[%s], consume item, sent success ack, cmd:%d, channel-tid:0x%.16I64X, consume item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance:%I64d
+996	[%s], consume item, sent failure ack, cmd:%d, channel-tid:0x%.16I64X, consume item, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, item-instance:%I64d
+997	[%s], invalid parameter, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+998	[%s], service not available, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+999	[%s], retry-take, np is not available, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+1000	[%s], failed to retrieve-goods-ready-list, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, dbRetValue:%d
+1001	[%s], retrieve-goods-ready-list, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-count:%d
+1002	[%s], spawn job fail, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+1003	[%s], decomposed packet, logout, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+1004	NPPacketHandler.cpp
+1005	[np], register service fail; np-tid:%u, cmd:%d, type:%d, status-code:%u, reason:%s, error-code:%d, cmd:%d
+1006	[np], warehouse service registered
+1007	[np], list goods def fail; np-tid:%u, cmd:%d, type:%d, status-code:%u, reason:%s, error-code:%d, cmd:%d
+1008	true
+1009	false
+1010	[np], response list goods infos, page-index:%d, total-page:%d, total-count:%d, current-count:%d, count:%d, is-complete:%s
+1011	[np], list goods def, np channel null
+1012	[np], [goods-info] goods-info is null, index:%d
+1013	[np], goods def, spending time, page-index:%d, diff(msec):%I64d
+1014	[np], goods def, spending time, start-diff(msec):%I64d
+1015	[np], goods def, setevent failed
+1016	[np], NPHandleRequestGoodsInfoChanged
+1017	[np], NPHandleRequestGoodsInventoryChanged, msg is null
+1018	[np], NPHandleRequestGoodsInventoryChanged, notify-count:%d
+1019	[np], NPHandleRequestGoodsInventoryChanged, game-account:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, action-type:%d
+1020	[tranjob],0x%016I64X, %d(%s), %d,goods inventory changed with goods, spawn job fail, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+1021	[np], NPHandleRequestGoodsInventoryChanged, invalid action-type:%d, game-account:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+1022	[np], NPHandleResponseGoodsJob, msg is null
+1023	[np], np response fail; np-tid:%u, cmd:%d, type:%d, status-code:%u, reason:%s, error-code:%d, cmd:%d
+1024	[np], NPHandleResponseGoodsJob, npTran is null
+1025	[np], np response fail, cannot find job, cmd:%d, np-tid:%u, jobid:0x%016I64X
+1026	[np], np response fail, invalid message type, cmd:%d, np-tid:%u, jobid:0x%I64X, type:%d
+1027	LOBBY_TAKE_GOODS
+1028	LobbyJobTakeGoods.cpp
+1029	[tranjob],0x%016I64X, %d(%s), %d,failed to updat goods status in db [finish status], label-id:%I64d, goods-id:%I64d, goods-number:%d, is-succ:%d, dbRetValue:%d
+1030	[tranjob],0x%016I64X, %d(%s), %d,take-goods, ok, np failed, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, lable-id:%I64d, goods-id:%I64d, np-reason:%d
+1031	[tranjob],0x%016I64X, %d(%s), %d,failed to updat goods status in db [finish status], label-id:%I64d, goods-id:%I64d, is-succ:%d, dbRetValue:%d
+1032	[tranjob],0x%016I64X, %d(%s), %d,take-goods, ok, update state, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, label-id:%I64d, goods-id:%I64d, result:%d
+1033	[tranjob],0x%016I64X, %d(%s), %d,response fail, failed to updat goods status in db [finish status], error-code:%d, label-id:%I64d, goods-id:%I64d, is-succ:%d, dbRetValue:%d
+1034	[tranjob],0x%016I64X, %d(%s), %d,response fail, failed to updat goods status in db [finish status], error-code:%d,, label-id:%I64d, goods-id:%I64d, is-succ:%d, dbRetValue:%d
+1035	[np], [np-gameservch], dispatch command fail; no channel exists, txn-id:%u
+1036	NPServiceChannel.cpp
+1037	== CRASH == [np], [np-gameservch], not ready to dispatch command
+1038	[np], [np-gameservch], dispatch command fail; not found, txn-id:%u
+1039	[np], setup goods def fail; send goods def request fail
+1040	[np], setup goods def fail; wait list goods def fail
+1041	[np], setup goods def completed
+1042	[np], list-goods-infos, msg, page-index:%d, page-size:%d
+1043	[np], goods-def, request, goods-number:%d, item-number:%d
+1044	[np], send stsmsg failed, msg or tranjob is null
+1045	[np], init np init-service timer, timer:%p
+1046	[np], add np init-service timer, failed to add timer
+1047	[np], add np init-service timer, timer:%p
+1048	[np], remove np init-service timer, result:%s
+1049	[np], np init-service timer, HandleEvent, timer:%p
+1050	[np], np init-service timer, HandleEvent, timer:%p, call np channel close.
+1051	[np], [np-servch-mgr], initialize fail; already initailized
+1052	NP game-service disconnected
+1053	[np], [np-servch-mgr], initialize fail; init game-service channel fail
+1054	[np], [np-servch-mgr], initialize fail; connect game service channel fail
+1055	[np], [np-servch-mgr], initialize ok, port-id:%d, ip:%s, port:%d, timeout:%d(sec)
+1056	[np], [np-servch-mgr], channel connected, channel-id:%I64d
+1057	[np], set accountinventory-np initial connect event fail
+1058	[np], [np-servch-mgr], channel connected, NPServiceChannel is null
+1059	[np], [np-servch-mgr], channel closed, channel-id:%I64d
+1060	gamed
+1061	[%s], session is null, wid:%d
+1062	GamedChannel.cpp
+1063	[gamedmgr], world session manager initialized, packet-handler-list:%p, cmd-offset:%d
+1064	[gamedmgr], world session manager finalized
+1065	[gamedmgr], setup world list fail, invalid xmlfile
+1066	XmlReader_sv64.dll
+1067	[gamedmgr], setup world list fail, %s missing
+1068	[gamedmgr], setup world list fail, create xmlreader fail
+1069	[gamedmgr], setup world list fail, xml version mismatch, current-version:%s, load-version:%s
+1070	[gamedmgr], setup world list fail, init xmlreader fail
+1071	[gamedmgr], setup world list fail, read xml file fail
+1072	ip-address
+1073	internal-port
+1074	[gamedmgr], setup world list exception, invalid attribute value, line:%d
+1075	[gamedmgr], setup world list exception, unknown element '%s', line:%d
+1076	[gamedmgr], setup world list with xml complete, xml:%s
+1077	[gamedmgr], setup gamed list fail, null list
+1078	[gamedmgr], world #%d's ip/port changed, ip:%s, port:%d
+1079	[gamedmgr], world #%d added, ip:%s, port:%d
+1080	[gamedmgr], setup gamed list complete, world-count:%d
+1081	[daemon-list], load fail; load xml fail
+1082	[gamedmgr], gamed load ok, final-count:%d, xml:%s
+1083	[daemon-list], update fail; load xml fail
+1084	== CRASH == [gamedmgr], create world list xml fail, invalid parameter
+1085	[gamedmgr], create world list xml fail, create file fail
+1086	[gamedmgr], create world list xml fail, analyze path fail
+1087	[gamedmgr], create world list xml fail, not fully qualified file name, xml:%s
+1088	[gamedmgr], create world list xml fail, make path fail
+1089	[gamedmgr], create world list xml fail, make directory fail
+1090	<?xml version='1.0' encoding='UTF-8'?>
+1091	<gamed-list>
+1092	    <!-- <gamed wid='[world-id]' ip-address='[internal-IP]' internal-port='[internal-port]'/> -->
+1093	</gamed-list>
+1094	[gamedmgr], register world fail; null world parameter
+1095	[gamedmgr], world registered, wid:%d, ip:%s, port:%d
+1096	[gamedmgr], register world fail; already exists, req-wid:%d, req-ip:%s, req-port:%d
+1097	[gamedmgr], replace world fail; null parameter
+1098	[gamed], 0x%.16I64X, %I64d, accept
+1099	== CRASH == [gamed], 0x%.16I64X, %I64d, connect, invalid call
+1100	[gamed], 0x%.16I64X, %I64d, close
+1101	[gamed], 0x%.16I64X, %I64d, close without channel
+1102	[gamed], 0x%.16I64X, %I64d, handle fail, no such cmd, cmd:%d
+1103	[gamed], 0x%.16I64X, %I64d, handle start, cmd:%d
+1104	[gamed], 0x%.16I64X, %I64d, handle end, cmd:%d
+1105	[gamed], 0x%.16I64X, %I64d, invalid packet command of not authorized session, command:%d, portId:%u, sessionIndex:%u
+1106	[%s], already authed session, session:0x%.16I64X
+1107	GamedPacketHandler.cpp
+1108	[%s], invalid packet version, world-id:%d, accountinventory-game-packet-version:%d, client version:%d
+1109	[%s], service not available, game-packet-version:%d, world-id:%d, internal-port:%d
+1110	[%s], decomposed packet, game-packet-version:%d, world-id:%d, internal-port:%d
+1111	[%s], register world fail, not capable world, world-id:%d
+1112	[%s], register world fail, ip validation fail, world-id:%d, ip:%s, required-ip:%s 
+1113	[%s], register world fail, port validation fail, world-id:%d, ip:%s, port:%d, required-port:%d 
+1114	[%s], register world fail, session already exists, old-session:0x%016I64X
+1115	== CRASH == [%s], replace world channel fail, worldId:%d
+1116	[%s], close old session, old-session:0x%016I64X
+1117	[%s], hello success, worldId:%d, ip:%s
+1118	[gamed], 0x%.16I64X, %I64d, not authed session, session:0x%.16I64X
+1119	[gamed], 0x%.16I64X, %I64d, decompose packet fail, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+1120	[gamed], 0x%.16I64X, %I64d, get-goods-count not use, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+1121	[gamed], 0x%.16I64X, %I64d, service not available, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+1122	[gamed], 0x%.16I64X, %I64d, invalid game-account, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+1123	[gamed], 0x%.16I64X, %I64d, np is not available, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+1124	[gamed], 0x%.16I64X, %I64d, spawn job fail,cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+1125	0x%016I64X,%d,%d,%d,get goods count,wid=%d,game-tid=0x%016I64X,acc:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+1126	[tranjob],0x%016I64X, %d(%s), %d,spawn, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+1127	[gamed], 0x%.16I64X, %I64d, decompose packet fail, cmd:%d, wid:%d, channel-tid:0x%.16I64X, language-code:%d, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+1128	[gamed], 0x%.16I64X, %I64d, list-goods not use, cmd:%d, wid:%d, channel-tid:0x%.16I64X, language-code:%d, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+1129	[gamed], 0x%.16I64X, %I64d, invalid game-account, cmd:%d, wid:%d, channel-tid:0x%.16I64X, language-code:%d, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+1130	[gamed], 0x%.16I64X, %I64d, invalid language-code, cmd:%d, wid:%d, channel-tid:0x%.16I64X, language-code:%d, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+1131	[gamed], 0x%.16I64X, %I64d, service not available, cmd:%d, wid:%d, channel-tid:0x%.16I64X, language-code:%d, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+1132	[gamed], 0x%.16I64X, %I64d, np is not available, cmd:%d, wid:%d, channel-tid:0x%.16I64X, language-code:%d, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+1133	[gamed], 0x%.16I64X, %I64d, spawn job fail,cmd:%d, wid:%d, channel-tid:0x%.16I64X, language-code:%d, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+1134	0x%016I64X,%d,%d,%d,list goods,wid=%d,game-tid=0x%016I64X,acc:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+1135	[tranjob],0x%016I64X, %d(%s), %d,spawn, cmd:%d, wid:%d, channel-tid:0x%.16I64X, language-code:%d, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+1136	[gamed], 0x%.16I64X, %I64d, decompose packet fail, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d, language-code:%d
+1137	[gamed], 0x%.16I64X, %I64d, take-goods not use, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d, language-code:%d
+1138	[gamed], 0x%.16I64X, %I64d, invalid parameter, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d, language-code:%d
+1139	[gamed], 0x%.16I64X, %I64d, invalid language-code, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d, language-code:%d
+1140	[gamed], 0x%.16I64X, %I64d, service not available, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d, language-code:%d
+1141	[gamed], 0x%.16I64X, %I64d, np is not available, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d, language-code:%d
+1142	[gamed], 0x%.16I64X, %I64d, spawn job fail,cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d, language-code:%d
+1143	0x%016I64X,%d,%d,%d,take goods,wid=%d,game-tid=0x%016I64X,acc:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+1144	[tranjob],0x%016I64X, %d(%s), %d,spawn, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, goods-id:%I64d, language-code:%d
+1145	[gamed], 0x%.16I64X, %I64d, warehouse-item, failed to decompose packet
+1146	[gamed], 0x%.16I64X, %I64d, warehouse item, invalid parameter, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, search-type:%d, search-key:%I64d
+1147	[gamed], 0x%.16I64X, %I64d, warehouse item, service not available, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, search-type:%d, search-key:%I64d
+1148	[gamed], 0x%.16I64X, %I64d, warehouse item, decomposed packet, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, search-type:%d, search-key:%I64d
+1149	[%s], failed to retrieve warehouse item list in db, tid:0x%I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, dbRetValue:%d
+1150	[gamed], 0x%.16I64X, %I64d, warehouse item, retrieve, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, search-type:%d, search-key:%I64d, count:%d
+1151	[%s], failed to retrieve warehouse item count in db, tid:0x%I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, dbRetValue:%d
+1152	[gamed], 0x%.16I64X, %I64d, warehouse item, retrieve-count, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, search-type:%d, search-key:%I64d, goods-count:%d, item-count:%d
+1153	[%s], failed to compose warehouse item list packet, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, search-type:%d, search-key:%I64d
+1154	[gamed], 0x%.16I64X, %I64d, failed to compose warehouse item list packet, tid:0x%I64X, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X
+1155	[gamed], 0x%.16I64X, %I64d, sent warehouse item list success ack, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, search-type:%d, search-key:%I64d
+1156	[gamed], 0x%.16I64X, %I64d, sent warehouse item list failure ack, tid:0x%I64X, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, failReason:%d
+1157	[gamed], 0x%.16I64X, %I64d, failed to decompose packet
+1158	[gamed], 0x%.16I64X, %I64d, invalid parameter, cmd:%d, wid:%d, channel-tid:0x%.16I64X, pcdbid:0x%I64X
+1159	[gamed], 0x%.16I64X, %I64d, service not available, cmd:%d, wid:%d, channel-tid:0x%.16I64X, pcdbid:0x%I64X
+1160	[gamed], 0x%.16I64X, %I64d, decomposed packet, cmd:%d, wid:%d, channel-tid:0x%.16I64X, pcdbid:0x%I64X
+1161	[%s], failed to retrieve uncompleted warehouse item list in db, tid:0x%I64X, pcdbid:0x%I64X, dbRetValue:%d
+1162	[gamed], 0x%.16I64X, %I64d, retrieve uncompleted warehouse item list, cmd:%d, wid:%d, channel-tid:0x%.16I64X, pcdbid:0x%I64X, count:%d
+1163	[%s], failed to compose uncompleted warehouse item list packet, cmd:%d, wid:%d, channel-tid:0x%.16I64X, pcdbid:0x%I64X
+1164	[gamed], 0x%.16I64X, %I64d, failed to compose uncompleted warehouse item list packet, tid:0x%I64X, pcdbid:0x%I64X
+1165	[gamed], 0x%.16I64X, %I64d, sent uncompleted warehouse item list success ack, cmd:%d, wid:%d, channel-tid:0x%.16I64X, pcdbid:0x%I64X
+1166	[gamed], 0x%.16I64X, %I64d, sent uncompleted warehouse  item list failure ack, tid:0x%I64X, pcdbid:0x%I64X, failReason:%d
+1167	[gamed], 0x%.16I64X, %I64d, invalid parameter, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X, label-id:%I64d, item-instance:%I64d, item-data-id:%d
+1168	[gamed], 0x%.16I64X, %I64d, service not available, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X, label-id:%I64d, item-instance:%I64d, item-data-id:%d
+1169	[gamed], 0x%.16I64X, %I64d, not world item, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X, label-id:%I64d, item-instance:%I64d, item-data-id:%d
+1170	[gamed], 0x%.16I64X, %I64d, decomposed packet, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X, label-id:%I64d, item-instance:%I64d, item-data-id:%d
+1171	[%s], failed to try item acq in db, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X, label-id:%I64d, item-instance:%I64d, item-data-id:%d, dbRetValue:%d
+1172	[gamed], 0x%.16I64X, %I64d, try item acq, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X, label-id:%I64d, item-instance:%I64d, item-data-id:%d, item-amount:%d, purchase-time:%I64d, usable-duration:%d
+1173	[gamed], 0x%.16I64X, %I64d, sent try item acq failure ack, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X, label-id:%I64d, item-instance:%I64d, item-data-id:%d, failReason:%d
+1174	Q[gamed], 0x%.16I64X, %I64d, invalid parameter, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X, label-id:%I64d, item-instance:%I64d, result:%d
+1175	[gamed], 0x%.16I64X, %I64d, service not available, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X, label-id:%I64d, item-instance:%I64d, result:%d
+1176	[gamed], 0x%.16I64X, %I64d, decomposed packet, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X, label-id:%I64d, item-instance:%I64d, result:%d
+1177	[gamed], 0x%.16I64X, %I64d, item instantiation failed, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X, label-id:%I64d, item-instance:%I64d, result:%d
+1178	[gamed], 0x%.16I64X, %I64d, failed to finish warahouse item acq in db, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X, label-id:%I64d, item-instance:%I64d, result:%d, dbRetValue:%d
+1179	[gamed], 0x%.16I64X, %I64d, finish-warehouse-item-acq update success, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X, label-id:%I64d, item-instance:%I64d, result:%d
+1180	[gamed], 0x%.16I64X, %I64d, invalid parameter, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X
+1181	[gamed], 0x%.16I64X, %I64d, invalid parameter, item count is invald, itemCount:%dcmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X
+1182	[gamed], 0x%.16I64X, %I64d, failed to decompose packet, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X, item-idx:%d
+1183	[gamed], 0x%.16I64X, %I64d, service not available, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X
+1184	[gamed], 0x%.16I64X, %I64d, decomposed packet, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X, item-count:%d
+1185	[gamed], 0x%.16I64X, %I64d, failed to compose reply packetcmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X
+1186	[gamed], 0x%.16I64X, %I64d, failed to remove inventory item in db, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X, labelId:%I64d, instance-id:0x%I64X, takeResult:%d, dbRetValue:%d
+1187	[gamed], 0x%.16I64X, %I64d, finish-warehouse-item-acq update success, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X, label-id:%I64d, instance-id:0x%I64X
+1188	[gamed], 0x%.16I64X, %I64d, failed to cancel-warehouse-item-acq in db, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X, label-id:%I64d, instance-id:0x%I64X, dbRetValue:%d
+1189	[gamed], 0x%.16I64X, %I64d, cancel-warehouse-item-acq update success, cmd:%d, wid:%d, channel-tid:0x%.16I64X, account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pcdbid:0x%I64X, label-id:%I64d, instance-id:0x%I64X
+1190	[gamed], 0x%.16I64X, %I64d, decompose packet fail, cmd:%d, tid:0x%I64X, goods-number:%d, service-type:%d, price:%f, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, world-id:%d, pc-db-id:0x%I64X, pc-name:%s, ip-address:%s
+1191	[gamed], 0x%.16I64X, %I64d, instant payment disabled, cmd:%d, tid:0x%I64X, goods-number:%d, service-type:%d, price:%f, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, world-id:%d, pc-db-id:0x%I64X, pc-name:%s, ip-address:%s
+1192	[gamed], 0x%.16I64X, %I64d, spawn job fail,cmd:%d, tid:0x%I64X, goods-number:%d, service-type:%d, price:%f, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, world-id:%d, pc-db-id:0x%I64X, pc-name:%s, ip-address:%s
+1193	[tranjob],0x%016I64X, %d(%s), %d,spawn, cmd:%d, tid:0x%I64X, goods-number:%d, service-type:%d, price:%f, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, world-id:%d, pc-db-id:0x%I64X, pc-name:%s, ip-address:%s
+1194	[gamed], 0x%.16I64X, %I64d, decompose packet fail, cmd:%d, tid:0x%I64X, wid:%d, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pc-db-id:0x%I64X, result-count:%d
+1195	[gamed], 0x%.16I64X, %I64d, decompose result list packet fail, cmd:%d, tid:0x%I64X, wid:%d, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pc-db-id:0x%I64X, result-count:%d
+1196	[gamed], 0x%.16I64X, %I64d, instant payment disabled, cmd:%d, tid:0x%I64X, wid:%d, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pc-db-id:0x%I64X, result-count:%d
+1197	[gamed], 0x%.16I64X, %I64d, finish instant payment fail, dbRetValue:%d, service-id:0x%I64X, result:%s, cmd:%d, tid:0x%I64X, wid:%d, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pc-db-id:0x%I64X, result-count:%d
+1198	[gamed], 0x%.16I64X, %I64d, finish instant payment ok, service-id:0x%I64X, result:%s, cmd:%d, tid:0x%I64X, wid:%d, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pc-db-id:0x%I64X, result-count:%d
+1199	[gamed], 0x%.16I64X, %I64d, compose reply packet fail, cmd:%d, tid:0x%I64X, wid:%d, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pc-db-id:0x%I64X, result-count:%d
+1200	[gamed], 0x%.16I64X, %I64d, compose finish result repeat fail, cmd:%d, tid:0x%I64X, wid:%d, game-account-id:%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X, pc-db-id:0x%I64X, result-count:%d
+1201	[gamed], 0x%.16I64X, %I64d, decompose packet fail, cmd:%d, tid:0x%I64X, pc-db-id:0x%I64X
+1202	[gamed], 0x%.16I64X, %I64d, instant payment disabled, cmd:%d, tid:0x%I64X, pc-db-id:0x%I64X
+1203	[gamed], 0x%.16I64X, %I64d, db fail, dbRetValue:%d, cmd:%d, tid:0x%I64X, pc-db-id:0x%I64X
+1204	[gamed], 0x%.16I64X, %I64d, retrieve uncompleted instant payment service list, count:%d, cmd:%d, tid:0x%I64X, pc-db-id:0x%I64X
+1205	[gamed], 0x%.16I64X, %I64d, compose reply packet fail, cmd:%d, tid:0x%I64X, pc-db-id:0x%I64X
+1206	[gamed], 0x%.16I64X, %I64d, compose repeat fail, service-id:0x%I64X, service-type:%d,cmd:%d, tid:0x%I64X, pc-db-id:0x%I64X
+1207	RELOADING
+1208	COOLDOWNED
+1209	COOLDOWNING
+1210	FLUSHING
+1211	INVALID
+1212	RUNNING
+1213	STARTING
+1214	STOPPING
+1215	STOPPED
+1216	UNKNOWN
+1217	service
+1218	--conf
+1219	--uninstall
+1220	--install
+1221	--text
+1222	--window-exitcmd
+1223	--window
+1224	--version
+1225	--help
+1226	Usage: %s [<option>]
+1227	      %s
+1228	        : this screen.
+1229	        : version.
+1230	        : window console mode. DEFAULT
+1231	        : window console mode and exit cmd
+1232	        : text console mode.
+1233	      %s [<postfix>] [<confdir>]
+1234	        : install service [with service name <postfix>] [with config dir <confdir>].
+1235	      %s [<postfix>]
+1236	        : uninstall service [with service name <postfix>].
+1237	source\Daemon.cpp
+1238	== CRASH == [daemon], invalid run mode
+1239	0.0.210.359
+1240	%s %s %s / PlatformBinary server %s
+1241	[%s], cannot open console, daemon: %s
+1242	[%s], cannot start, daemon: %s
+1243	[%s], reload failed; not running
+1244	[%s], cooldown failed; not running
+1245	[%s], starting, daemon: %s, version: %s
+1246	[%s], log initialize failed, daemon: %s
+1247	[%s], Starting, daemon: %s, version: %s, desc: %s
+1248	[%s], Network Configuration, daemon: %s, hostname: %s, public: %s, internal: %s
+1249	[%s], initialize error, daemon: %s
+1250	[%s], network initialize error, daemon: %s
+1251	[%s], onStart fail, daemon: %s
+1252	[%s], start, daemon: %s, version: %s, loading time: %I64d
+1253	[%s], start, daemon: %s, version: %s
+1254	[%s], stop, daemon: %s, version: %s
+1255	[%s], stopping, daemon: %s, version: %s
+1256	[%s], stopped, daemon: %s, version: %s
+1257	[%s], service control dispatcher faild, daemon: %s, code: %s
+1258	%d.%d.%d.%d
+1259	%s%s
+1260	[%s], internal address is not found; set public address
+1261	[%s], public address is not found
+1262	[%s], no wait; wait interval is less than threshold, wait: %d, threshold: %d
+1263	%04d/%02d/%02d-%02d:%02d:%02d%s%s
+1264	source\RefCntObject.cpp
+1265	[refcnt-history], already dumped, ptr:0x%p, tag:0x%08x
+1266	[refcnt-history], history dump, ptr:0x%p, tag:0x%08x, history-count:%d, history-max:%d
+1267	unknown_file
+1268	none
+1269	addref
+1270	delref
+1271	[refcnt-history], ptr:0x%p, tag:0x%08x, time:%s, thread-id:%d, seq:%d, op:%s, ref:%d, calc-ref:%d, file:%s, line:%d
+1272	alert-sender
+1273	source\AlertSender.cpp
+1274	%s%s,
+1275	source\Memory.cpp
+1276	== CRASH == [memory], already initialized memory manager, section: %d
+1277	undef6
+1278	undef5
+1279	undef4
+1280	undef3
+1281	undef2
+1282	undef1
+1283	archive
+1284	resource
+1285	notice
+1286	trace
+1287	debug
+1288	error
+1289	source\Log.cpp
+1290	%s, error: %d, msg: %s
+1291	source\Packet.cpp
+1292	== CRASH == [packet], invalid pdr
+1293	== CRASH == [packet], invalid CurHeader
+1294	[packet], pdr->offset %d >= CurHeader->size %d - HEADER_SIZE %d
+1295	source\Session.cpp
+1296	[session], Connection::AsyncConnect failed, id:%I64x, this:%p, error:%d
+1297	[session], OnConnect failed, id:%I64x, this:%p
+1298	[session], connect to, port id: %u, id:%I64x, this:%p, ip:%s, port:%d
+1299	[session], Connection::Accept failed, id:%I64x, this:%p, error:%d
+1300	[session], OnAccept failed, id:%I64x, this:%p
+1301	[session], accepted from, port id: %u, session id:%I64x, this:%p, ip:%s, port:%d, socket:%p
+1302	[session], trying to reconnect after %d msec, id:%I64x, this:%p, addr:(%s:%d)
+1303	[session], network module is terminated; cancel reconnect, id:%I64x, this:%p
+1304	[session], cannot reconnect session; option is not set or no timer, id:%I64x, this:%p
+1305	[session], connect is alive; cannot reconnect, id:%I64x, this:%p, state:%d
+1306	[session], connect timeout, id:%I64x, this:%p
+1307	[session], reconnect failed; add to global timer error, id:%I64x, this:%p
+1308	[session], invalid state; cancel reconnect, id:%I64x, this:%p, state:%d
+1309	[session], reconnect failed; add to global timer error, id:%I64x, this:%p, error:%d
+1310	[session], something remain to send, id:%I64x, this:%p
+1311	[session], close called; stop reconnect, id:%I64x, this:%p, state:%d, result:%s
+1312	[session], close called; remove session, id:%I64x, this:%p, state:%d
+1313	[session], close called; don't remove session, id:%I64x, this:%p, state:%d
+1314	[session], recv error, not connected, id:%I64x, this:%p, state:%d
+1315	[session], recv error; Connection::AsyncRecv failed, id:%I64x, this:%p, error:%d
+1316	[session], recv zero; socket has closed, id:%I64x, this:%p
+1317	[session], invalid received size, id:%I64x, this:%p, bytes:%d
+1318	[session], handle packet failed, id:%I64x, this:%p
+1319	[session], next recv error, id:%I64x, this:%p, error:%d
+1320	[session], next send error, id:%I64x, this:%p, error:%d
+1321	[session], CompleteAsyncConnect failed, id:%I64x, this:%p, error:%d
+1322	[session], first recv error, id:%I64x, this:%p, error:%d
+1323	== CRASH == [session], invalid event, id:%I64x, this:%p, context:%d
+1324	[session], packet handler failed, id:%I64x, this:%p, port-running:%s
+1325	[session], clear recv buffer error, id:%I64x, this:%p
+1326	== CRASH == [session], packet concatenater parameter is NULL, id:%I64x, this:%p
+1327	== CRASH == [session], packet concatenater is already set, id:%I64x, this:%p
+1328	[session], cannot send packet; not connected, id:%I64x, this:%p, state:%d, socket:%I32x
+1329	[session], cannot send packet; async send failed, id:%I64x, this:%p, state:%d, socket:%I32x, error:%d
+1330	source\PacketUtil.cpp
+1331	[packet], packet is null pointer
+1332	[packet], not enough free size in packet, free size:%d, format:%s
+1333	[packet], too many nested Repeat Format, current depth:%d, format:%s
+1334	[packet], invalid PushRepeatCount call when format is not 'C', format:%s, index:%d
+1335	[packet], invalid PushRepeatCount call when inner format is not 'C', format:%s, index:%d, innerFormat:%s, innerIndex:%d
+1336	[packet], invalid pop opertion , top:%d
+1337	[packet], invalid pop repeat operation when format's start[top] is not 'C', format:%s, top:%d, start[top]:%d
+1338	[packet], invalid pop repeat operation when sub format's start[top] is not 'C', format:%s, subformat:%s, top:%d, start[top]:%d
+1339	[packet], invalid buffer size, size:%d
+1340	== CRASH == [packet], invalid format index, index:%d, char:%d
+1341	dbghelp.dll
+1342	source\CrashHandler.cpp
+1343	p.\log\
+1344	fatal\
+1345	%Y%m%d-%H%M%S
+1346	,%d),
+1347	***************************************
+1348	** EXCEPTION_STACK_OVERFLOW occurred **
+1349	%s%s(%d)
+1350	%sMain(%d)
+1351	,%Y%m%d-%H%M%S
+1352	.log
+1353	,tiny.dmp
+1354	.dmp
+1355	source\Network.cpp
+1356	CreateIoCompletionPort
+1357	Worker Thread Initialize Error
+1358	Crypt Module initialized failed(%d)
+1359	WSAStartup
+1360	WSASocket()
+1361	WSAIoctl()
+1362	source\Channel.cpp
+1363	[channel], cannot find port, port:%d
+1364	[channel], cannot make session, port:%d, ip:%s, portno:%d
+1365	Channel(%p, %I64X), session(%p, %I64X), removing session(%p, %I64X)
+1366	%s\%s
+1367	[config], cannot load xml reader library, file: %s
+1368	[config], xml reader check version failed, file: %s, required: %s, loaded: %s, platform binary:%d
+1369	[config], xml reader library initialize failed.
+1370	[config], cannot create xml config, file: %s
+1371	[config], xml config library initialize failed, file: %s, error: %s
+1372	[config], cannot load config, file: %s, error: %s
+1373	source\DaemonConfig.cpp
+1374	[%s], ==== %s ====
+1375	[%s], %s : %d
+1376	[%s], %s : %I64d
+1377	[%s], %s : %f
+1378	[%s], %s : %s
+1379	source\Db.cpp
+1380	Invalid DB ID, %d, %p
+1381	%s: [%d] %s, %s
+1382	SQLAllocHandle(SQL_HANDLE_ENV)
+1383	SQLSetEnvAttr(SQL_ATTR_ODBC_VERSION, %d)
+1384	DbTransaction::BindCol(), Not initialized
+1385	SQLBindCol(%d, %d, %d, %p, %p)
+1386	DbTransaction::Execute(), Not initialized
+1387	DbTransaction::Prepare(), Not initialized
+1388	DbTransaction::Prepare(), Already called
+1389	SQLPrepare(%s)
+1390	DbTransaction::BindParam(), Not initialized
+1391	DbTransaction::BindParam(), Not prepared
+1392	SQLBindParameter(%d, %d, %d, %d, %d, %d, %p, %d, %p)
+1393	SQLExecute()
+1394	DbTransaction::Fetch(), Not initialized
+1395	SQLFetch()
+1396	DbConnection::connect(%p), Environment is not initialized
+1397	SQLAllocHandle(SQL_HANDLE_DBC, %p)
+1398	SQLDriverConnect()
+1399	DbConnection::initStatement(), Connection is not initialized
+1400	SQLAllocHandle(SQL_HANDLE_STMT, %p)
+1401	source\PacketBufferHandler.cpp
+1402	== CRASH == [session], TrustedPacketBufferHandler; invalid packet size, id:%I64X, header->size:%d
+1403	%04d/%02d/%02d-%02d:%02d:%02d.%03d%s%s
+1404	source\LogFile.cpp
+1405	(%s)
+1406	%04d%02d%02d-%02d_%02d
+1407	%04d%02d%02d-%02d
+1408	%04d%02d%02d-%02d%02d%02d
+1409	_%03d.log
+1410	[log], file create error, fname:%s, error:%d, trycount:%d
+1411	(%s),
+1412	source\Thread.cpp
+1413	%s %s
+1414	source\DelayedRelease.cpp
+1415	[delayed release], allocation failed, callback:%p, ref1:%p, ref2:%p, ref3:%p
+1416	Unknown type %C
+1417	source\PacketBuffer.cpp
+1418	pCompose overflow.
+1419	length underflow
+1420	string buffer is too small
+1421	length overflow
+1422	src size underflow
+1423	not enough buffer
+1424	buffer overflow
+1425	invalid property type id
+1426	src count underflow
+1427	Decompose overflow.
+1428	PacketBuffer, cannot ecrypt packet, error-code:%d
+1429	== CRASH == [PacketBuffer], _list
+1430	 NULL
+1431	 _count(%d)
+1432	state-ok2
+1433	state-req2
+1434	state-ok
+1435	state-req
+1436	cooldown-fail
+1437	cooldown-ok
+1438	cooldown-req
+1439	reload-fail
+1440	reload-ok
+1441	reload-req
+1442	PipeCommandProcess
+1443	PipeConsole
+1444	source\PipeConsole.cpp
+1445	[pipe-console], cannot start pipe command process thread, error:%d
+1446	[pipe-console], cannot start pipe thread, error:%d
+1447	error "invalid cmd"
+1448	[pipe-console], invalid request, cmd:%s
+1449	thread frozen, name:%s, id:0x%08x
+1450	[thread], thread frozen, name:%s, id:0x%08x, frozen-seconds:%d, max-frozen-seconds:%d
+1451	"%s" 
+1452	"%s:%s" 
+1453	%s %s %s
+1454	%s %s %s %s
+1455	[pipe-console], WaitForMultipleObject error, error:%d
+1456	[pipe-console], connect failed, error:%d
+1457	[pipe-console], invalid pipe state, state:%d
+1458	\\.\pipe\bns_daemon_%08x
+1459	[pipe-console], cannot initialize pipe; create event failed, error:%d
+1460	[pipe-console], cannot initialize pipe; create named pipe failed, error:%d
+1461	[pipe-console], cannot connect pipe; ConnectNamedPipe failed, error:%d
+1462	[pipe-console], disconnect named pipe failed, error:%d
+1463	source\Timer.cpp
+1464	TimerQueue::Remove() Error, timer index = %d
+1465	source\LogBuffer.cpp
+1466	== CRASH == [LogBuffer], _list
+1467	 NULL
+1468	 _count(%d)
+1469	WinMsgHandler
+1470	source\WindowConsole.cpp
+1471	== CRASH == [console], already opened
+1472	bsConsole_sv64.dll
+1473	source\WinServiceConsole.cpp
+1474	RegisterServiceCtrlHandler failed
+1475	reportStatusToSCManager(SERVICE_START_PENDING) failed
+1476	Daemon Start failed
+1477	SetServiceStatus failed
+1478	%s (0x%x)
+1479	%s %s: %d
+1480	Unable to register [%s] - %s
+1481	 "--conf=%s"
+1482	[%s] was registered.
+1483	CreateService failed - %s
+1484	OpenSCManager failed - %s
+1485	Stopping [%s]...
+1486	[%s] was stopped.
+1487	Failed to stop [%s].
+1488	[%s] was unregistered.
+1489	DeleteService failed - %s
+1490	OpenService failed - %s
+1491	== CRASH == [memory], do not use this function
+1492	E:\DailyBuild01\AccountInventoryDaemon-GARENA-0.0.210\depot\Branch\210GRN\Program\Server\BloodLib\include\MemoryManager.h
+1493	== CRASH == [memory], Page Pool Memory Manager already initialized
+1494	source\MemoryManager.cpp
+1495	== CRASH == [memory], Page Pool Memory Manager initialization failed, size: %d
+1496	== CRASH == [memory], Page Pool Memory Manager allocation size is invalid, size: %d
+1497	== CRASH == [memory], static page memory manager initialization failed, page: %p, size: %d, allocated: %d
+1498	[memory], static page memory not initialized
+1499	[memory], static page memory full, free size: %d, size: %d
+1500	source\LogMedia.cpp
+1501	== CRASH == [session], send parameter is invalid, count %d, pbufferList: %p
+1502	source\SessionBuffer.cpp
+1503	== CRASH == [session], cannot remove send buffer; curSendingList is NULL, session-id:%I64X, sent-size:%u, context-buffer:0x%p, context-buffer-count:%d
+1504	== CRASH == [session], SessionSendBuffer Initialize error
+1505	== CRASH == [port], not cleared, id: %d
+1506	source\Port.cpp
+1507	== CRASH == [port], session pool is already initialized, id: %d
+1508	[port], cannot make session, id: %d
+1509	== CRASH == [port], invalid session in removing, id: %d
+1510	pInitialize first!
+1511	[session], removed, port-id:%u, session-id:%I64x, session:%p
+1512	Session List if full, %d
+1513	[port], Cannot find empty slot in session list, id: %d
+1514	[session], created, port-id:%u, session-id:%I64x, session:%p
+1515	source\Connection.cpp
+1516	[connection], Accept failed, invalid parameter SOCKET:0x%I64x, ipaddress:%d, port:%d
+1517	ConnectEx()
+1518	[session], test, reconnect, this:%p, addr:(%s:%d)
+1519	setsocketopt()
+1520	WSARecv()
+1521	WSASend()
+1522	setsockopt(), setup TCP_NODELAY opt failed
+1523	bind()
+1524	IoWorker
+1525	source\IoWorkerThread.cpp
+1526	[worker], run flag has off; stop, id: %d
+1527	[worker], catch terminiate event, id: %d
+1528	[worker], event object handle failed, id: %d
+1529	[worker], IOCP error, error: %d
+1530	[worker], stopped, id: %d
+1531	source\Listener.cpp
+1532	setsockopt(), TCP_NODELAY, TRUE
+1533	CreateIoCompletionPort()
+1534	[listener], handle failed event received, port:%d, id:%u, socket:%I64x, internal:%I64x
+1535	AcceptEx()
+1536	[listener], port is not opened, id:%d, port:%d
+1537	setsockopt()
+1538	[listener], cannot make new session, port:%d, remote-address:(%s:%d)
+1539	bnsgrnTH
+1540	D:\log\AccountInventoryDaemon\fatal\
+1541	D:\log\AccountInventoryDaemon\fatal\accountinventoryd(20261125-070224,23844),
+1542	VS_VERSION_INFO
+1543	StringFileInfo
+1544	041204b0
+1545	CompanyName
+1546	NCSoft
+1547	FileDescription
+1548	Blade & Soul AccountInventory Daemo
+1549	FileVersion
+1550	0, 0, 210, 314
+1551	InternalName
+1552	AccountInventoryDaemon
+1553	LegalCopyright
+1554	Copyright (C) 2007-2011, Team Bloodlust, NCSoft Corporation. All Rights Reserved
+1555	OriginalFilename
+1556	AccountInventoryDaemon.exe
+1557	ProductName
+1558	Blade & Soul AccountInventory Daemon
+1559	ProductVersion
+1560	0, 0, 210, 314
+1561	VarFileInfo
+1562	Translation

@@ -1,0 +1,22 @@
+lib=00007FF894510000
+xml=000001684BFB69A0 init=1
+cfg=000001684BF30860 layout=0
+setdefs=1
+calling LoadConfig...
+buf=000001684BBA8720 err=<null>
+0000: 98 87 BA 4B 68 01 00 00
+0008: CC 87 BA 4B 68 01 00 00
+0010: BC 88 BA 4B 68 01 00 00
+0018: 0A 88 BA 4B 68 01 00 00
+0020: 36 88 BA 4B 68 01 00 00
+0028: 78 88 BA 4B 68 01 00 00
+0030: 00 00 00 00 B8 0B 00 00
+0038: 02 00 00 00 E8 03 00 00
+0040: 1E 00 00 00 E5 57 00 00
+0048: E6 57 00 00 F4 7E 00 00
+0050: 6A 27 00 00 0A 00 00 00
+0058: A0 86 01 00 E8 03 00 00
+0060: 0B 00 00 00 24 00 00 00
+0068: A0 86 01 00 0A 00 00 00
+0070: C0 27 09 00 58 02 00 00
+[D:\Service\RankingDaemon\][D:\service\RankingDaemon\data\][D:\log\RankingDaemon\][D:\Service\RankingDaemon\config\][D:\log\RankingDaemon\transaction\][[[[

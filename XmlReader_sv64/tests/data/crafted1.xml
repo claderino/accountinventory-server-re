@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- leading comment -->
+<?pi-target some data?>
+<root a="1" b='two'>
+  <empty/>
+  <child id='7' name="seven"><leaf flag='x'/></child>
+  text with &lt; &amp; &#65; &#x42;
+  <![CDATA[raw <tag> & stuff]]>
+  <!-- inner comment -->
+  <last v='3'/>
+</root>
