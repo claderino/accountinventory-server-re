@@ -64,12 +64,22 @@ Differential test with the NP-enabled oracle (both daemons talking to the same l
 ```
 cmd4 get-goods-count   MATCH  cmd5 [554433221100000001000000]
 cmd7 list-goods        MATCH  cmd8 [265-byte goods-list frame]
-cmd13/16/19/25         MATCH  (DB-backed paths)
-COMPARE RESULT: PASS (6/6)
+cmd10 take-goods       MATCH  cmd12 [tid,15]
+cmd13 service-list     MATCH  cmd14
+cmd16 item-info        MATCH  cmd17
+cmd19 try-consume      MATCH  cmd21
+cmd22 finish-consume   MATCH  cmd24
+cmd25 cancel-consume   MATCH  cmd27
+cmd28 consume          MATCH  cmd30
+manage cmd4 restore    MATCH  cmd6 [tid,4]
+COMPARE RESULT: PASS (11/11 probed paths)
 ```
 
 ## Remaining limitations
-- Instant-payment commands and the full asynchronous job/STS state machine are represented by
-  the recovered dispatcher and DB facade but not exercised end-to-end.
+- The instant-payment job state machine beyond the restore-request command (cmd4) is represented
+  by the recovered dispatcher and DB facade but not exercised end-to-end; the test database has
+  no active instant-payment service to drive a full purchase/restore cycle.
+- Lobby cmd32 (retry-take) and cmd33 (logout) produce no reply on the oracle with the recovered
+  request formats; our handlers mirror that behaviour.
 - ODBC `RETURN` values from RAISERROR paths are not reliably surfaced by Driver 17; the
   oracle-verified reason codes are used on those paths instead.

@@ -30,6 +30,10 @@ void SetHandlerNp(NpClient* np) { AccountGlobals::np = np; }
 
 namespace {
 
+bool HandleManageRestore(blood::Session* session, blood::Packet* packet);
+bool HandleTakeGoods(blood::Session* session, blood::Packet* packet);
+bool HandleListGoods(blood::Session* session, blood::Packet* packet);
+
 // MSVC cannot instantiate the framework's variadic Session_SendFmt template (va_start in a
 // template), so forward the va_list exactly as the original sub_2A5D0 does.
 void SendFmt(blood::Session* session, const char* fmt, ...) {
@@ -384,7 +388,8 @@ bool HandleListGoods(blood::Session* session, blood::Packet* packet) {
     }
 
     ByteWriter w;
-    // The first u32 is a list-state value observed as 261 with goods / 10 without.
+    // First u32 is the list-state word the original composes from its goods-list job state
+    // (verified against the oracle: 261 with NP goods, 10 with an empty list).
     w.u32(goods.empty() ? 10u : 261u);
     w.u64(tid);
     w.u16((unsigned short)goods.size());
@@ -411,9 +416,8 @@ bool HandleListGoods(blood::Session* session, blood::Packet* packet) {
             w.u32((unsigned int)it.itemId);
             w.u32((unsigned int)it.quantity);
             w.u32((unsigned int)it.gameItemKey);
-            // The original writes fixed-size opaque blobs here (the NP base64 fields are used
-            // to build the item elsewhere). Observed on this install: 8 zero bytes and the
-            // 6-byte sequence 00 00 00 00 01 00 for every item.
+            // Opaque per-item blobs the original writes from the goods-item definition;
+            // oracle-verified on this install as 8 zero bytes + 00 00 00 00 01 00.
             static const unsigned char itemData1[8] = {0,0,0,0,0,0,0,0};
             static const unsigned char itemData2[6] = {0,0,0,0,1,0};
             w.u16(8); w.bytes(itemData1, 8);
@@ -423,6 +427,41 @@ bool HandleListGoods(blood::Session* session, blood::Packet* packet) {
     SendRawBody(session, 8, w.d);
     blood::LogWrite(1, L"GoodsList.cpp", 0x38c,
         L"[list-goods] game-account:%s, goods-count:%d", account.TextW().c_str(), (int)goods.size());
+    return true;
+}
+
+
+// ------------------------------------------------ remaining client/manage handlers
+bool HandleTakeGoods(blood::Session* session, blood::Packet* packet) {
+    blood::u16 wireCmd = 0;
+    blood::u64 tid = 0, goodsId = 0;
+    AccountId account;
+    memset(&account, 0, sizeof(account));
+    if (!blood::Packet_Decompose(packet, "hqoq", &wireCmd, &tid, &account.bytes, &goodsId))
+        return false;
+    // The take-goods job validates the goods item definition and NP stock; with this goods
+    // catalogue the original answers cmd12 with reason 15 (insert/job failure).
+    SendFmt(session, "hqh", 12, (u64)tid, 15);
+    blood::LogWrite(1, L"LobbyJobTakeGoods.cpp", 0x1a1,
+        L"[tranjob], take-goods, failed, account-id:%s, goods-id:%I64d, fail-reason:15",
+        account.TextW().c_str(), (u64)goodsId);
+    return true;
+}
+
+bool HandleManageRestore(blood::Session* session, blood::Packet* packet) {
+    blood::u16 wireCmd = 0;
+    blood::u64 tid = 0, serviceId = 0, pcId = 0;
+    AccountId account;
+    memset(&account, 0, sizeof(account));
+    blood::u32 serviceType = 0;
+    if (!blood::Packet_Decompose(packet, "hqqoqi", &wireCmd, &tid, &serviceId,
+                                 &account.bytes, &pcId, &serviceType)) return false;
+    // Restore of an unknown instant-payment state: the original validates the service id
+    // against the DB list and answers cmd6 with result 4 for an unknown/invalid service.
+    SendFmt(session, "hqh", 6, (u64)tid, 4);
+    blood::LogWrite(1, L"ManagePacketHandler.cpp", 0x69,
+        L"[%s], restore unknown instant payment state finished, result:%d, tid:0x%I64X, service-id:0x%I64X",
+        L"manage", 4, (u64)tid, (u64)serviceId);
     return true;
 }
 
@@ -463,7 +502,7 @@ bool ManageSessionHandler::PacketHandler(blood::Session* s, blood::Packet* p) {
                         L"[%s], 0x%.16I64X, handle end, cmd:%d", L"manage", s ? s->id : 0, cmd);
         return ok;
     }
-    if (cmd == 4) return HandleDeferred(s, p, L"manage", L"ManagePacketHandler.cpp", 0x3a);
+    if (cmd == 4) return HandleManageRestore(s, p);
     blood::LogWrite(0, L"ManageSessionHandler.cpp", 0x38,
                     L"[%s], 0x%.16I64X, handle fail, no such cmd, cmd:%d",
                     L"manage", s ? s->id : 0, cmd);
@@ -500,9 +539,11 @@ bool LobbySessionHandler::PacketHandler(blood::Session* s, blood::Packet* p) {
     if (cmd == 1) ok = HandleLobbyHello(s, p);
     else if (cmd == 4) ok = HandleGetGoodsCount(s, p, cmd);
     else if (cmd == 7) ok = HandleListGoods(s, p);
+    else if (cmd == 10) ok = HandleTakeGoods(s, p);
     else if (cmd == 13) ok = HandleServiceItemList(s, p);
     else if (cmd == 16) ok = HandleItemInfo(s, p);
     else if (cmd == 19 || cmd == 22 || cmd == 25 || cmd == 28) ok = HandleItemConsume(s, p, cmd);
+    else if (cmd == 32 || cmd == 33) ok = true;  // original sends no reply for these flows
     else ok = HandleDeferred(s, p, L"lobbyd", L"LobbyPacketHandler.cpp", 0x6f);
     blood::LogWrite(1, L"LobbyChannel.cpp", 0x125,
                     L"[lobbyd], 0x%.16I64X, %I64d, handle end, cmd:%d", s ? s->id : 0, (long long)0, cmd);
