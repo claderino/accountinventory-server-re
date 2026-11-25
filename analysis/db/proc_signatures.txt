@@ -1,0 +1,231 @@
+dbo.umsp_CancelWarehouseItemConsumption(
+    @ItemInstanceID bigint
+    @OwnerAccountID uniqueidentifier
+)
+dbo.umsp_DeleteWarehouseGoods(
+    @LabelID bigint
+    @OwnerAccountID uniqueidentifier
+)
+dbo.umsp_DeleteWarehouseItem(
+    @LabelID bigint
+    @ItemInstanceID bigint
+    @OwnerAccountID uniqueidentifier
+)
+dbo.umsp_DeleteWarehouseRegistrationFailure(
+    @LabelID bigint
+)
+dbo.umsp_FinishInstantPaymentService(
+    @ServiceID bigint
+    @AccountID uniqueidentifier
+    @PCID bigint
+    @ServiceType int
+)
+dbo.umsp_FinishWarehouseItemConsumption(
+    @ItemInstanceID bigint
+    @OwnerAccountID uniqueidentifier
+)
+dbo.umsp_ResetWarehouseRegistrationFailure(
+    @LabelID bigint
+)
+dbo.umsp_RetrieveUncompletedInstantPaymentServiceList(
+    @PCID bigint
+)
+dbo.umsp_RetrieveWarehouseGoodsList(
+    @OwnerAccountID uniqueidentifier
+    @LabelID bigint
+)
+dbo.umsp_RetrieveWarehouseItemArchive(
+    @OwnerAccountID uniqueidentifier
+    @SearchCount int
+    @SearchType tinyint
+    @SearchKey bigint
+)
+dbo.umsp_RetrieveWarehouseItemDetail(
+    @LabelID bigint
+)
+dbo.umsp_RetrieveWarehouseItemList(
+    @OwnerAccountID uniqueidentifier
+    @SearchCount int
+    @SearchType tinyint
+    @SearchKey bigint
+)
+dbo.usp_ArchiveDisusedWarehouseData(
+    @LabelID bigint
+)
+dbo.usp_CancelInstantPaymentService(
+    @ServiceID bigint
+    @AccountID uniqueidentifier
+    @PCID bigint
+    @ServiceType int
+)
+dbo.usp_CancelWarehouseItemAcquisition(
+    @LabelID bigint
+    @ItemInstanceID bigint
+    @OwnerAccountID uniqueidentifier
+    @OwnerPCID bigint
+)
+dbo.usp_CancelWarehouseItemConsumption(
+    @LabelID bigint
+    @ItemInstanceID bigint
+    @OwnerAccountID uniqueidentifier
+)
+dbo.usp_CheckWorldId(
+    @ConfigWorldID int
+)
+dbo.usp_ConsumeWarehouseItem(
+    @LabelID bigint
+    @ItemInstanceID bigint
+    @OwnerAccountID uniqueidentifier
+)
+dbo.usp_DecreaseWarehouseItemCount(
+    @OwnerAccountID uniqueidentifier
+    @RemainingItemCount tinyint
+)
+dbo.usp_FinishInstantPaymentService(
+    @ServiceID bigint
+    @AccountID uniqueidentifier
+    @PCID bigint
+    @ServiceType int
+    @Result bit
+)
+dbo.usp_FinishWarehouseItemAcquisition(
+    @Result bit
+    @LabelID bigint
+    @ItemInstanceID bigint
+    @OwnerAccountID uniqueidentifier
+    @OwnerPCID bigint
+)
+dbo.usp_FinishWarehouseItemConsumption(
+    @Result bit
+    @LabelID bigint
+    @ItemInstanceID bigint
+    @OwnerAccountID uniqueidentifier
+)
+dbo.usp_FinishWarehouseRegistration(
+    @Result bit
+    @LabelID bigint
+    @OwnerAccountID uniqueidentifier
+    @GoodsID bigint
+)
+dbo.usp_IncreaseWarehouseItemCount(
+    @OwnerAccountID uniqueidentifier
+    @LabelID bigint
+    @ItemCount tinyint
+)
+dbo.usp_LoadUncompletedWarehouseRegistrationList(
+    @LoadCount int
+    @LoadKey bigint
+)
+dbo.usp_LogError(
+    @ErrorLogID int OUTPUT
+)
+dbo.usp_RetrieveLobbyServiceItemList(
+    @OwnerAccountID uniqueidentifier
+    @SearchCount int
+    @SearchType tinyint
+    @SearchKey bigint
+)
+dbo.usp_RetrieveSingleWarehouseItem(
+    @ItemInstanceID bigint
+    @OwnerAccountID uniqueidentifier
+    @OwnerPCID bigint
+)
+dbo.usp_RetrieveUncompletedInstantPaymentServiceList(
+    @PCID bigint
+)
+dbo.usp_RetrieveUncompletedItemAcquisitionList(
+    @OwnerPCID bigint
+)
+dbo.usp_RetrieveUncompletedWarehouseRegistrationList(
+    @OwnerAccountID uniqueidentifier
+)
+dbo.usp_RetrieveWarehouseItemCount(
+    @OwnerAccountID uniqueidentifier
+    @BeginLabelID bigint
+)
+dbo.usp_RetrieveWarehouseItemList(
+    @OwnerAccountID uniqueidentifier
+    @SearchCount int
+    @SearchType tinyint
+    @SearchKey bigint
+)
+dbo.usp_TryInstantPaymentService(
+    @ServiceID bigint OUTPUT
+    @AccountID uniqueidentifier
+    @WorldID smallint
+    @PCID bigint
+    @ServiceType int
+    @GoodsNumber int
+)
+dbo.usp_TryWarehouseItemAcquisition(
+    @LabelID bigint
+    @ItemInstanceID bigint
+    @OwnerAccountID uniqueidentifier
+    @OwnerWID smallint
+    @OwnerPCID bigint
+    @ItemDataID int
+    @ItemAmount int OUTPUT
+    @PurchaseTime datetime OUTPUT
+    @UsableDuration int OUTPUT
+)
+dbo.usp_TryWarehouseItemConsumption(
+    @LabelID bigint
+    @ItemInstanceID bigint
+    @OwnerAccountID uniqueidentifier
+)
+dbo.usp_TryWarehouseRegistration(
+    @NewLabelID bigint OUTPUT
+    @OwnerAccountID uniqueidentifier
+    @GoodsID bigint
+    @GoodsNumber int
+    @SenderDescription nvarchar(256)
+    @SenderMessage nvarchar(256)
+    @PurchaseTime datetime
+    @GoodsItemNumber_1 int
+    @ItemDataID_1 int
+    @ItemAmount_1 int
+    @UsableDuration_1 int
+    @GoodsItemNumber_2 int
+    @ItemDataID_2 int
+    @ItemAmount_2 int
+    @UsableDuration_2 int
+    @GoodsItemNumber_3 int
+    @ItemDataID_3 int
+    @ItemAmount_3 int
+    @UsableDuration_3 int
+    @GoodsItemNumber_4 int
+    @ItemDataID_4 int
+    @ItemAmount_4 int
+    @UsableDuration_4 int
+    @GoodsItemNumber_5 int
+    @ItemDataID_5 int
+    @ItemAmount_5 int
+    @UsableDuration_5 int
+    @GoodsItemNumber_6 int
+    @ItemDataID_6 int
+    @ItemAmount_6 int
+    @UsableDuration_6 int
+    @GoodsItemNumber_7 int
+    @ItemDataID_7 int
+    @ItemAmount_7 int
+    @UsableDuration_7 int
+    @GoodsItemNumber_8 int
+    @ItemDataID_8 int
+    @ItemAmount_8 int
+    @UsableDuration_8 int
+    @GoodsItemNumber_9 int
+    @ItemDataID_9 int
+    @ItemAmount_9 int
+    @UsableDuration_9 int
+    @GoodsItemNumber_10 int
+    @ItemDataID_10 int
+    @ItemAmount_10 int
+    @UsableDuration_10 int
+)
+dbo.usp_UpdateInstantPaymentServiceStateToPaymentSuccessState(
+    @ServiceID bigint
+    @AccountID uniqueidentifier
+    @PCID bigint
+    @ServiceType int
+    @PurchaseID bigint
+)

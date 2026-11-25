@@ -3,6 +3,7 @@
 #include "../BloodLib/Daemon.h"
 #include "Config.h"
 #include "Db.h"
+#include "AccountInventoryDB.h"
 
 namespace accountinventory {
 
@@ -31,6 +32,7 @@ public:
 private:
     AppConfig* config_;
     Db* db_;
+    AccountInventoryDB* appDb_;
 };
 
 } // namespace accountinventory

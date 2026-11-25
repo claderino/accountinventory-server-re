@@ -15,3 +15,8 @@ analysis/mem/*.mem.exe
 run/test/log/
 run/test/stdout.log
 run/test/stderr.log
+
+# Built test helpers and the oracle's copies of the original binaries
+tests/e2e/*.exe
+analysis/oracle/*.exe
+analysis/oracle/*.dll

@@ -23,8 +23,9 @@ std::wstring CertToWide(const std::string& s) {
 }
 } // namespace
 
-AccountInventoryDaemon::AccountInventoryDaemon() : config_(NULL), db_(NULL) {}
+AccountInventoryDaemon::AccountInventoryDaemon() : config_(NULL), db_(NULL), appDb_(NULL) {}
 AccountInventoryDaemon::~AccountInventoryDaemon() {
+    delete appDb_;
     delete config_;
     delete db_;
 }
@@ -111,6 +112,9 @@ bool AccountInventoryDaemon::initialize() {
                         GetLogTag(), dbRet, config_->serviceWorldId);
         return false;
     }
+    appDb_ = new AccountInventoryDB(db_);
+    SetHandlerApp(appDb_, config_);
+
     blood::LogWrite(1, L"AccountInventoryDaemon.cpp", 0x26a,
                     L"[%s], initial job-id seed value: 0x%016I64X", GetLogTag(), (blood::u64)0);
     return true;

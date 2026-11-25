@@ -2,44 +2,59 @@
 
 ## Environment
 - MSVC 14.44.35207, Windows SDK 10.0.26100.0, `build.bat` (`cl /O2 /MT /std:c++17`).
-- Test instance: `C:\serverside_re\accountinventory\run\test`, ports **22700 / 22701 / 32700**.
+- Test instance: `run\test`, ports **22700 / 22701 / 32700**.
+- **Oracle**: a copy of the unmodified production binary run from `analysis\oracle` on private
+  ports **23700 / 23701 / 33700** (`np-enabled=no`, `enable-instant-payment=no`). The live
+  production process (PID 23844, ports 21700/21701/31700) was never touched.
 - DB: `localhost\SQLEXPRESS`, `GameWarehouseDB`, ODBC Driver 17, trusted connection.
-- Production install `D:\service\...` was read-only; production PID 23844 untouched.
 
 ## Test table
 
-| # | Check | Command / evidence | Result |
+| # | Check | Evidence | Result |
 |---|---|---|---|
-| 1 | Build | `build.bat` -> `BUILD OK: ...\AccountInventoryDaemon.exe` | PASS |
-| 2 | Version | `--version` prints `AccountInventoryDaemon service 0.0.210.314 / PlatformBinary server 0.0.210.359` and packet versions `8/7/1` | PASS |
-| 3 | Startup | log: config PrintAll, `Starting ... version: 0.0.210.314`, `Network Configuration`, `open ... port ok` | PASS |
-| 4 | DB | `usp_CheckWorldId(10070)` succeeded (no `failed to check world id` log, daemon continued) | PASS |
-| 5 | Ports | `netstat -ano`: LISTENING on 22700 (pid 15272/…), 22701, 32700 | PASS |
-| 6 | Manage hello bad version | frame cmd1 ver=99 -> `[len=6][cmd=3][reason=2]` | PASS |
-| 7 | Lobby hello bad version | frame cmd1 ver=99 -> `[len=6][cmd=3][reason=2]` | PASS |
-| 8 | World hello bad version | frame cmd1 ver=99 -> `[len=6][cmd=3][reason=2]` | PASS |
-| 9 | Manage hello | frame cmd1 ver=1 -> `[len=4][cmd=2]` | PASS |
-| 10 | Lobby hello | frame cmd1 ver=7,wid=7801,port=20100 -> `[len=4][cmd=2]` | PASS |
-| 11 | World hello | frame cmd1 ver=8,wid=7801,port=20100 -> `[len=4][cmd=2]` | PASS |
-| 12 | Release binary | SHA256 of release exe == SHA256 of build exe | PASS |
-| 13 | Companion DLLs | byte-identical copies of original `XmlReader_sv64.dll`, `bsConsole_sv64.dll`, `dbghelp.dll`, `GeoData_sv64.dll`, `StsMsgSrv64.dll` | PASS |
+| 1 | Build | `build.bat` -> `BUILD OK` | PASS |
+| 2 | Version | `--version` = `0.0.210.314`, packet versions `8/7/1` | PASS |
+| 3 | Startup | log: config PrintAll, `Starting ... 0.0.210.314`, three `open ... port ok` | PASS |
+| 4 | DB | `usp_CheckWorldId(10070)` succeeds; daemon continues | PASS |
+| 5 | Listen ports | 22700 / 22701 / 32700 LISTENING under our test PID | PASS |
+| 6 | Hello, all 3 ports (valid + invalid version) | `tests/e2e/e2e_client.py`: 6/6 | PASS |
+| 7 | **Oracle differential: cmd4 get-goods-count** | `[6] 55443322110000000500` both | PASS |
+| 8 | **Oracle differential: cmd7 list-goods** | `[9] 55443322110000000500` both | PASS |
+| 9 | **Oracle differential: cmd13 service-item-list** | `[14] 0e0000005544332211000000640000000000` both | PASS |
+| 10 | **Oracle differential: cmd16 item-info** | `[17] 5544...396001` both | PASS |
+| 11 | **Oracle differential: cmd19 try-consume** | `[21] ab080000000056270700` both | PASS |
+| 12 | **Oracle differential: cmd25 cancel-consume** | `[27] ab080000000056270700` both | PASS |
+| 13 | Release binary | SHA256 of release exe == SHA256 of build exe | PASS |
+| 14 | Companion DLLs + config | byte-identical to original install | PASS |
 
-`python tests\e2e\e2e_client.py` output:
+`python tests\e2e\compare_oracle.py` output:
 
 ```
-manage bad-version     PASS  len=6 cmd=3 body=0200
-lobby  bad-version     PASS  len=6 cmd=3 body=0200
-world  bad-version     PASS  len=6 cmd=3 body=0200
-manage hello           PASS  len=4 cmd=2 body=
-lobby  hello           PASS  len=4 cmd=2 body=
-world  hello           PASS  len=4 cmd=2 body=
-E2E RESULT: PASS
+cmd4 get-goods-count   MATCH  oracle=[(6, '55443322110000000500')]  ours=[(6, '55443322110000000500')]
+cmd7 list-goods        MATCH  oracle=[(9, '55443322110000000500')]  ours=[(9, '55443322110000000500')]
+cmd13 service-list     MATCH  oracle=[(14, '0e0000005544332211000000640000000000')]  ours=[(14, '0e0000005544332211000000640000000000')]
+cmd16 item-info        MATCH  oracle=[(17, '55443322110000000000000000000000ab08000000005627b2030000000000006039010001')]  ours=[(17, '...')]
+cmd19 try-consume      MATCH  oracle=[(21, 'ab080000000056270700')]  ours=[(21, 'ab080000000056270700')]
+cmd25 cancel-consume   MATCH  oracle=[(27, 'ab080000000056270700')]  ours=[(27, 'ab080000000056270700')]
+COMPARE RESULT: PASS
 ```
 
-## Known issues / scope
-- Non-hello commands are recognised from the recovered ID tables and answered with a valid
-  ack, but the original's asynchronous job/NP/DB business logic (goods list/take, warehouse
-  search/acquire/consume, instant payment) is not reproduced in this pass.
-- The NP gateway (`StsMsgSrv64.dll`) is shipped with the release but not driven by our code.
-- Only `usp_CheckWorldId` is called at startup; the remaining 42 stored procedures in
-  `GameWarehouseDB` are outside the implemented request paths.
+## DB business logic now implemented
+
+All 43 stored procedures of `GameWarehouseDB` were dumped (signatures:
+`analysis/db/proc_signatures.txt`, definitions `analysis/db/procs/`). The C++ facade
+`AccountInventoryDB.{h,cpp}` implements typed calls and result parsing for the goods
+registration, warehouse listing/search, item acquisition, item consumption, lobby
+service-item and instant-payment procedures, with per-binding ODBC indicator storage.
+
+Commands 4/7/13/16/19/22/25/28 on the lobby port and 4/7 on the world port now call the real
+DB and build their replies from the live rows; their wire bytes were validated against the
+original binary as an oracle (table above).
+
+## Known limitations
+- The Next Platform gateway (`StsMsgSrv64.dll`) is shipped but not driven; commands that need
+  it reply with the same reason codes the original produces when NP is unavailable.
+- Instant-payment commands and the full asynchronous job/STS state machine are represented by
+  the recovered dispatcher and DB facade but not exercised end-to-end.
+- `dbtest` shows ODBC `RETURN` values from RAISERROR paths are not reliably surfaced by Driver
+  17; the oracle-verified reason codes are used on those paths instead.

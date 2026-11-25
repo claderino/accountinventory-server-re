@@ -38,8 +38,20 @@ already-sized `ThreadManager` (the daemon base pre-sizes it to 128).
 `D:\service\` was treated as read-only throughout. The production daemon (PID 23844) was never
 stopped, restarted or reconfigured. Tests used offset ports only and a local ODBC connection.
 
+## DB business logic (second pass)
+
+Dumped all 43 `GameWarehouseDB` procedures with parameter types and result columns into
+`analysis/db/`. Added `AccountInventoryDB.{h,cpp}`: typed ODBC calls for warehouse
+registration, listing/search/count, item acquisition, item consumption, lobby service items
+and instant payment, with per-binding indicator storage. Lobby/world command handlers now
+query the live DB and compose replies from the returned rows.
+
+A private copy of the original binary was run as an oracle on ports 23700/23701/33700
+(np disabled). `tests/e2e/compare_oracle.py` drives both daemons with identical packets:
+all six probes (cmd4, 7, 13, 16, 19, 25) match byte-for-byte.
+
 ## Known limitation
 
-Goods acquisition/consumption, warehouse search, NP gateway and instant-payment transactions
-are served by the recovered command dispatcher with well-formed acks, but the full job/STS/DB
-business logic of those commands was not reproduced in this pass. See `analysis/verification.md`.
+The NP gateway (`StsMsgSrv64.dll`) is shipped but not driven; NP-dependent commands answer with
+the same reason codes the original emits when NP is unavailable. The full asynchronous
+job/STS state machine for instant payment is not exercised end-to-end.

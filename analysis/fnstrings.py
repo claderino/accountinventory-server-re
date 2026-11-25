@@ -3,7 +3,7 @@
 import re, sys
 p = sys.argv[1]
 lines = open(p, encoding='utf-8', errors='replace').read().splitlines()
-want = set(x.lower().lstrip('0x') for x in sys.argv[2:])
+want = set(x.lower() for x in sys.argv[2:])
 hdr = ''
 buf = []
 funcs = {}

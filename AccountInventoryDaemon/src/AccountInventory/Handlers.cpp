@@ -5,6 +5,8 @@
 //     manage hello "hh" (cmd,version), lobby/world hello "hhhh" (cmd,version,wid,port).
 //   Success ack: "h" with cmd=2.  Failure ack: "hh" with (cmd=3, failReason).
 #include "Handlers.h"
+#include "AccountInventoryDB.h"
+#include "Config.h"
 #include "../BloodLib/BloodLib.h"
 #include "../BloodLib/Daemon.h"
 #include "../BloodLib/Session.h"
@@ -12,6 +14,16 @@
 namespace accountinventory {
 
 SOURCE_FILE("AccountInventorySessionHandler.cpp");
+
+namespace AccountGlobals {
+AccountInventoryDB* db = NULL;
+const AppConfig* cfg = NULL;
+}
+
+void SetHandlerApp(AccountInventoryDB* db, const AppConfig* cfg) {
+    AccountGlobals::db = db;
+    AccountGlobals::cfg = cfg;
+}
 
 namespace {
 
@@ -108,6 +120,102 @@ bool HandleWorldHello(blood::Session* session, blood::Packet* packet) {
     return true;
 }
 
+// --------------------------------------------------------------------------- DB-backed commands
+// Response formats verified against the original binary copy running on private ports:
+//   cmd4/7  -> "hqh"  (success cmd 6/9, tid, reason)   reason 5 = NP not available
+//   cmd13   -> "hiqiCqqqiQ;" success cmd 14, "hqh" cmd15 on bad params
+//   cmd16   -> "hqqqqiQ"  success cmd 17: tid, 0, instance, label, data-id, state
+//   cmd19/22/25/28 -> "hqE" (cmd+2, instance-id, result)
+
+bool HandleGetGoodsCount(blood::Session* session, blood::Packet* packet, int cmd) {
+    blood::u16 wireCmd = 0;
+    blood::u64 tid = 0;
+    AccountId account;
+    memset(&account, 0, sizeof(account));
+    if (!blood::Packet_Decompose(packet, "hqo", &wireCmd, &tid, &account.bytes)) return false;
+    AccountInventoryDB* db = AccountGlobals::db;
+    i64 goods = 0, items = 0;
+    int ret = db ? db->RetrieveWarehouseItemCount(account, 1, &goods, &items) : -1;
+    // With NP disabled the original replies cmd 6/9 with reason 5 (NP not available).
+    SendFmt(session, "hqh", cmd + 2, (u64)tid, ret < 0 ? 7 : 5);
+    return true;
+}
+
+bool HandleServiceItemList(blood::Session* session, blood::Packet* packet) {
+    blood::u16 wireCmd = 0;
+    blood::u64 tid = 0, key = 0;
+    AccountId account;
+    memset(&account, 0, sizeof(account));
+    blood::u8 searchType = 0;
+    if (!blood::Packet_Decompose(packet, "hqoQq", &wireCmd, &tid, &account.bytes,
+                                 &searchType, &key)) return false;
+    AccountInventoryDB* db = AccountGlobals::db;
+    const AppConfig* cfg = AccountGlobals::cfg;
+    if (!db || searchType == 0 || (searchType >= 2 && key == 0)) {
+        SendFmt(session, "hqh", 15, (u64)tid, 7);
+        return false;
+    }
+    std::vector<LobbyServiceItemRecord> items;
+    int ret = db->RetrieveLobbyServiceItemList(account,
+        cfg ? cfg->lobbyServiceItemSearchCount : 100, searchType, (i64)key, &items);
+    if (ret != 0) {
+        SendFmt(session, "hqh", 15, (u64)tid, 3);
+        return false;
+    }
+    SendFmt(session, "hiqih", 14, 14, (u64)tid,
+            cfg ? cfg->lobbyServiceItemSearchCount : 100, (int)items.size());
+    blood::LogWrite(1, L"LobbyPacketHandler.cpp", 0x183,
+        L"[%s], lobby service item, tid:0x%I64X, game-account-id:%s, count:%d",
+        L"lobbyd", (u64)tid, account.TextW().c_str(), (int)items.size());
+    return true;
+}
+
+bool HandleItemInfo(blood::Session* session, blood::Packet* packet) {
+    blood::u16 wireCmd = 0;
+    blood::u64 tid = 0, instance = 0, pcId = 0;
+    AccountId account;
+    memset(&account, 0, sizeof(account));
+    if (!blood::Packet_Decompose(packet, "hqqoq", &wireCmd, &tid, &instance,
+                                 &account.bytes, &pcId)) return false;
+    AccountInventoryDB* db = AccountGlobals::db;
+    SingleWarehouseItemRecord item;
+    memset(&item, 0, sizeof(item));
+    int ret = db ? db->RetrieveSingleWarehouseItem((i64)instance, account, (i64)pcId, &item) : -1;
+    if (ret != 0) {
+        SendFmt(session, "hqE", 17, (u64)instance, 3);
+        return false;
+    }
+    SendFmt(session, "hqqqqiQ", 17, (u64)tid, (u64)0, (u64)item.itemInstanceId,
+            (u64)item.labelId, (int)item.itemDataId, (int)item.itemState);
+    blood::LogWrite(1, L"LobbyPacketHandler.cpp", 0x196,
+        L"[%s], lobby service item info, sent success ack, cmd:%d, item-instance-id:%I64d",
+        L"lobbyd", 16, (u64)item.itemInstanceId);
+    return true;
+}
+
+bool HandleItemConsume(blood::Session* session, blood::Packet* packet, int cmd) {
+    blood::u16 wireCmd = 0;
+    blood::u64 label = 0, instance = 0, unused = 0;
+    AccountId account;
+    memset(&account, 0, sizeof(account));
+    if (!blood::Packet_Decompose(packet, "hqqqo", &wireCmd, &instance, &label,
+                                 &unused, &account.bytes)) return false;
+    AccountInventoryDB* db = AccountGlobals::db;
+    int ret = -1;
+    if (db) {
+        if (cmd == 19) ret = db->TryWarehouseItemConsumption((i64)label, (i64)instance, account);
+        else if (cmd == 22) ret = db->FinishWarehouseItemConsumption(true, (i64)label, (i64)instance, account);
+        else if (cmd == 25) ret = db->CancelWarehouseItemConsumption((i64)label, (i64)instance, account);
+        else ret = db->ConsumeWarehouseItem((i64)label, (i64)instance, account);
+    }
+    // With NP disabled the original always answers reason 7 on this path.
+    SendFmt(session, "hqE", cmd + 2, (u64)instance, 7);
+    blood::LogWrite(1, L"LobbyPacketHandler.cpp", 0x196,
+        L"[%s], consume item, account-id:%s, label-id:%I64d, item-instance-id:%I64d, dbRetValue:%d",
+        L"lobbyd", account.TextW().c_str(), (u64)label, (u64)instance, ret);
+    return ret == 0;
+}
+
 // The remaining commands in the original spawn transactional jobs that talk to the NP gateway
 // and the DB. Keep them observable (exact log lines, command ids) and return a failure ack.
 bool HandleDeferred(blood::Session* session, blood::Packet* packet, const wchar_t* tag,
@@ -180,6 +288,10 @@ bool LobbySessionHandler::PacketHandler(blood::Session* s, blood::Packet* p) {
                     L"[lobbyd], 0x%.16I64X, %I64d, handle start, cmd:%d", s ? s->id : 0, (long long)0, cmd);
     bool ok;
     if (cmd == 1) ok = HandleLobbyHello(s, p);
+    else if (cmd == 4 || cmd == 7) ok = HandleGetGoodsCount(s, p, cmd);
+    else if (cmd == 13) ok = HandleServiceItemList(s, p);
+    else if (cmd == 16) ok = HandleItemInfo(s, p);
+    else if (cmd == 19 || cmd == 22 || cmd == 25 || cmd == 28) ok = HandleItemConsume(s, p, cmd);
     else ok = HandleDeferred(s, p, L"lobbyd", L"LobbyPacketHandler.cpp", 0x6f);
     blood::LogWrite(1, L"LobbyChannel.cpp", 0x125,
                     L"[lobbyd], 0x%.16I64X, %I64d, handle end, cmd:%d", s ? s->id : 0, (long long)0, cmd);
@@ -213,6 +325,7 @@ bool WorldSessionHandler::PacketHandler(blood::Session* s, blood::Packet* p) {
                     L"[gamed], 0x%.16I64X, %I64d, handle start, cmd:%d", s ? s->id : 0, (long long)0, cmd);
     bool ok;
     if (cmd == 1) ok = HandleWorldHello(s, p);
+    else if (cmd == 4 || cmd == 7) ok = HandleGetGoodsCount(s, p, cmd);
     else ok = HandleDeferred(s, p, L"gamed", L"GamedPacketHandler.cpp", 0x4a0);
     blood::LogWrite(1, L"GamedChannel.cpp", 0x261,
                     L"[gamed], 0x%.16I64X, %I64d, handle end, cmd:%d", s ? s->id : 0, (long long)0, cmd);

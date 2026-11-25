@@ -14,6 +14,7 @@ public:
     bool Connect(const std::string& connectionString);
     void Disconnect();
     bool IsConnected() const { return connected_; }
+    SQLHDBC Dbc() const { return dbc_; }
     // {?=CALL dbo.usp_CheckWorldId(?)} : returns true when the proc returns 0.
     bool CheckWorldId(int worldId, int* dbRetValue);
 

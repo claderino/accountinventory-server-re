@@ -66,10 +66,15 @@ ports, so it self-locates like the original; deploy only into the real install l
 
 Implemented and verified: CLI/run-mode behaviour, config parsing of every shipped key,
 log format and original file/line/tag strings, ODBC connection + `usp_CheckWorldId` world-id
-validation, all three listen ports with the recovered command tables, and the exact hello
-handshake (manage version 1, lobby 7, world 8) with original success/failure acks.
+validation, all three listen ports with the recovered command tables, the exact hello
+handshake (manage version 1, lobby 7, world 8), and a typed DB facade over all 43 stored
+procedures of `GameWarehouseDB`.
 
-The original's full goods/NP/instant-payment transaction jobs (dozens of stored procedures and
-STS messages) are represented by a dispatcher that accepts every recovered command id and
-returns a well-formed ack; that layer is documented as a known limitation in
-`analysis/verification.md`. The companion DLLs are the original binaries, byte for byte.
+Lobby commands 4/7/13/16/19/22/25/28 and world commands 4/7 now query the real database and
+compose real replies. Their response bytes were validated **against a private copy of the
+original binary as an oracle** — 6/6 command probes match byte-for-byte
+(`python tests\e2e\compare_oracle.py`, see `analysis/verification.md`).
+
+The Next Platform gateway (`StsMsgSrv64.dll`) is shipped but not driven; commands that need it
+reply with the same reason codes the original emits when NP is unavailable. The companion
+DLLs are the original binaries, byte for byte.

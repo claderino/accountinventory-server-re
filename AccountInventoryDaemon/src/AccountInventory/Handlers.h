@@ -6,6 +6,11 @@
 
 namespace accountinventory {
 
+class AccountInventoryDB;
+struct AppConfig;
+// Set by the daemon once its DB/config are initialized; used by the wire handlers.
+void SetHandlerApp(AccountInventoryDB* db, const AppConfig* cfg);
+
 // Command tables recovered from the original binary:
 //   manage  : 1, 4                       (table @ 0xCC1D0)
 //   lobby   : 1,4,7,10,13,16,19,22,25,28,32,33  (table @ 0xCC210)
