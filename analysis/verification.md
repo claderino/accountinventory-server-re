@@ -73,13 +73,20 @@ cmd25 cancel-consume   MATCH  cmd27
 cmd28 consume          MATCH  cmd30
 manage cmd4 restore    MATCH  cmd6 [tid,4]
 COMPARE RESULT: PASS (11/11 probed paths)
+
+World channel (compare_world.py, NP-enabled oracle) — all MATCH:
+  cmd4 cmd5 / cmd7 cmd8 (281 variant + extra per-item field) / cmd13 cmd15 /
+  cmd16 cmd17 / cmd19 cmd21 / cmd22 cmd24 / cmd34 cmd36.
+  cmd10/25/28/31: oracle sends no reply; our handlers mirror that.
 ```
 
 ## Remaining limitations
 - The instant-payment job state machine beyond the restore-request command (cmd4) is represented
   by the recovered dispatcher and DB facade but not exercised end-to-end; the test database has
   no active instant-payment service to drive a full purchase/restore cycle.
-- Lobby cmd32 (retry-take) and cmd33 (logout) produce no reply on the oracle with the recovered
-  request formats; our handlers mirror that behaviour.
+- Lobby cmd32 (retry-take) and cmd33 (logout) and world cmd10/25/28/31 produce no reply on the
+  oracle with the recovered request formats; our handlers mirror that behaviour.
+- The oracle's NP socket goes idle between long runs and it falls back to its NP-unavailable
+  replies; each differential suite passes when run against a freshly started oracle.
 - ODBC `RETURN` values from RAISERROR paths are not reliably surfaced by Driver 17; the
   oracle-verified reason codes are used on those paths instead.

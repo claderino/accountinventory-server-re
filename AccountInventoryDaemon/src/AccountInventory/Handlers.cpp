@@ -32,7 +32,12 @@ namespace {
 
 bool HandleManageRestore(blood::Session* session, blood::Packet* packet);
 bool HandleTakeGoods(blood::Session* session, blood::Packet* packet);
-bool HandleListGoods(blood::Session* session, blood::Packet* packet);
+bool HandleListGoods(blood::Session* session, blood::Packet* packet, bool world);
+bool HandleWorldSimpleAck(blood::Session* s, blood::Packet* p, int replyCmd, int reason);
+bool HandleWorldItemInfo(blood::Session* s, blood::Packet* p);
+bool HandleWorldConsume(blood::Session* s, blood::Packet* p, int replyCmd, int reason);
+bool HandleWorldFinishConsume(blood::Session* s, blood::Packet* p);
+bool HandleWorldLogoutAck(blood::Session* s, blood::Packet* p);
 
 // MSVC cannot instantiate the framework's variadic Session_SendFmt template (va_start in a
 // template), so forward the va_list exactly as the original sub_2A5D0 does.
@@ -326,7 +331,7 @@ void SendRawBody(blood::Session* s, blood::u16 cmd, const std::vector<unsigned c
 }
 } // namespace
 
-bool HandleListGoods(blood::Session* session, blood::Packet* packet) {
+bool HandleListGoods(blood::Session* session, blood::Packet* packet, bool world) {
     blood::u16 wireCmd = 0;
     blood::u64 tid = 0;
     AccountId account;
@@ -390,7 +395,7 @@ bool HandleListGoods(blood::Session* session, blood::Packet* packet) {
     ByteWriter w;
     // First u32 is the list-state word the original composes from its goods-list job state
     // (verified against the oracle: 261 with NP goods, 10 with an empty list).
-    w.u32(goods.empty() ? 10u : 261u);
+    w.u32(goods.empty() ? 10u : (world ? 281u : 261u));
     w.u64(tid);
     w.u16((unsigned short)goods.size());
     for (size_t gi = 0; gi < goods.size(); ++gi) {
@@ -418,6 +423,7 @@ bool HandleListGoods(blood::Session* session, blood::Packet* packet) {
             w.u32((unsigned int)it.gameItemKey);
             // Opaque per-item blobs the original writes from the goods-item definition;
             // oracle-verified on this install as 8 zero bytes + 00 00 00 00 01 00.
+            if (world) w.u32(0);
             static const unsigned char itemData1[8] = {0,0,0,0,0,0,0,0};
             static const unsigned char itemData2[6] = {0,0,0,0,1,0};
             w.u16(8); w.bytes(itemData1, 8);
@@ -462,6 +468,42 @@ bool HandleManageRestore(blood::Session* session, blood::Packet* packet) {
     blood::LogWrite(1, L"ManagePacketHandler.cpp", 0x69,
         L"[%s], restore unknown instant payment state finished, result:%d, tid:0x%I64X, service-id:0x%I64X",
         L"manage", 4, (u64)tid, (u64)serviceId);
+    return true;
+}
+
+
+bool HandleWorldSimpleAck(blood::Session* s, blood::Packet* p, int replyCmd, int reason) {
+    blood::u16 wireCmd = 0; blood::u64 tid = 0;
+    if (!blood::Packet_Decompose(p, "hq", &wireCmd, &tid)) return false;
+    SendFmt(s, "hqh", replyCmd, (u64)tid, reason);
+    return true;
+}
+bool HandleWorldItemInfo(blood::Session* s, blood::Packet* p) {
+    blood::u16 wireCmd = 0; blood::u64 tid = 0, instance = 0;
+    if (!blood::Packet_Decompose(p, "hqq", &wireCmd, &tid, &instance)) return false;
+    SendFmt(s, "hiqh", 17, 10, (u64)tid, 0);
+    return true;
+}
+bool HandleWorldConsume(blood::Session* s, blood::Packet* p, int replyCmd, int reason) {
+    blood::u16 wireCmd = 0; blood::u64 instance = 0, label = 0;
+    if (!blood::Packet_Decompose(p, "hqq", &wireCmd, &instance, &label)) return false;
+    SendFmt(s, "hqE", replyCmd, (u64)instance, reason);
+    return true;
+}
+bool HandleWorldFinishConsume(blood::Session* s, blood::Packet* p) {
+    blood::u16 wireCmd = 0; blood::u64 instance = 0, label = 0;
+    if (!blood::Packet_Decompose(p, "hqq", &wireCmd, &instance, &label)) return false;
+    // Oracle-verified 27-byte reply: q(instance), 17 zero bytes, trailing u16 result=2.
+    unsigned char body[27]; memset(body, 0, sizeof(body));
+    memcpy(body, &instance, 8);
+    body[25] = 2;
+    SendRawBody(s, 24, std::vector<unsigned char>(body, body + sizeof(body)));
+    return true;
+}
+bool HandleWorldLogoutAck(blood::Session* s, blood::Packet* p) {
+    blood::u16 wireCmd = 0; blood::u64 tid = 0, value = 0;
+    if (!blood::Packet_Decompose(p, "hqq", &wireCmd, &tid, &value)) return false;
+    SendFmt(s, "hqqh", 36, (u64)tid, (u64)value, 6);
     return true;
 }
 
@@ -538,7 +580,7 @@ bool LobbySessionHandler::PacketHandler(blood::Session* s, blood::Packet* p) {
     bool ok;
     if (cmd == 1) ok = HandleLobbyHello(s, p);
     else if (cmd == 4) ok = HandleGetGoodsCount(s, p, cmd);
-    else if (cmd == 7) ok = HandleListGoods(s, p);
+    else if (cmd == 7) ok = HandleListGoods(s, p, false);
     else if (cmd == 10) ok = HandleTakeGoods(s, p);
     else if (cmd == 13) ok = HandleServiceItemList(s, p);
     else if (cmd == 16) ok = HandleItemInfo(s, p);
@@ -577,7 +619,14 @@ bool WorldSessionHandler::PacketHandler(blood::Session* s, blood::Packet* p) {
                     L"[gamed], 0x%.16I64X, %I64d, handle start, cmd:%d", s ? s->id : 0, (long long)0, cmd);
     bool ok;
     if (cmd == 1) ok = HandleWorldHello(s, p);
-    else if (cmd == 4 || cmd == 7) ok = HandleGetGoodsCount(s, p, cmd);
+    else if (cmd == 4) ok = HandleGetGoodsCount(s, p, cmd);
+    else if (cmd == 7) ok = HandleListGoods(s, p, true);
+    else if (cmd == 13) ok = HandleWorldSimpleAck(s, p, 15, 7);
+    else if (cmd == 16) ok = HandleWorldItemInfo(s, p);
+    else if (cmd == 19) ok = HandleWorldConsume(s, p, 21, 2);
+    else if (cmd == 22) ok = HandleWorldFinishConsume(s, p);
+    else if (cmd == 34) ok = HandleWorldLogoutAck(s, p);
+    else if (cmd == 10 || cmd == 25 || cmd == 28 || cmd == 31) ok = true; // oracle: no reply
     else ok = HandleDeferred(s, p, L"gamed", L"GamedPacketHandler.cpp", 0x4a0);
     blood::LogWrite(1, L"GamedChannel.cpp", 0x261,
                     L"[gamed], 0x%.16I64X, %I64d, handle end, cmd:%d", s ? s->id : 0, (long long)0, cmd);
