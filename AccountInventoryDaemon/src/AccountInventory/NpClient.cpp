@@ -87,6 +87,11 @@ bool NpClient::Request(const std::string& path, const std::string& body, std::st
     return !data.empty();
 }
 
+bool NpClient::Reconnect() {
+    Disconnect();
+    return Connect(host_, port_, programId_, gameCode_);
+}
+
 int NpClient::GetGoodsCount(const AccountId& account) {
     char body[1024];
     sprintf_s(body,
@@ -98,8 +103,7 @@ int NpClient::GetGoodsCount(const AccountId& account) {
     std::string path = "/Warehouse." + gameCode_ + "/GetGoodsCount";
     if (!Request(path, body, &reply)) {
         // The gateway closes idle sockets; reconnect and retry once like the original.
-        Disconnect();
-        if (!Connect(host_, port_, programId_, gameCode_)) return -1;
+        if (!Reconnect()) return -1;
         if (!Request(path, body, &reply)) return -1;
     }
     size_t p = reply.find("<GoodsCount>");
@@ -108,6 +112,54 @@ int NpClient::GetGoodsCount(const AccountId& account) {
     size_t e = reply.find("</GoodsCount>", p);
     if (e == std::string::npos) return -1;
     return atoi(reply.substr(p, e - p).c_str());
+}
+
+namespace {
+std::string XmlValue(const std::string& xml, const std::string& tag) {
+    std::string open = "<" + tag + ">";
+    size_t p = xml.find(open);
+    if (p == std::string::npos) return std::string();
+    p += open.size();
+    size_t e = xml.find("</" + tag + ">", p);
+    if (e == std::string::npos) return std::string();
+    return xml.substr(p, e - p);
+}
+std::wstring Utf8ToWide(const std::string& s) {
+    if (s.empty()) return std::wstring();
+    int n = MultiByteToWideChar(CP_UTF8, 0, s.c_str(), (int)s.size(), NULL, 0);
+    std::wstring w(n, L'\0');
+    if (n > 0) MultiByteToWideChar(CP_UTF8, 0, s.c_str(), (int)s.size(), &w[0], n);
+    return w;
+}
+}
+
+void NpClient::LoadGoodsCatalog() {
+    if (!IsConnected()) return;
+    for (int page = 1; page <= 24; ++page) {
+        char body[256];
+        sprintf_s(body, "<Request>\n<GameCode>%s</GameCode>\n<PageIndex>%d</PageIndex>\n"
+                        "<PageSize>50</PageSize>\n</Request>\n", gameCode_.c_str(), page);
+        std::string reply;
+        if (!Request("/Goods/ListGoodsInfos", body, &reply)) break;
+        size_t pos = 0;
+        while ((pos = reply.find("<GoodsInfo>", pos)) != std::string::npos) {
+            size_t end = reply.find("</GoodsInfo>", pos);
+            if (end == std::string::npos) break;
+            std::string entry = reply.substr(pos, end - pos);
+            std::string number = XmlValue(entry, "GoodsNumber");
+            std::string name = XmlValue(entry, "GoodsName");
+            if (!number.empty()) goodsNames_[atoi(number.c_str())] = Utf8ToWide(name);
+            pos = end + 12;
+        }
+        // Stop when the reply reports no more pages.
+        std::string pages = XmlValue(reply, "TotalPageCount");
+        if (!pages.empty() && atoi(pages.c_str()) <= page) break;
+    }
+}
+
+std::wstring NpClient::GoodsName(int goodsNumber) const {
+    std::map<int, std::wstring>::const_iterator it = goodsNames_.find(goodsNumber);
+    return it == goodsNames_.end() ? std::wstring() : it->second;
 }
 
 bool NpClient::List(const AccountId& account, int maxGoodsCount, std::string* reply) {

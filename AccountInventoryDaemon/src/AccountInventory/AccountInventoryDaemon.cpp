@@ -158,6 +158,7 @@ bool AccountInventoryDaemon::onStart() {
         np_ = new NpClient();
         if (np_->Connect(config_->npAddress, config_->npPort,
                          config_->npProgramId, config_->npGameCode)) {
+            np_->LoadGoodsCatalog();
             SetHandlerNp(np_);
             blood::LogWrite(3, L"AccountInventoryDaemon.cpp", 0x3fe,
                 L"[%s], start np channel ok", GetLogTag());

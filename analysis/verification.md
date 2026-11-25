@@ -62,16 +62,13 @@ numbers, XML parsing, reconnect-on-demand, wired into the daemon (`onStart`) and
 Differential test with the NP-enabled oracle (both daemons talking to the same live gateway):
 
 ```
-cmd4 get-goods-count   oracle cmd5 [554433221100000001000000]
-                       ours   cmd5 [554433221100000001000000]   <- MATCH
-cmd13/16/19/25         MATCH (unchanged DB-backed paths)
+cmd4 get-goods-count   MATCH  cmd5 [554433221100000001000000]
+cmd7 list-goods        MATCH  cmd8 [265-byte goods-list frame]
+cmd13/16/19/25         MATCH  (DB-backed paths)
+COMPARE RESULT: PASS (6/6)
 ```
 
 ## Remaining limitations
-- Lobby cmd7 (list-goods): the original replies cmd8 with a large goods-list frame
-  (`hiqCqiQQqqssissbbCiiiibb;;`) assembled by an asynchronous job from NP XML + DB. The NP
-  `List` request is implemented, but composing that nested frame is not finished; our reply is
-  the NP-unavailable ack (cmd9).
 - Instant-payment commands and the full asynchronous job/STS state machine are represented by
   the recovered dispatcher and DB facade but not exercised end-to-end.
 - ODBC `RETURN` values from RAISERROR paths are not reliably surfaced by Driver 17; the

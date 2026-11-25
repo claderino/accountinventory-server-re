@@ -23,3 +23,5 @@ analysis/oracle/*.exe
 analysis/oracle/*.dll
 analysis/oracle/log/
 tests/e2e/np_capture.log
+__pycache__/
+*.pyc
