@@ -98,6 +98,26 @@ This covers all probed lobby/world/manage paths byte-for-byte against the origin
 The cmd16 failure path was corrected in the final build (reason 6 / cmd18), which removed the
 last intermittent mismatch caused by consume probes changing the test item's state.
 
+## Idle 2-minute log comparison (2026-11-26)
+`analysis/idle_log_capture.ps1` starts both private copies with identical DB/NP settings (only
+ports differ), leaves them untouched for 125 seconds, then captures the new log of each side.
+Before the fidelity fixes: oracle **5851** lines, ours **28**. The message-category diff showed:
+
+- original prints the full `DaemonConfig::PrintAll` dump (51 lines), ours printed 8;
+- original logs 1011 goods definitions x 4 `GoodsDef.cpp` lines (~4050 lines) during catalogue
+  load, ours logged none;
+- original logs NP channel/ping and periodic `UPDATE_GOODS_FOR_PURCHASE` transaction-job lines,
+  ours logged none;
+- ours logged 14 `PipeConsole.cpp "thread frozen"` errors, original logged none;
+- original's `daemon:` log field is the description (`Blade&Soul AccountInventory Daemon`),
+  ours used the short name; the test config also had `dump-type=2` vs the original's `0`.
+
+Fixed: full config dump line-for-line, `daemon:` description field, and test `dump-type=0`
+(matching the production config). After the fix ours logs 73 startup/config lines and the config
+sections match line-for-line apart from the expected path/port differences. The remaining
+difference is the catalogue/NP/timer chatter (~5800 lines) and the frozen-console warnings;
+those need the original's job/console internals and are listed as a known limitation.
+
 ## Derived list fields and invalid-account probes (2026-11-26)
 The cmd8 fields that were previously constants are now computed from protocol data:
 

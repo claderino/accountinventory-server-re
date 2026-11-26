@@ -310,10 +310,10 @@ bool Daemon::run() {
     selectNetworkAddresses();
     LogWrite(1, L"src\\Daemon.cpp", 0x1E3,
              L"[%s], Starting, daemon: %s, version: %s, desc: %s",
-             GetLogTag(), GetName(), Version(), GetDescription());
+             GetLogTag(), GetDescription(), Version(), GetDescription());
     LogWrite(1, L"src\\Daemon.cpp", 0x1E4,
              L"[%s], Network Configuration, daemon: %s, hostname: %s, public: %s, internal: %s",
-             GetLogTag(), GetName(), HostName(), PublicAddress(), InternalAddress());
+             GetLogTag(), GetDescription(), HostName(), PublicAddress(), InternalAddress());
     if (!initialize()) {
         LogWrite(0, L"src\\Daemon.cpp", 0x1EE,
                  L"[%s], initialize error, daemon: %s", GetLogTag(), GetName());

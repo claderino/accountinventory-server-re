@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <config module='accountinventoryd'>
 	<!-- ==== path ==== -->
 	<!-- [REQ] full root path -->
@@ -24,7 +24,7 @@
 	<!-- [OPT] transaction timeout(msec). 0 means no timeout on transactoin -->
 	<option name='transaction-timeout' value='0'/>
 	<!-- [OPT] 0: no dump, 1: minimal dump(default), 2: full dump -->
-	<option name='dump-type' value='2'/>
+	<option name='dump-type' value='0'/>
 	<!-- [OPT] msec. for debugging. 0 means pool object be reused immediately. caution, in service mode, pool object do not wait for reuse -->
 	<option name='wait-time-for-reuse-pool-object' value='0'/>
 	<!-- [REQ] job initial object pool size. 0 means no preparance -->

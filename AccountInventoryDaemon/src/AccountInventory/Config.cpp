@@ -156,16 +156,79 @@ bool LoadAppConfig(const wchar_t* file, AppConfig* out) {
 }
 
 void PrintAllConfig(const AppConfig& cfg) {
-    // Original DaemonConfig::PrintAll logs the cert path (line 164) and ints (141). Keep the
-    // original source file / line numbers so log files compare line by line.
-    blood::LogWrite(1, L"src\\DaemonConfig.cpp", 132, L"[%s], ==== config ====", L"accountinventoryd");
-    blood::LogWrite(1, L"src\\DaemonConfig.cpp", 164, L"[%s], cert-file: %s", L"accountinventoryd",
-                    AtoW(cfg.certFile).c_str());
-    blood::LogWrite(1, L"src\\DaemonConfig.cpp", 141, L"[%s], worker-thread: %d", L"accountinventoryd", cfg.workerThread);
-    blood::LogWrite(1, L"src\\DaemonConfig.cpp", 141, L"[%s], lobby-listen-port: %d", L"accountinventoryd", cfg.lobbyListenPort);
-    blood::LogWrite(1, L"src\\DaemonConfig.cpp", 141, L"[%s], world-listen-port: %d", L"accountinventoryd", cfg.worldListenPort);
-    blood::LogWrite(1, L"src\\DaemonConfig.cpp", 141, L"[%s], manage-listen-port: %d", L"accountinventoryd", cfg.manageListenPort);
-    blood::LogWrite(1, L"src\\DaemonConfig.cpp", 141, L"[%s], service-world-id: %d", L"accountinventoryd", cfg.serviceWorldId);
+    // Exact line-for-line replication of the original DaemonConfig::PrintAll.
+    const wchar_t* tag = L"config";
+    blood::LogWrite(1, L"DaemonConfig.cpp", 132, L"[%s], ==== path ====", tag);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 156, L"[%s], root-path : %s", tag, cfg.rootPath.c_str());
+    blood::LogWrite(1, L"DaemonConfig.cpp", 156, L"[%s], log-path : %s", tag, cfg.logPath.c_str());
+    blood::LogWrite(1, L"DaemonConfig.cpp", 156, L"[%s], config-path : %s", tag, cfg.configPath.c_str());
+    blood::LogWrite(1, L"DaemonConfig.cpp", 156, L"[%s], transaction-log-path : %s", tag,
+                    cfg.transactionLogPath.c_str());
+    blood::LogWrite(1, L"DaemonConfig.cpp", 132, L"[%s], ==== certification ====", tag);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 164, L"[%s], cert-file : %s", tag, AtoW(cfg.certFile).c_str());
+    blood::LogWrite(1, L"DaemonConfig.cpp", 132, L"[%s], ==== system configuration ====", tag);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], worker-thread : %d", tag, cfg.workerThread);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], max-world : %d", tag, cfg.maxWorld);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], timer-interval : %d", tag, cfg.timerInterval);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], timer-max-time : %d", tag, cfg.timerMaxTime);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], transaction-timeout : %d", tag, cfg.transactionTimeout);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], dump-type : %d", tag, cfg.dumpType);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], wait-time-for-reuse-pool-object : %d", tag,
+                    cfg.waitTimeForReusePoolObject);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], init-job-count : %d", tag, cfg.initJobCount);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], goods-list-hash-count : %d", tag, cfg.goodsListHashCount);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], goods-job-hash-count : %d", tag, cfg.goodsJobHashCount);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 132, L"[%s], ==== network configuration ====", tag);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 144, L"[%s], np-enabled : %s", tag,
+                    cfg.npEnabled ? L"yes" : L"no");
+    blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], np-program-id : %d", tag, cfg.npProgramId);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 156, L"[%s], np-game-code : %s", tag, AtoW(cfg.npGameCode).c_str());
+    blood::LogWrite(1, L"DaemonConfig.cpp", 156, L"[%s], np-address : %s", tag, AtoW(cfg.npAddress).c_str());
+    blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], np-port : %d", tag, cfg.npPort);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], manage-listen-port : %d", tag, cfg.manageListenPort);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], lobby-listen-port : %d", tag, cfg.lobbyListenPort);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], world-listen-port : %d", tag, cfg.worldListenPort);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 132, L"[%s], ==== account inventory service configuration ====", tag);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], service-world-id : %d", tag, cfg.serviceWorldId);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 132, L"[%s], ==== goods configuration ====", tag);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 144, L"[%s], np-warehouse-changeover-enable : %s", tag,
+                    cfg.npWarehouseChangeoverEnable ? L"yes" : L"no");
+    blood::LogWrite(1, L"DaemonConfig.cpp", 144, L"[%s], overseas-np : %s", tag,
+                    cfg.overseasNp ? L"yes" : L"no");
+    blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], goods-info-list-page-size : %d", tag, cfg.goodsInfoListPageSize);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], automated-take-goods-type : %d", tag, cfg.automatedTakeGoodsType);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], character-inventory-item-noti-count : %d", tag,
+                    cfg.characterInventoryItemNotiCount);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], goods-list-max-count : %d", tag, cfg.goodsListMaxCount);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], warehouse-goods-search-count : %d", tag,
+                    cfg.warehouseGoodsSearchCount);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], lobby-service-item-search-count : %d", tag,
+                    cfg.lobbyServiceItemSearchCount);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], uncompleted-goods-registration-load-count : %d", tag,
+                    cfg.uncompletedGoodsRegistrationLoadCount);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], uncomoleted-goods-registration-fail-count-max : %d", tag,
+                    cfg.uncompletedGoodsRegistrationFailCountMax);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 132, L"[%s], ==== instant payment configuration ====", tag);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 144, L"[%s], enable-instant-payment : %s", tag,
+                    cfg.enableInstantPayment ? L"yes" : L"no");
+    blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], instant-payment-goods-category-update-period : %d", tag,
+                    cfg.instantPaymentGoodsCategoryUpdatePeriod);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], instant-payment-goods-category-type : %d", tag,
+                    cfg.instantPaymentGoodsCategoryType);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], instant-payment-goods-category-language-code : %d", tag,
+                    cfg.instantPaymentGoodsCategoryLanguageCode);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], instant-payment-purchase-currency-group-id : %d", tag,
+                    cfg.instantPaymentPurchaseCurrencyGroupId);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], instant-payment-purchase-request-from-code : %d", tag,
+                    cfg.instantPaymentPurchaseRequestFromCode);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 144, L"[%s], enable-instant-payment-second-password : %s", tag,
+                    cfg.enableInstantPaymentSecondPassword ? L"yes" : L"no");
+    blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], instant-payment-second-password-type : %d", tag,
+                    cfg.instantPaymentSecondPasswordType);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], instant-payment-second-password-action-index : %d", tag,
+                    cfg.instantPaymentSecondPasswordActionIndex);
+    blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], instant-payment-restore-count-per-timer-interval : %d", tag,
+                    cfg.instantPaymentRestoreCountPerTimerInterval);
 }
 
 } // namespace accountinventory
