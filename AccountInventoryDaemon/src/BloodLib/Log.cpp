@@ -38,7 +38,8 @@ void WriteFormattedV(int level, const wchar_t* file, int line, const wchar_t* fm
     if (g_logConsole) {
         // The window console displays log records in its main output pane; other
         // consoles only have a status line.
-        if (!g_logConsole->WriteLog(record))
+        bool consumed = g_logConsole->WriteLog(record);
+        if (!consumed || g_logConsole->IsWindowConsole())
             g_logConsole->Print(level, L"%s", record->message);
     }
     record->Release();

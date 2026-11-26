@@ -1,5 +1,20 @@
 # Verification
 
+## Double-click launch and window UI (2026-11-26)
+`release/bin/accountInventoryd.config.xml` is byte-identical to the production config, so a plain
+double-click resolves the same absolute paths (`D:\Service\AccountInventoryDaemon\`,
+`D:\log\AccountInventoryDaemon\`, `D:\service\DBConfig\Accinventoryd.cfg`), same DB and
+ports 31700/21700/21701, with no command-line arguments.
+
+Window mode initially crashed (0xC0000005) with production's `bsConsole_sv64.dll`: the DLL calls
+the log record's object-vtable slots +0x00, +0x10 and +0x18, which our framework left null /
+timestamp-only. Aligned `LogBuffer`'s object vtable with those slots and made +0x18 emit the full
+log line. `analysis/window_original.png` and `analysis/window_release_final5.png` show the two
+windows after a 12-second idle launch: both have title `BnS Console`, the main log pane with the
+same lines, the counters row (user/cpu/memory/disk/network), the scroll/Clear/ERROR/DEBUG/TRACE/
+reverse controls, the Setting/Save/Reload/Shutdown buttons, and the two-pane `RUNNING` status bar.
+`analysis/shot_window.ps1` reproduces the capture.
+
 ## Environment
 - MSVC 14.44.35207, Windows SDK 10.0.26100.0, `build.bat` (`cl /O2 /MT /std:c++17`).
 - Test instance: `run\test`, ports **22700 / 22701 / 32700**.

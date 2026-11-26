@@ -9,14 +9,14 @@ namespace blood {
 namespace {
 
 struct LogBufferObjectVtbl {
-    void (*destroy)(LogBuffer*);
+    bool (*isEnabled)(LogBuffer*);          // +0x00 - bsConsole calls this first
     void* reserved0;
+    int (*getLevel)(LogBuffer*);            // +0x10 - bsConsole level filter
     void* reserved1;
+    bool (*formatTimestamp2)(LogBuffer*, wchar_t*, int); // +0x20
     void* reserved2;
-    int (*addRef)(LogBuffer*);
     void* reserved3;
-    void* reserved4;
-    bool (*formatTimestamp)(LogBuffer*, wchar_t*, int);
+    bool (*formatTimestamp)(LogBuffer*, wchar_t*, int);  // +0x38
 };
 
 struct LogBufferRefVtbl {
@@ -30,13 +30,15 @@ struct LogBufferRefVtbl {
 void DestroyThunk(LogBuffer* buffer);
 int AddRefThunk(LogBuffer* buffer);
 bool TimestampThunk(LogBuffer* buffer, wchar_t* output, int capacity);
+bool FormatRecordThunk(LogBuffer* buffer, wchar_t* output, int capacity);
 int RefAddRefThunk(LogBuffer* buffer) { return AddRefThunk(buffer); }
 void RefReleaseThunk(LogBuffer* buffer) { buffer->Release(); }
 int RefGetLevelThunk(LogBuffer* buffer) { return buffer->level + 1; }
 bool RefEnabledThunk(LogBuffer* buffer) { return buffer->enabled != 0; }
 
 LogBufferObjectVtbl g_objectVtbl = {
-    &DestroyThunk, NULL, NULL, NULL, &AddRefThunk, NULL, NULL, &TimestampThunk
+    &RefEnabledThunk, &RefReleaseThunk, &RefGetLevelThunk, &FormatRecordThunk,
+    &FormatRecordThunk, &AddRefThunk, &RefEnabledThunk, &FormatRecordThunk
 };
 LogBufferRefVtbl g_refVtbl = {
     &RefAddRefThunk, &RefReleaseThunk, &RefGetLevelThunk, &RefEnabledThunk, &TimestampThunk
@@ -87,6 +89,22 @@ int AddRefThunk(LogBuffer* buffer) {
 
 bool TimestampThunk(LogBuffer* buffer, wchar_t* output, int capacity) {
     return buffer->FormatTimestamp(output, capacity);
+}
+
+// bsConsole renders a log row by calling vtable +0x18 on the record. The original record
+// emits the entire line there (timestamp, source, line, level, message), not just a clock.
+static const wchar_t* LevelName(int level) {
+    static const wchar_t* const names[] = {L"error", L"debug", L"trace", L"notice", L"resource", L"archive"};
+    return level >= 0 && level < 6 ? names[level] : L"undef";
+}
+bool FormatRecordThunk(LogBuffer* buffer, wchar_t* output, int capacity) {
+    if (!buffer || !output || capacity <= 0) return false;
+    wchar_t stamp[128];
+    if (!buffer->FormatTimestamp(stamp, 128)) stamp[0] = L'\0';
+    const wchar_t* level = LevelName(buffer->level);
+    swprintf_s(output, capacity, L"%s,%s,%d,(%s),%s", stamp,
+               buffer->file ? buffer->file : L"", (int)buffer->line, level, buffer->message);
+    return true;
 }
 
 } // namespace
