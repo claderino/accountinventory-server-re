@@ -32,6 +32,7 @@ public:
 
     bool Init(u32 count);
     bool Start(ThreadObject* object, u32* threadId = NULL);
+    void RefreshTimes();
     bool Stop(ThreadObject* object, u32 waitMs, bool terminate, bool remove);
     void StopAll(u32 waitMs);
     void Finalize();

@@ -49,7 +49,7 @@ void WriteFormattedV(int level, const wchar_t* file, int line, const wchar_t* fm
 const wchar_t* LogLevelName(int level) {
     static const wchar_t* const names[12] = {
         L"error", L"debug", L"trace", L"notice", L"resource", L"archive",
-        L"undef1", L"undef2", L"undef3", L"undef4", L"undef5", L"undef6"
+        L"goods", L"undef2", L"undef3", L"undef4", L"undef5", L"undef6"
     };
     return level >= 0 && level < 12 ? names[level] : L"";
 }

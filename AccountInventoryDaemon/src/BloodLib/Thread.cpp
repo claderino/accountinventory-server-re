@@ -75,6 +75,14 @@ bool ThreadManager::Start(ThreadObject* object, u32* threadId) {
     return true;
 }
 
+void ThreadManager::RefreshTimes() {
+    u64 now = static_cast<u64>(GetTickCount());
+    ownerTime = now;
+    for (u32 i = 0; i < capacity; ++i) {
+        if (objects[i]) objects[i]->cachedTime = now;
+    }
+}
+
 bool ThreadManager::StopOne(u32 index, u32 waitMs, bool terminate, bool remove) {
     if (index >= capacity || !objects[index] || !handles[index]) return false;
     ThreadObject* object = objects[index];

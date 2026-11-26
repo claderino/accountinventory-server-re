@@ -349,7 +349,7 @@ bool Daemon::run() {
     SetState(4);
     LogWrite(1, L"src\\Daemon.cpp", 0x212,
              L"[%s], start, daemon: %s, version: %s, loading time: %I64d",
-             GetLogTag(), GetName(), Version(),
+             GetLogTag(), GetDescription(), Version(),
              static_cast<i64>(GetTickCount64() - loadStart));
     StartPipeConsole(this);
     StartPerfCounters(this);
@@ -375,6 +375,7 @@ void Daemon::timerLoop() {
     u64 lastHousekeeping = DaemonMillis();
     while (WaitForSingleObject(abi_.stopEvent, wait) != WAIT_OBJECT_0) {
         InterlockedIncrement(&abi_.loopCounter);
+        if (abi_.threads) abi_.threads->RefreshTimes();
         if (interval > 0 && abi_.timers) {
             Timer* timer = abi_.timers->Update();
             while (timer) {

@@ -183,7 +183,7 @@ void PrintAllConfig(const AppConfig& cfg) {
                     cfg.npEnabled ? L"yes" : L"no");
     blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], np-program-id : %d", tag, cfg.npProgramId);
     blood::LogWrite(1, L"DaemonConfig.cpp", 156, L"[%s], np-game-code : %s", tag, AtoW(cfg.npGameCode).c_str());
-    blood::LogWrite(1, L"DaemonConfig.cpp", 156, L"[%s], np-address : %s", tag, AtoW(cfg.npAddress).c_str());
+    blood::LogWrite(1, L"DaemonConfig.cpp", 148, L"[%s], np-address : %s", tag, AtoW(cfg.npAddress).c_str());
     blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], np-port : %d", tag, cfg.npPort);
     blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], manage-listen-port : %d", tag, cfg.manageListenPort);
     blood::LogWrite(1, L"DaemonConfig.cpp", 141, L"[%s], lobby-listen-port : %d", tag, cfg.lobbyListenPort);

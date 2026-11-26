@@ -5,6 +5,9 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <thread>
+#include <atomic>
+#include <mutex>
 
 namespace accountinventory {
 
@@ -66,6 +69,11 @@ private:
     int programId_;
     std::map<int, std::wstring> goodsNames_;
     std::map<int, NpGoodsBlobs> goodsBlobs_;
+    std::thread background_;
+    std::atomic<bool> backgroundStop_;
+    std::mutex requestLock_;
+    void BackgroundLoop();
+    void LogBackgroundJob(bool initial);
 };
 
 } // namespace accountinventory

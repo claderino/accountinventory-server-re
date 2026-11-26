@@ -16,11 +16,13 @@ Start-Sleep -Seconds 1
 
 $beforeOracle = Get-Content (Join-Path $base 'analysis\oracle_logs_before.txt')
 $beforeOurs   = Get-Content (Join-Path $base 'analysis\ours_logs_before.txt')
-$newOracle = Get-ChildItem $oracleLogs -File | Where-Object { $beforeOracle -notcontains $_.FullName } | Sort-Object LastWriteTime -Descending | Select-Object -First 1
-$newOurs   = Get-ChildItem $oursLogs -File | Where-Object { $beforeOurs -notcontains $_.FullName } | Sort-Object LastWriteTime -Descending | Select-Object -First 1
-'ORACLE_NEW=' + $newOracle.FullName
-'OURS_NEW=' + $newOurs.FullName
-'ORACLE_LINES=' + (Get-Content $newOracle.FullName | Measure-Object).Count
-'OURS_LINES=' + (Get-Content $newOurs.FullName | Measure-Object).Count
-Copy-Item $newOracle.FullName (Join-Path $base 'analysis\idle_oracle.log') -Force
-Copy-Item $newOurs.FullName (Join-Path $base 'analysis\idle_ours.log') -Force
+$newOracle = @(Get-ChildItem $oracleLogs -File | Where-Object { $beforeOracle -notcontains $_.FullName } | Sort-Object LastWriteTime)
+$newOurs   = @(Get-ChildItem $oursLogs -File | Where-Object { $beforeOurs -notcontains $_.FullName } | Sort-Object LastWriteTime)
+'ORACLE_NEW=' + ($newOracle.FullName -join '; ')
+'OURS_NEW=' + ($newOurs.FullName -join '; ')
+$oa = @(); foreach ($f in $newOracle) { $oa += Get-Content $f.FullName }
+$ma = @(); foreach ($f in $newOurs) { $ma += Get-Content $f.FullName }
+'ORACLE_LINES=' + $oa.Count
+'OURS_LINES=' + $ma.Count
+Set-Content -Path (Join-Path $base 'analysis\idle_oracle.log') -Value $oa -Encoding UTF8
+Set-Content -Path (Join-Path $base 'analysis\idle_ours.log') -Value $ma -Encoding UTF8

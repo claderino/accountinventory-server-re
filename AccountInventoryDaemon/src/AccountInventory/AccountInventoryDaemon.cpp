@@ -117,7 +117,7 @@ bool AccountInventoryDaemon::initialize() {
     appDb_ = new AccountInventoryDB(db_);
     SetHandlerApp(appDb_, config_);
 
-    blood::LogWrite(1, L"AccountInventoryDaemon.cpp", 0x26a,
+    blood::LogWrite(3, L"AccountInventoryDaemon.cpp", 0x1e4,
                     L"[%s], initial job-id seed value: 0x%016I64X", GetLogTag(), (blood::u64)0);
     return true;
 }
@@ -160,7 +160,7 @@ bool AccountInventoryDaemon::onStart() {
                          config_->npProgramId, config_->npGameCode)) {
             np_->LoadGoodsCatalog();
             SetHandlerNp(np_);
-            blood::LogWrite(3, L"AccountInventoryDaemon.cpp", 0x3fe,
+            blood::LogWrite(3, L"AccountInventoryDaemon.cpp", 0x422,
                 L"[%s], start np channel ok", GetLogTag());
         } else {
             blood::LogWrite(0, L"AccountInventoryDaemon.cpp", 0x3f6,

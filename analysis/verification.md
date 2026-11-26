@@ -112,11 +112,17 @@ Before the fidelity fixes: oracle **5851** lines, ours **28**. The message-categ
 - original's `daemon:` log field is the description (`Blade&Soul AccountInventory Daemon`),
   ours used the short name; the test config also had `dump-type=2` vs the original's `0`.
 
-Fixed: full config dump line-for-line, `daemon:` description field, and test `dump-type=0`
-(matching the production config). After the fix ours logs 73 startup/config lines and the config
-sections match line-for-line apart from the expected path/port differences. The remaining
-difference is the catalogue/NP/timer chatter (~5800 lines) and the frozen-console warnings;
-those need the original's job/console internals and are listed as a known limitation.
+Closing the gap: the full config dump, `daemon:` description field and `dump-type=0` were added;
+`NpClient` now logs every catalogue item in the original's four `GoodsDef.cpp` forms plus the
+`(goods)` level dump (including the narrow-media `?` substitution), the per-page NP request/reply
+lines, object-pool initialisation and the periodic `UPDATE_GOODS_FOR_PURCHASE` job (with NP ping
+and revision ticks). The framework's stale thread timestamps and the frozen-console warnings were
+fixed by refreshing `ThreadManager::ownerTime/cachedTime` every daemon timer tick.
+
+After these fixes a fresh 125-second idle capture produced **5851** oracle lines and **5844** ours,
+with **5838** normalized lines common. The residual handful are values that vary per run and
+cannot be made equal: pointer/session addresses, timer tick values, and one timing-dependent job
+tick. `analysis/categorize_idle.py` and `analysis/diff_idle_normalized.py` reproduce the comparison.
 
 ## Derived list fields and invalid-account probes (2026-11-26)
 The cmd8 fields that were previously constants are now computed from protocol data:
