@@ -95,6 +95,25 @@ This covers all probed lobby/world/manage paths byte-for-byte against the origin
 The cmd16 failure path was corrected in the final build (reason 6 / cmd18), which removed the
 last intermittent mismatch caused by consume probes changing the test item's state.
 
+## Derived list fields and invalid-account probes (2026-11-26)
+The cmd8 fields that were previously constants are now computed from protocol data:
+
+```
+NP /Goods/ListGoodsInfos CustomizedGoodsAttribute  = base64 00 00 00 00 01   (goods tail)
+NP /Goods/ListGoodsInfos CustomizedItemAttribute1  = base64 00*8             (item blob 1)
+NP /Goods/ListGoodsInfos CustomizedItemAttribute2  = base64 00 00 00 00 01 00 (item blob 2)
+first u32 of cmd8 = reply body length excluding that field (lobby 261, world 281, empty 10)
+```
+
+`NpClient` stores the three base64 catalogue fields per GoodsNumber; `HandleListGoods` decodes
+them with `Base64Decode` and patches the length after composing the body. Live probes confirmed
+`first_u32 == body_length - 4` for both channels.
+
+`analysis/probe_zero_guid.py` sends the all-zero GUID to **every** probed command on the lobby,
+world and manage ports. After adding the packet-handler validation that the original performs,
+all 17 cases match byte-for-byte (cmd4/7/10/13/16/19/22/25/28 lobby, cmd4/7/13/16/19/22/34
+world, manage cmd4). A non-zero unknown GUID yields the empty-list cmd8 with length 10.
+
 ## Instant-payment restore state machine (fully driven)
 A test copy `GameWarehouseDB_RE` was restored from the live DB and an in-progress service row
 inserted (`analysis/db/GameWarehouseDB_TEST.bak`). The NP gateway caches purchases at startup, so
@@ -123,9 +142,17 @@ is issued by `NpClient::GetPurchaseStatus`; the status branch and DB updates are
 more to clear its cache; the oracle config was restored to `run\test\cert.cfg` / `np-port=6601`.
 
 ## Remaining limitations
-- The gateway's catalogue XML exposes no per-item `GameItemId`/`GameItemData` on this install, so
-  the list-state word (261/281/10) and the per-item blobs remain oracle-verified constants for this
-  catalogue. Every exercised list path matches byte-for-byte.
+- The former opaque constants are now derived, not hard-coded. The gateway's
+  `/Goods/ListGoodsInfos` XML carries base64 fields which decode into exactly the reply blobs:
+  `CustomizedGoodsAttribute` = `00 00 00 00 01` (5 bytes), `CustomizedItemAttribute1` = eight zero
+  bytes, `CustomizedItemAttribute2` = `00 00 00 00 01 00` (6 bytes). `NpClient::LoadGoodsCatalog`
+  stores them per goods number and `HandleListGoods` decodes them with `Base64Decode`.
+  The first u32 of cmd8 is the reply-body length **excluding that field itself** (lobby 261,
+  world 281, empty list 10); it is patched after composition. The world/lobby difference is the
+  extra per-item u32 that world writes. All values are now computed from protocol data.
+- `cmd7` with the all-zero game-account GUID is rejected before any job is started with
+  cmd9 / reason 7 (LobbyPacketHandler "invalid parameter"); a non-zero but unknown GUID yields an
+  empty list whose length field evaluates to 10. Both behaviours are mirrored.
 - Lobby cmd32 (retry-take) and cmd33 (logout) and world cmd10/25/28/31 produce no reply on the
   oracle with the recovered request formats; our handlers mirror that behaviour.
 - The oracle's NP socket goes idle between long runs and it falls back to its NP-unavailable

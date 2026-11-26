@@ -148,7 +148,14 @@ void NpClient::LoadGoodsCatalog() {
             std::string entry = reply.substr(pos, end - pos);
             std::string number = XmlValue(entry, "GoodsNumber");
             std::string name = XmlValue(entry, "GoodsName");
-            if (!number.empty()) goodsNames_[atoi(number.c_str())] = Utf8ToWide(name);
+            if (!number.empty()) {
+                int key = atoi(number.c_str());
+                goodsNames_[key] = Utf8ToWide(name);
+                NpGoodsBlobs& b = goodsBlobs_[key];
+                b.goodsAttribute = XmlValue(entry, "CustomizedGoodsAttribute");
+                b.itemAttribute1 = XmlValue(entry, "CustomizedItemAttribute1");
+                b.itemAttribute2 = XmlValue(entry, "CustomizedItemAttribute2");
+            }
             pos = end + 12;
         }
         // Stop when the reply reports no more pages.
@@ -160,6 +167,13 @@ void NpClient::LoadGoodsCatalog() {
 std::wstring NpClient::GoodsName(int goodsNumber) const {
     std::map<int, std::wstring>::const_iterator it = goodsNames_.find(goodsNumber);
     return it == goodsNames_.end() ? std::wstring() : it->second;
+}
+
+bool NpClient::GoodsBlobs(int goodsNumber, NpGoodsBlobs* out) const {
+    std::map<int, NpGoodsBlobs>::const_iterator it = goodsBlobs_.find(goodsNumber);
+    if (it == goodsBlobs_.end()) return false;
+    *out = it->second;
+    return true;
 }
 
 int NpClient::GetPurchaseStatus(int worldId, i64 serviceId) {

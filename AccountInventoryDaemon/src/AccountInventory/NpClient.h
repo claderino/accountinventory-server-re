@@ -15,6 +15,13 @@ struct NpWarehouseItem {
     std::string gameItemIdB64;
     std::string gameItemDataB64;
 };
+struct NpGoodsBlobs {
+    // Base64 strings from /Goods/ListGoodsInfos; the original decodes these into the
+    // per-goods/per-item byte fields of the cmd8 reply.
+    std::string goodsAttribute;      // CustomizedGoodsAttribute
+    std::string itemAttribute1;      // CustomizedItemAttribute1
+    std::string itemAttribute2;      // CustomizedItemAttribute2
+};
 struct NpWarehouseGoods {
     i64 warehouseId;
     int goodsNumber;
@@ -44,6 +51,8 @@ public:
     // Load the NP goods catalogue (GoodsNumber -> GoodsName) like the original's goods-def job.
     void LoadGoodsCatalog();
     std::wstring GoodsName(int goodsNumber) const;
+    // Returns the decoded-from-XML attribute blobs for a catalogue goods number.
+    bool GoodsBlobs(int goodsNumber, NpGoodsBlobs* out) const;
     // POST /Purchase/GetPurchase ; returns PurchaseStatus, -1 when the gateway has no purchase.
     int GetPurchaseStatus(int worldId, i64 serviceId);
 
@@ -56,6 +65,7 @@ private:
     int port_;
     int programId_;
     std::map<int, std::wstring> goodsNames_;
+    std::map<int, NpGoodsBlobs> goodsBlobs_;
 };
 
 } // namespace accountinventory

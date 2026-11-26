@@ -62,6 +62,13 @@ void SendFailureAck(blood::Session* session, blood::u16 reason) {
     SendFmt(session, "hh", 3, reason);
 }
 
+// The original rejects the all-zero game-account GUID in its packet handler before any job
+// is started (LobbyPacketHandler.cpp "invalid parameter" -> failure ack with reason 7).
+bool IsZeroAccount(const AccountId& id) {
+    for (int i = 0; i < 16; ++i) if (id.bytes[i]) return false;
+    return true;
+}
+
 bool HandleManageHello(blood::Session* session, blood::Packet* packet) {
     blood::u16 cmd = 0, version = 0;
     if (!blood::Packet_Decompose(packet, "hh", &cmd, &version)) {
@@ -145,6 +152,10 @@ bool HandleGetGoodsCount(blood::Session* session, blood::Packet* packet, int cmd
     AccountId account;
     memset(&account, 0, sizeof(account));
     if (!blood::Packet_Decompose(packet, "hqo", &wireCmd, &tid, &account.bytes)) return false;
+    if (IsZeroAccount(account)) {
+        SendFmt(session, "hqh", cmd + 2, (u64)tid, 7);
+        return true;
+    }
     AccountInventoryDB* db = AccountGlobals::db;
     if (cmd == 4 && AccountGlobals::np && AccountGlobals::np->IsConnected()) {
         // NP path (verified against the original + live gateway): cmd5 with (tid, goodsCount).
@@ -172,6 +183,10 @@ bool HandleServiceItemList(blood::Session* session, blood::Packet* packet) {
     blood::u8 searchType = 0;
     if (!blood::Packet_Decompose(packet, "hqoQq", &wireCmd, &tid, &account.bytes,
                                  &searchType, &key)) return false;
+    if (IsZeroAccount(account)) {
+        SendFmt(session, "hqh", 15, (u64)tid, 7);
+        return true;
+    }
     AccountInventoryDB* db = AccountGlobals::db;
     const AppConfig* cfg = AccountGlobals::cfg;
     if (!db || searchType == 0 || (searchType >= 2 && key == 0)) {
@@ -200,6 +215,10 @@ bool HandleItemInfo(blood::Session* session, blood::Packet* packet) {
     memset(&account, 0, sizeof(account));
     if (!blood::Packet_Decompose(packet, "hqqoq", &wireCmd, &tid, &instance,
                                  &account.bytes, &pcId)) return false;
+    if (IsZeroAccount(account)) {
+        SendFmt(session, "hqh", 18, (u64)tid, 7);
+        return true;
+    }
     AccountInventoryDB* db = AccountGlobals::db;
     SingleWarehouseItemRecord item;
     memset(&item, 0, sizeof(item));
@@ -341,6 +360,10 @@ bool HandleListGoods(blood::Session* session, blood::Packet* packet, bool world)
     blood::u8 searchType = 0;
     if (!blood::Packet_Decompose(packet, "hqoc", &wireCmd, &tid, &account.bytes, &searchType))
         return false;
+    if (IsZeroAccount(account)) {
+        SendFmt(session, "hqh", 9, (u64)tid, 7);
+        return true;
+    }
     NpClient* np = AccountGlobals::np;
     const AppConfig* cfg = AccountGlobals::cfg;
     if (!np || !np->IsConnected()) {
@@ -395,9 +418,9 @@ bool HandleListGoods(blood::Session* session, blood::Packet* packet, bool world)
     }
 
     ByteWriter w;
-    // First u32 is the list-state word the original composes from its goods-list job state
-    // (verified against the oracle: 261 with NP goods, 10 with an empty list).
-    w.u32(goods.empty() ? 10u : (world ? 281u : 261u));
+    // The original writes the length of the composed reply body in this first u32.
+    // It is patched below, once every field (including the XML attribute blobs) is written.
+    w.u32(0);
     w.u64(tid);
     w.u16((unsigned short)goods.size());
     for (size_t gi = 0; gi < goods.size(); ++gi) {
@@ -415,23 +438,30 @@ bool HandleListGoods(blood::Session* session, blood::Packet* packet, bool world)
         w.str(np->GoodsName(g.goodsNumber));
         w.str(std::wstring());
         w.rawBytes(std::string());
-        static const unsigned char tail[5] = {0,0,0,0,1};
-        w.u16(5); w.bytes(tail, 5);
+        // CustomizedGoodsAttribute from /Goods/ListGoodsInfos, base64-decoded.
+        NpGoodsBlobs blobs;
+        std::string goodsAttr, itemAttr1, itemAttr2;
+        if (np->GoodsBlobs(g.goodsNumber, &blobs)) {
+            Base64Decode(blobs.goodsAttribute, &goodsAttr);
+            Base64Decode(blobs.itemAttribute1, &itemAttr1);
+            Base64Decode(blobs.itemAttribute2, &itemAttr2);
+        }
+        w.rawBytes(goodsAttr);
         w.u16((unsigned short)g.items.size());
         for (size_t ii = 0; ii < g.items.size(); ++ii) {
             const NpWarehouseItem& it = g.items[ii];
             w.u32((unsigned int)it.itemId);
             w.u32((unsigned int)it.quantity);
             w.u32((unsigned int)it.gameItemKey);
-            // Opaque per-item blobs the original writes from the goods-item definition;
-            // oracle-verified on this install as 8 zero bytes + 00 00 00 00 01 00.
+            // Per-item blobs are CustomizedItemAttribute1/2 from the NP catalogue.
             if (world) w.u32(0);
-            static const unsigned char itemData1[8] = {0,0,0,0,0,0,0,0};
-            static const unsigned char itemData2[6] = {0,0,0,0,1,0};
-            w.u16(8); w.bytes(itemData1, 8);
-            w.u16(6); w.bytes(itemData2, 6);
+            w.rawBytes(itemAttr1);
+            w.rawBytes(itemAttr2);
         }
     }
+    // The original counts every body byte except this length field itself.
+    unsigned int bodyLength = (unsigned int)w.d.size() - 4;
+    for (int i = 0; i < 4; ++i) w.d[i] = (unsigned char)(bodyLength >> (8 * i));
     SendRawBody(session, 8, w.d);
     blood::LogWrite(1, L"GoodsList.cpp", 0x38c,
         L"[list-goods] game-account:%s, goods-count:%d", account.TextW().c_str(), (int)goods.size());
@@ -464,6 +494,10 @@ bool HandleManageRestore(blood::Session* session, blood::Packet* packet) {
     blood::u32 serviceType = 0;
     if (!blood::Packet_Decompose(packet, "hqqoqi", &wireCmd, &tid, &serviceId,
                                  &account.bytes, &pcId, &serviceType)) return false;
+    if (IsZeroAccount(account)) {
+        SendFmt(session, "hqh", 6, (u64)tid, 4);
+        return true;
+    }
     // Full restore state machine (verified against the original with a controlled PurchaseSrv
     // fixture): SETUP validates parameters; GET_PURCHASE queries NP by
     // RequestKey "<gameCode>+<worldId>+<serviceId>"; RESTORE branches on PurchaseStatus:
