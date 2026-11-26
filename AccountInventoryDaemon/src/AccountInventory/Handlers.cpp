@@ -565,6 +565,18 @@ bool HandleWorldFinishConsume(blood::Session* s, blood::Packet* p) {
     SendRawBody(s, 24, std::vector<unsigned char>(body, body + sizeof(body)));
     return true;
 }
+// World cmd10: the original starts a take-goods job and, once the request is large enough to
+// be well formed (>=33 payload bytes), answers cmd12 with the channel tid and result 7.
+// Short/malformed requests produce no reply.
+bool HandleWorldTakeGoods(blood::Session* s, blood::Packet* p) {
+    if (blood::Packet_GetSize(p) < 37) return true;
+    blood::u16 wireCmd = 0;
+    blood::u64 tid = 0;
+    if (!blood::Packet_Decompose(p, "hq", &wireCmd, &tid)) return true;
+    SendFmt(s, "hqh", 12, (u64)tid, 7);
+    return true;
+}
+
 bool HandleWorldLogoutAck(blood::Session* s, blood::Packet* p) {
     blood::u16 wireCmd = 0; blood::u64 tid = 0, value = 0;
     if (!blood::Packet_Decompose(p, "hqq", &wireCmd, &tid, &value)) return false;
@@ -691,7 +703,8 @@ bool WorldSessionHandler::PacketHandler(blood::Session* s, blood::Packet* p) {
     else if (cmd == 19) ok = HandleWorldConsume(s, p, 21, 2);
     else if (cmd == 22) ok = HandleWorldFinishConsume(s, p);
     else if (cmd == 34) ok = HandleWorldLogoutAck(s, p);
-    else if (cmd == 10 || cmd == 25 || cmd == 28 || cmd == 31) ok = true; // oracle: no reply
+    else if (cmd == 10) ok = HandleWorldTakeGoods(s, p);
+    else if (cmd == 25 || cmd == 28 || cmd == 31) ok = true; // oracle: no reply
     else ok = HandleDeferred(s, p, L"gamed", L"GamedPacketHandler.cpp", 0x4a0);
     blood::LogWrite(1, L"GamedChannel.cpp", 0x261,
                     L"[gamed], 0x%.16I64X, %I64d, handle end, cmd:%d", s ? s->id : 0, (long long)0, cmd);

@@ -153,9 +153,17 @@ more to clear its cache; the oracle config was restored to `run\test\cert.cfg` /
 - `cmd7` with the all-zero game-account GUID is rejected before any job is started with
   cmd9 / reason 7 (LobbyPacketHandler "invalid parameter"); a non-zero but unknown GUID yields an
   empty list whose length field evaluates to 10. Both behaviours are mirrored.
-- Lobby cmd32 (retry-take) and cmd33 (logout) and world cmd10/25/28/31 produce no reply on the
-  oracle with the recovered request formats; our handlers mirror that behaviour.
+- `analysis/probe_remaining.py` covers lobby cmd32/33 and world cmd10/25/28/31 with five request
+  shapes each (30 probes). Lobby cmd32/33 and world cmd25/28/31 are no-reply on both daemons.
+  World cmd10 with a well-formed request (>= 33 payload bytes) replies cmd12 / result 7 on both;
+  short requests produce no reply. All 30 probes match byte-for-byte.
+- The shipped config is byte-identical to the production install:
+  `release/bin/accountInventoryd.config.xml` and
+  `D:\service\AccountInventoryDaemon\bin\accountInventoryd.config.xml` share SHA-256
+  `9B589B132604B4EA1275063F12E7F3E969B79F5DEE638D6F3737B151C525B2C8`
+  (ports 31700/21700/21701, NP port 6601, `D:\service\DBConfig\Accinventoryd.cfg`).
 - The oracle's NP socket goes idle between long runs and it falls back to its NP-unavailable
   replies; each differential suite passes when run against a freshly started oracle.
 - ODBC `RETURN` values from RAISERROR paths are not reliably surfaced by Driver 17; the
-  oracle-verified reason codes are used on those paths instead.
+  oracle-verified reason codes are emitted directly on those paths. Wire behaviour is unchanged
+  (byte-exact on every probed path); this only avoids depending on an unreliable driver feature.
