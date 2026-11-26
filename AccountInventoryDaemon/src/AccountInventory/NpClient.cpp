@@ -214,7 +214,10 @@ std::wstring Utf8ToWide(const std::string& s) {
 
 void NpClient::LoadGoodsCatalog() {
     if (!IsConnected()) return;
-    const wchar_t* npCfg = L"C:\\serverside_re\\accountinventory\\run\\test\\config\\gamed-list.config.xml";
+    std::wstring cfgFile = configPath_;
+    if (!cfgFile.empty() && cfgFile[cfgFile.size() - 1] != L'\\') cfgFile += L"\\";
+    cfgFile += L"gamed-list.config.xml";
+    const wchar_t* npCfg = cfgFile.c_str();
     blood::LogWrite(3, L"NPChannel2.cpp", 322, L"[np], setup np channel success");
     blood::LogWrite(1, L"NPChannel2.cpp", 392, L"[np], initialize ok");
     blood::LogWrite(1, L"Port.cpp", 648, L"[session], created, port-id:1, session-id:100000001, session:0000000005160000");

@@ -53,6 +53,7 @@ public:
     bool List(const AccountId& account, int maxGoodsCount, std::string* reply);
     // Load the NP goods catalogue (GoodsNumber -> GoodsName) like the original's goods-def job.
     void LoadGoodsCatalog();
+    void SetConfigPath(const std::wstring& path) { configPath_ = path; }
     std::wstring GoodsName(int goodsNumber) const;
     // Returns the decoded-from-XML attribute blobs for a catalogue goods number.
     bool GoodsBlobs(int goodsNumber, NpGoodsBlobs* out) const;
@@ -69,6 +70,7 @@ private:
     int programId_;
     std::map<int, std::wstring> goodsNames_;
     std::map<int, NpGoodsBlobs> goodsBlobs_;
+    std::wstring configPath_;
     std::thread background_;
     std::atomic<bool> backgroundStop_;
     std::mutex requestLock_;
