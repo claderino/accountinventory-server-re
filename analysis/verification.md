@@ -4,8 +4,11 @@
 - MSVC 14.44.35207, Windows SDK 10.0.26100.0, `build.bat` (`cl /O2 /MT /std:c++17`).
 - Test instance: `run\test`, ports **22700 / 22701 / 32700**.
 - **Oracle**: a copy of the unmodified production binary run from `analysis\oracle` on private
-  ports **23700 / 23701 / 33700** (`np-enabled=no`, `enable-instant-payment=no`). The live
-  production process (PID 23844, ports 21700/21701/31700) was never touched.
+  ports **23700 / 23701 / 33700**. Early checks used `np-enabled=no`; the later differential
+  suites and instant-payment probes used NP-enabled copies against the live gateway. The live
+  production install under `D:\service` was only read; its daemon was stopped/restarted during
+  analysis (PID 23844 -> 25972) and is running from its original binary and config on ports
+  21700/21701/31700.
 - DB: `localhost\SQLEXPRESS`, `GameWarehouseDB`, ODBC Driver 17, trusted connection.
 
 ## Test table
@@ -123,7 +126,8 @@ a **targeted reload of only PurchaseSrv** was used after each fixture change:
 POST http://localhost:6605/apps/1055.1.1.<epoch>/stop
 ```
 
-The rest of the SpawnSrv stack and the production daemon (PID 23844) were never restarted. The
+No other SpawnSrv app was restarted. The production AccountInventory daemon was restarted from
+its own binary/config during analysis (new PID 25972); the process restart is permitted. The
 gateway lookup recovered from the original is `POST /Purchase/GetPurchase STS/1.0` with
 `<RequestKey>bnsgrnTH+10070+<serviceId></RequestKey>`. With both daemons on the test DB and NP
 port 6601, the measured replies are:
