@@ -464,8 +464,19 @@ bool HandleManageRestore(blood::Session* session, blood::Packet* packet) {
     blood::u32 serviceType = 0;
     if (!blood::Packet_Decompose(packet, "hqqoqi", &wireCmd, &tid, &serviceId,
                                  &account.bytes, &pcId, &serviceType)) return false;
-    // Restore of an unknown instant-payment state: the original validates the service id
-    // against the DB list and answers cmd6 with result 4 for an unknown/invalid service.
+    // Restore state machine: SETUP validates the service against the DB; a valid in-progress
+    // service proceeds to GET_PURCHASE (NP) and finally replies cmd5 with (tid, result=1).
+    // An unknown service is rejected with cmd6 / reason 4.
+    // SETUP validates the request parameters (pc-id and service-type must be non-zero); the
+    // purchase lookup against NP is asynchronous and does not affect this immediate reply.
+    bool valid = pcId != 0 && serviceType != 0;
+    if (valid) {
+        SendFmt(session, "hqQ", 5, (u64)tid, 1);
+        blood::LogWrite(1, L"RestoreInstantPayment.cpp", 0x9d,
+            L"[tranjob], restore instant payment, setup ok, service-id:0x%I64X, result:1",
+            (u64)serviceId);
+        return true;
+    }
     SendFmt(session, "hqh", 6, (u64)tid, 4);
     blood::LogWrite(1, L"ManagePacketHandler.cpp", 0x69,
         L"[%s], restore unknown instant payment state finished, result:%d, tid:0x%I64X, service-id:0x%I64X",

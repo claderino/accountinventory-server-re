@@ -129,6 +129,9 @@ public:
             std::vector<UncompletedInstantPaymentRecord>* out);
     int LoadUnknownInstantPaymentStateList(
             std::vector<UncompletedInstantPaymentRecord>* out);
+    // True when an in-progress instant-payment service (state 1/2/4) exists for this key.
+    bool HasInstantPaymentService(i64 serviceId, const AccountId& account,
+                                  i64 pcId, int serviceType);
 
 private:
     int Exec(const wchar_t* query, int paramCount, ...);

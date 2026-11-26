@@ -1,0 +1,98 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<config module='accountinventoryd'>
+	<!-- ==== path ==== -->
+	<!-- [REQ] full root path -->
+	<option name='root-path' value='C:\serverside_re\accountinventory\run\test_ip\'/> 
+	<!-- [REQ] full log path -->
+	<option name='log-path' value='C:\serverside_re\accountinventory\run\test_ip\log\'/> 
+	<!-- [REQ] full config path. (gamed-list.xml path) -->
+	<option name='config-path' value='C:\serverside_re\accountinventory\run\test_ip\config\'/> 
+	<!-- [REQ] full transaction log directory -->
+	<option name='transaction-log-path' value='C:\serverside_re\accountinventory\run\test_ip\log\transaction\'/>  
+	<!-- ==== certification ==== -->
+	<!-- [REQ] certification file path -->
+	<option name='cert-file' value='C:\serverside_re\accountinventory\analysis\oracle\cert_ip.cfg'/> 
+	<!-- ==== system configuration ==== -->
+	<!-- [OPT] 0 is system recommend -->
+	<option name='worker-thread' value='0'/>
+	<!-- [OPT] 0 means default internal session count -->
+	<option name='max-world' value='10000'/>
+	<!-- [OPT] interval of timer(msec) -->
+	<option name='timer-interval' value='1000'/>
+	<!-- [OPT] max time of timer(sec) -->
+	<option name='timer-max-time' value='30'/>
+	<!-- [OPT] transaction timeout(msec). 0 means no timeout on transactoin -->
+	<option name='transaction-timeout' value='0'/>
+	<!-- [OPT] 0: no dump, 1: minimal dump(default), 2: full dump -->
+	<option name='dump-type' value='2'/>
+	<!-- [OPT] msec. for debugging. 0 means pool object be reused immediately. caution, in service mode, pool object do not wait for reuse -->
+	<option name='wait-time-for-reuse-pool-object' value='0'/>
+	<!-- [REQ] job initial object pool size. 0 means no preparance -->
+	<option name='init-job-count' value='4096'/>
+	<!-- [REQ] account goods list hash count. 0 means system default. -->
+	<option name='goods-list-hash-count' value='64'/>
+	<!-- [REQ] goods job hash count. 0 means system default. -->
+	<option name='goods-job-hash-count' value='0'/>
+	<!-- ==== network configuration ==== -->
+	<!-- [REQ] work with next-platform  -->
+	<option name='np-enabled' value='yes'/>
+	<!-- [REQ] NP program id. 302:live(QA)(dev-np-01), 303:program(dev-np-02), 304:internal(dev-np-02), 305:branch(dev-np-01), 306:live(test), 308:tenc(dev-np-02) -->
+	<option name='np-program-id' value='1820'/> 
+	<!-- [REQ] NP game code. bns:live(QA)(dev-np-01), bnsprog:program(dev-np-02), bnsintr:internal(dev-np-02), bnsbr:branch(dev-np-01), bnstest:live(test), bnstenc(dev-np-02) -->
+	<option name='np-game-code' value='bnsgrnTH'/> 
+	<!-- [OPT] next-platform	address -->
+	<option name='np-address' value='127.0.0.1'/> 
+	<!-- [OPT] next-platform access port -->
+	<option name='np-port' value='6601'/>
+	<!-- [OPT] management listen port -->
+	<option name='manage-listen-port' value='32700'/>
+	<!-- [OPT] world listen port -->
+	<option name='lobby-listen-port' value='22700'/>
+	<!-- [OPT] world listen port -->
+	<option name='world-listen-port' value='22701'/>
+	<!-- ==== account inventory service configuration ==== -->
+	<!-- [REQ] service world id -->
+	<option name='service-world-id' value='10070'/>
+	<!-- ==== goods configuration ==== -->
+	<!-- [OPT] np warehouse changeover enable. nshop np화. default no. -->
+	<option name='np-warehouse-changeover-enable' value='yes'/>
+	<!-- [REQ] is overseas np. default no. -->
+	<option name='overseas-np' value='yes'/>
+	<!-- [OPT] goods info list page size. default 0. max 50. -->
+	<option name='goods-info-list-page-size' value='50'/>
+	<!-- [REQ] automated take goods type. 상품 자동 수령 기능 동작 여부 설정. 0:no, 1:all, 2:non-refundable(by notification). default 0. -->
+	<option name='automated-take-goods-type' value='2'/>
+	<!-- [OPT] character inventory item이 포함된 상품 자동 수령 후에 알림으로 보낼 아이템 개수. 0이면 상품 자동 수령하지 않고, 아이템 정보도 보내지 않는다. -->
+	<option name='character-inventory-item-noti-count' value='10'/>
+	<!-- [OPT] goods list max count. max 100. -->
+	<option name='goods-list-max-count' value='100'/>
+	<!-- [OPT] warehouse goods search count. default 20. -->
+	<option name='warehouse-goods-search-count' value='20'/>
+	<!-- [OPT] lobby service item search count. default 100. -->
+	<option name='lobby-service-item-search-count' value='100'/>
+	<!-- [OPT] uncompleted goods registration load count. default 100. 0 means skipping. -->
+	<option name='uncompleted-goods-registration-load-count' value='100'/>
+	<!-- [OPT] uncompleted goods registration fail count max. default 5. -->
+	<option name='uncomoleted-goods-registration-fail-count-max' value='5'/>
+	<!-- ==== instant payment configuration ==== -->
+	<!-- [REQ] enable instant payment -->
+	<option name='enable-instant-payment' value='yes'/>
+	<!-- [OPT] sec. goods category update period. 0 means no update -->
+	<option name='instant-payment-goods-category-update-period' value='30'/>
+	<!-- [OPT] instant payment goods category type. default 2 -->
+	<option name='instant-payment-goods-category-type' value='2'/>
+	<!-- [OPT] language code for goods category. korean(1), chinese-simplified(2), chinese-traditional(3), russian(4), english(5), thai(11), vietnamese(12) -->
+	<option name='instant-payment-goods-category-language-code' value='11'/>
+	<!-- [OPT] purchase currency group id for instant payment. tencent(17) -->
+	<option name='instant-payment-purchase-currency-group-id' value='71'/>
+	<!-- [OPT] purchase request from code. game-server(9) -->
+	<option name='instant-payment-purchase-request-from-code' value='9'/>
+	<!-- [REQ] enable checking second password in instant payment -->
+	<option name='enable-instant-payment-second-password' value='no'/>
+	<!-- [OPT] second password type. tencent(3) -->
+	<option name='instant-payment-second-password-type' value='3'/>
+	<!-- [OPT] second password action index for instant payment. tencent(0) -->
+	<option name='instant-payment-second-password-action-index' value='0'/>
+	<!-- [OPT] 0 means no restoration. -->
+	<option name='instant-payment-restore-count-per-timer-interval' value='50'/>
+</config>

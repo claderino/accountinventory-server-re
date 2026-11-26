@@ -412,6 +412,31 @@ int AccountInventoryDB::LoadUnknownInstantPaymentStateList(
     return s.ReturnValue();
 }
 
+bool AccountInventoryDB::HasInstantPaymentService(i64 serviceId, const AccountId& account,
+        i64 pcId, int serviceType) {
+    if (!Handle()) return false;
+    Stmt s(Handle());
+    if (!s.Prepare(L"SELECT ServiceID FROM dbo.InstantPaymentService "
+                   L"WHERE ServiceID=? AND AccountID=? AND PCID=? AND ServiceType=? "
+                   L"AND ServiceState IN (1,2,4)")) return false;
+    SQLLEN i1 = sizeof(i64), i2 = 16, i3 = sizeof(i64), i4 = sizeof(i32);
+    SQLBindParameter(s.Handle(), 1, SQL_PARAM_INPUT, SQL_C_SBIGINT, SQL_BIGINT, 0, 0,
+                     &serviceId, 0, &i1);
+    AccountId a = account;
+    SQLBindParameter(s.Handle(), 2, SQL_PARAM_INPUT, SQL_C_BINARY, SQL_GUID, 16, 16,
+                     a.bytes, 16, &i2);
+    SQLBindParameter(s.Handle(), 3, SQL_PARAM_INPUT, SQL_C_SBIGINT, SQL_BIGINT, 0, 0,
+                     &pcId, 0, &i3);
+    SQLBindParameter(s.Handle(), 4, SQL_PARAM_INPUT, SQL_C_SLONG, SQL_INTEGER, 0, 0,
+                     &serviceType, 0, &i4);
+    i64 found = 0;
+    SQLLEN ind = 0;
+    SQLBindCol(s.Handle(), 1, SQL_C_SBIGINT, &found, 0, &ind);
+    SQLRETURN rc = SQLExecute(s.Handle());
+    if (rc != SQL_SUCCESS && rc != SQL_SUCCESS_WITH_INFO) return false;
+    return SQLFetch(s.Handle()) == SQL_SUCCESS || SQLFetch(s.Handle()) == SQL_SUCCESS_WITH_INFO;
+}
+
 // ---- registration / acquisition / payment procedures -------------------------------
 
 int AccountInventoryDB::LoadUncompletedWarehouseRegistrationList(int loadCount, i64 loadKey,
