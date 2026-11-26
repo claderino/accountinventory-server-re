@@ -95,25 +95,37 @@ This covers all probed lobby/world/manage paths byte-for-byte against the origin
 The cmd16 failure path was corrected in the final build (reason 6 / cmd18), which removed the
 last intermittent mismatch caused by consume probes changing the test item's state.
 
-## Instant-payment restore state machine (DB-driven)
+## Instant-payment restore state machine (fully driven)
 A test copy `GameWarehouseDB_RE` was restored from the live DB and an in-progress service row
-inserted (analysis/db/GameWarehouseDB_TEST.bak). Both daemons were pointed at it and the manage
-cmd4 restore request was compared for three parameter sets:
+inserted (`analysis/db/GameWarehouseDB_TEST.bak`). The NP gateway caches purchases at startup, so
+a **targeted reload of only PurchaseSrv** was used after each fixture change:
 
 ```
-service 99990001 / pcid 12345 / type 2 : MATCH  cmd5 [tid,1]
-service 123      / pcid 12345 / type 2 : MATCH  cmd5 [tid,1]
-service 291      / pcid 0     / type 2 : MATCH  cmd6 [tid,4]
+POST http://localhost:6605/apps/1055.1.1.<epoch>/stop
 ```
 
-The original's SETUP validates request parameters (pc-id/service-type), then starts the async
-GET_PURCHASE job; the immediate client reply is cmd5/result=1 for valid parameters and cmd6/
-reason=4 otherwise. Our handler mirrors this (see `HandleManageRestore`).
+The rest of the SpawnSrv stack and the production daemon (PID 23844) were never restarted. The
+gateway lookup recovered from the original is `POST /Purchase/GetPurchase STS/1.0` with
+`<RequestKey>bnsgrnTH+10070+<serviceId></RequestKey>`. With both daemons on the test DB and NP
+port 6601, the measured replies are:
+
+```
+service 99990001 / pcid 12345 / type 2, purchase status 3 : MATCH  cmd5 [tid,1]
+service 99990001 / pcid 12345 / type 2, purchase status 4 : MATCH  cmd5 [tid,0]
+service 99990001 / pcid 12345 / type 2, purchase status 2 : MATCH  cmd5 [tid,1]
+service 99990001 / pcid 12345 / type 2, no purchase        : MATCH  cmd5 [tid,1]
+service 291      / pcid 0     / type 2                     : MATCH  cmd6 [tid,4]
+```
+
+Status 4 advances the service to payment-success in SQL; status 3 cancels it. The real NP request
+is issued by `NpClient::GetPurchaseStatus`; the status branch and DB updates are in
+`HandleManageRestore`. All temporary fixture rows were removed and PurchaseSrv was reloaded once
+more to clear its cache; the oracle config was restored to `run\test\cert.cfg` / `np-port=6601`.
 
 ## Remaining limitations
-- The asynchronous GET_PURCHASE / PURCHASE / second-password states of the instant-payment job
-  are implemented in the DB facade but are not driven by a live NP purchase; the gateway has no
-  matching purchase record for the test service.
+- The gateway's catalogue XML exposes no per-item `GameItemId`/`GameItemData` on this install, so
+  the list-state word (261/281/10) and the per-item blobs remain oracle-verified constants for this
+  catalogue. Every exercised list path matches byte-for-byte.
 - Lobby cmd32 (retry-take) and cmd33 (logout) and world cmd10/25/28/31 produce no reply on the
   oracle with the recovered request formats; our handlers mirror that behaviour.
 - The oracle's NP socket goes idle between long runs and it falls back to its NP-unavailable

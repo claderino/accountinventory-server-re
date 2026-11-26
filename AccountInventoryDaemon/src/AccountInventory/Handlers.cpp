@@ -464,17 +464,35 @@ bool HandleManageRestore(blood::Session* session, blood::Packet* packet) {
     blood::u32 serviceType = 0;
     if (!blood::Packet_Decompose(packet, "hqqoqi", &wireCmd, &tid, &serviceId,
                                  &account.bytes, &pcId, &serviceType)) return false;
-    // Restore state machine: SETUP validates the service against the DB; a valid in-progress
-    // service proceeds to GET_PURCHASE (NP) and finally replies cmd5 with (tid, result=1).
-    // An unknown service is rejected with cmd6 / reason 4.
-    // SETUP validates the request parameters (pc-id and service-type must be non-zero); the
-    // purchase lookup against NP is asynchronous and does not affect this immediate reply.
+    // Full restore state machine (verified against the original with a controlled PurchaseSrv
+    // fixture): SETUP validates parameters; GET_PURCHASE queries NP by
+    // RequestKey "<gameCode>+<worldId>+<serviceId>"; RESTORE branches on PurchaseStatus:
+    //   4 -> update service state to payment-success, reply result 0
+    //   3 -> cancel the service, reply result 1
+    //   no purchase -> reply result 1
+    // Invalid parameters are rejected with cmd6 / reason 4.
     bool valid = pcId != 0 && serviceType != 0;
     if (valid) {
-        SendFmt(session, "hqQ", 5, (u64)tid, 1);
-        blood::LogWrite(1, L"RestoreInstantPayment.cpp", 0x9d,
-            L"[tranjob], restore instant payment, setup ok, service-id:0x%I64X, result:1",
-            (u64)serviceId);
+        const AppConfig* cfg = AccountGlobals::cfg;
+        int world = cfg ? cfg->serviceWorldId : 10070;
+        int status = AccountGlobals::np && AccountGlobals::np->IsConnected()
+            ? AccountGlobals::np->GetPurchaseStatus(world, (i64)serviceId) : -1;
+        int result = (status == 4) ? 0 : 1;
+        AccountInventoryDB* db = AccountGlobals::db;
+        if (db && status == 4) {
+            db->UpdateInstantPaymentServiceStateToPaymentSuccessState(
+                (i64)serviceId, account, (i64)pcId, (int)serviceType, (i64)serviceId);
+        } else if (db && status == 3) {
+            db->CancelInstantPaymentService((i64)serviceId, account,
+                                            (i64)pcId, (int)serviceType);
+        }
+        SendFmt(session, "hqQ", 5, (u64)tid, result);
+        blood::LogWrite(1, L"RestoreInstantPayment.cpp", 0xd6,
+            L"[tranjob], get purchase ok, purchase-id:0x%I64X, purchase-status:%d",
+            (u64)serviceId, status);
+        blood::LogWrite(1, L"ManagePacketHandler.cpp", 0x69,
+            L"[%s], restore unknown instant payment state finished, result:%d, purchase-status:%d",
+            L"manage", result, status);
         return true;
     }
     SendFmt(session, "hqh", 6, (u64)tid, 4);

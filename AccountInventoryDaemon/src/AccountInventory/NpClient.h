@@ -44,6 +44,8 @@ public:
     // Load the NP goods catalogue (GoodsNumber -> GoodsName) like the original's goods-def job.
     void LoadGoodsCatalog();
     std::wstring GoodsName(int goodsNumber) const;
+    // POST /Purchase/GetPurchase ; returns PurchaseStatus, -1 when the gateway has no purchase.
+    int GetPurchaseStatus(int worldId, i64 serviceId);
 
 private:
     bool Request(const std::string& path, const std::string& body, std::string* response);

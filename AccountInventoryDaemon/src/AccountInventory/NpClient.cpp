@@ -162,6 +162,25 @@ std::wstring NpClient::GoodsName(int goodsNumber) const {
     return it == goodsNames_.end() ? std::wstring() : it->second;
 }
 
+int NpClient::GetPurchaseStatus(int worldId, i64 serviceId) {
+    char body[512];
+    sprintf_s(body,
+        "<Request>\n<RequestFromCode>9</RequestFromCode>\n"
+        "<RequestKey>%s+%d+%I64d</RequestKey>\n"
+        "<ResultSetType>Status</ResultSetType>\n</Request>\n",
+        gameCode_.c_str(), worldId, serviceId);
+    std::string reply;
+    std::string path = "/Purchase/GetPurchase";
+    if (!Request(path, body, &reply)) {
+        if (!Reconnect() || !Request(path, body, &reply)) return -1;
+    }
+    if (reply.find("STS/1.0 400") != std::string::npos ||
+        reply.find("ErrPurchaseNotExistPurchase") != std::string::npos) return -1;
+    std::string status = XmlValue(reply, "PurchaseStatus");
+    if (status.empty()) return -1;
+    return atoi(status.c_str());
+}
+
 bool NpClient::List(const AccountId& account, int maxGoodsCount, std::string* reply) {
     char body[1024];
     sprintf_s(body,
