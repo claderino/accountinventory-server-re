@@ -78,6 +78,7 @@ original binary as an oracle** — 6/6 command probes match byte-for-byte
 The Next Platform gateway protocol (HTTP-like STS/1.0 over TCP, recovered with a proxy against
 the live gateway) is implemented in `src/AccountInventory/NpClient.cpp`; the goods-count command
 (cmd4) is served through the real gateway and matches the original byte-for-byte
-(`cmd5 [tid, GoodsCount]`). The full goods-list frame (cmd8) and the instant-payment job state
-machine remain documented in `analysis/verification.md`. Companion DLLs are the original
+(`cmd5 [tid, GoodsCount]`); the full goods-list frame (cmd8) is implemented for both lobby and
+world. The instant-payment job state machine beyond the restore request remains documented in
+`analysis/verification.md`. Companion DLLs are the original
 binaries, byte for byte.

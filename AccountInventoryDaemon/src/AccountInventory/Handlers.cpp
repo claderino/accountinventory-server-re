@@ -205,7 +205,9 @@ bool HandleItemInfo(blood::Session* session, blood::Packet* packet) {
     memset(&item, 0, sizeof(item));
     int ret = db ? db->RetrieveSingleWarehouseItem((i64)instance, account, (i64)pcId, &item) : -1;
     if (ret != 0) {
-        SendFmt(session, "hqE", 17, (u64)instance, 3);
+        // Failure path verified against the oracle: cmd+2 with reason 6 (item not found /
+        // invalid state), carrying the channel tid rather than the instance id.
+        SendFmt(session, "hqh", 18, (u64)tid, 6);
         return false;
     }
     SendFmt(session, "hqqqqiQ", 17, (u64)tid, (u64)0, (u64)item.itemInstanceId,

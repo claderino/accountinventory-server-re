@@ -43,7 +43,7 @@
 	<!-- [OPT] next-platform	address -->
 	<option name='np-address' value='127.0.0.1'/> 
 	<!-- [OPT] next-platform access port -->
-	<option name='np-port' value='16602'/>
+	<option name='np-port' value='6601'/>
 	<!-- [OPT] management listen port -->
 	<option name='manage-listen-port' value='33700'/>
 	<!-- [OPT] world listen port -->

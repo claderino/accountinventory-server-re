@@ -80,6 +80,21 @@ World channel (compare_world.py, NP-enabled oracle) — all MATCH:
   cmd10/25/28/31: oracle sends no reply; our handlers mirror that.
 ```
 
+## Clean full-suite verification (2026-11-25)
+`tests\e2e\run_all_fresh.ps1` restarts both daemons before each suite so every run hits a fresh
+oracle NP connection. Final result (`tests\e2e\all_fresh_results.txt`):
+
+```
+=== compare_oracle.py ===   COMPARE RESULT: PASS
+=== compare_remaining.py === RESULT: PASS
+=== compare_world.py ===     RESULT: PASS
+DONE
+```
+
+This covers all probed lobby/world/manage paths byte-for-byte against the original binary.
+The cmd16 failure path was corrected in the final build (reason 6 / cmd18), which removed the
+last intermittent mismatch caused by consume probes changing the test item's state.
+
 ## Remaining limitations
 - The instant-payment job state machine beyond the restore-request command (cmd4) is represented
   by the recovered dispatcher and DB facade but not exercised end-to-end; the test database has

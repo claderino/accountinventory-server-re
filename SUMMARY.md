@@ -48,7 +48,8 @@ query the live DB and compose replies from the returned rows.
 
 A private copy of the original binary was run as an oracle on ports 23700/23701/33700
 (np disabled). `tests/e2e/compare_oracle.py` drives both daemons with identical packets:
-all six probes (cmd4, 7, 13, 16, 19, 25) match byte-for-byte.
+all probed lobby, world and manage paths match byte-for-byte (clean 3-suite run in
+`tests/e2e/all_fresh_results.txt`).
 
 ## Known limitation
 
